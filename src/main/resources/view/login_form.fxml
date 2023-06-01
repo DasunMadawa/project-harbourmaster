@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="980.0" prefWidth="1910.0" style="-fx-background-color: #2C74B3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.LoginFormController">
+   <children>
+      <AnchorPane layoutX="315.0" layoutY="151.0" prefHeight="674.0" prefWidth="1280.0" style="-fx-background-color: #E8F9FD;">
+         <children>
+            <AnchorPane layoutX="640.0" prefHeight="671.0" prefWidth="640.0" style="-fx-background-color: #13005A;">
+               <children>
+                  <Label layoutX="162.0" layoutY="340.0" text="Beruwala Fishing Harbour" textFill="WHITE">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="707.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/8685034381_2db9707fef_b.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="389.0" layoutY="618.0" prefHeight="31.0" prefWidth="237.0" style="-fx-background-color: #CFF5E7; -fx-background-radius: 10;" text="HARBOURMASTER" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="28.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <Label layoutX="240.0" layoutY="90.0" prefHeight="100.0" prefWidth="189.0" text="Login" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="72.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="247.0" layoutY="286.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logoNew-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="userNameTxt" alignment="CENTER" labelFloat="true" layoutX="102.0" layoutY="275.0" onAction="#userNameTxtOnAction" prefHeight="57.0" prefWidth="448.0" promptText="User Name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXButton fx:id="loginBtn" layoutX="277.0" layoutY="501.0" onAction="#loginBtnOnAction" prefHeight="39.0" prefWidth="99.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Login" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="472.0" layoutY="624.0" onMouseClicked="#forgetPasswordOnMouseClicked" text="Forget Password" textFill="#113cfc">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <JFXPasswordField fx:id="passwordField" alignment="CENTER" layoutX="102.0" layoutY="414.0" onAction="#passwordFieldOnAction" prefHeight="44.0" prefWidth="448.0" promptText="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXPasswordField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

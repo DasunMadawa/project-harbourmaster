@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="980.0" prefWidth="1910.0" style="-fx-background-color: #2C74B3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.FishUpdatePriceFormController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="952.0" prefWidth="1882.0" style="-fx-background-color: #E8F9FD; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="829.0" layoutY="45.0" prefHeight="56.0" prefWidth="275.0" text="Fish - Search Fish" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="280.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Fish Id" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="383.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Fish Name" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="489.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Unit Price" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="saveBtn" layoutX="901.0" layoutY="784.0" onAction="#saveBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Save" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <ComboBox fx:id="fishIdComboBox" layoutX="895.0" layoutY="293.0" onAction="#fishIdComboBoxOnAction" prefHeight="31.0" prefWidth="169.0" promptText="Fish Id">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ComboBox>
+            <JFXTextField fx:id="fishNametxt" alignment="CENTER" labelFloat="true" layoutX="767.0" layoutY="386.0" onAction="#fishNametxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="pricetxt" alignment="CENTER" labelFloat="true" layoutX="767.0" layoutY="492.0" onAction="#pricetxtOnAction" prefHeight="51.0" prefWidth="595.0" promptText="Rs." style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="backBtn" layoutX="1532.0" layoutY="897.0" onAction="#backBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="mainBtn" layoutX="1704.0" layoutY="896.0" onAction="#mainBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Main" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

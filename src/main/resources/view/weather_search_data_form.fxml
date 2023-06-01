@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="980.0" prefWidth="1910.0" style="-fx-background-color: #2C74B3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.WeatherSearchDataFormController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="952.0" prefWidth="1882.0" style="-fx-background-color: #E8F9FD; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="799.0" layoutY="20.0" prefHeight="56.0" prefWidth="351.0" text="Weather - Search Data" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="697.0" layoutY="441.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Special Cases     -" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="698.0" layoutY="542.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Date                     -" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="updateBtn" layoutX="780.0" layoutY="762.0" onAction="#updateBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Update" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="searchBtn" layoutX="993.0" layoutY="174.0" onAction="#searchBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Search" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="removeBtn" layoutX="972.0" layoutY="762.0" onAction="#removeBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Remove" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="backkBtn" layoutX="1534.0" layoutY="871.0" onAction="#backkBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="mainBtn" layoutX="1722.0" layoutY="871.0" onAction="#mainBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Main" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="saveBtn" layoutX="780.0" layoutY="820.0" onAction="#saveBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Save" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXTextField fx:id="specialCasestxt" alignment="CENTER" labelFloat="true" layoutX="920.0" layoutY="444.0" onAction="#specialCasestxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="Storms , EarthQuake, etc" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="datetxt" alignment="CENTER" labelFloat="true" layoutX="920.0" layoutY="545.0" onAction="#datetxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="DD-MM-YYYY" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="dateSearchtxt" alignment="CENTER" labelFloat="true" layoutX="756.0" layoutY="174.0" onAction="#dateSearchtxtAction" prefHeight="51.0" prefWidth="206.0" promptText="DD-MM-YYYY" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="userIdTxt" alignment="CENTER" labelFloat="true" layoutX="529.0" layoutY="174.0" onAction="#userIdTxtOnAction" prefHeight="51.0" prefWidth="206.0" promptText="User Id" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardReportMenuFormController">
+   <children>
+      <Pane fx:id="reportMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="19.0" layoutY="18.0" prefHeight="803.0" prefWidth="1560.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="78.0" fitWidth="80.0" layoutX="741.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/bars-chart-page-symbol.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="35.0" layoutY="156.0" prefHeight="168.0" prefWidth="427.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="212.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="53.0" layoutY="220.0" prefHeight="20.0" prefWidth="190.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Stable Days Last Month -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="261.0" prefHeight="20.0" prefWidth="190.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Unstable Month     -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportWeatherUnstableMonthtxt" layoutX="299.0" layoutY="261.0" prefHeight="20.0" prefWidth="112.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportWeatherStableDaystxt" alignment="CENTER" layoutX="299.0" layoutY="220.0" prefHeight="20.0" prefWidth="112.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="341.0" prefHeight="190.0" prefWidth="427.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="212.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/9806-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="53.0" layoutY="411.0" prefHeight="20.0" prefWidth="226.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Turns Last Month            -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="452.0" prefHeight="20.0" prefWidth="226.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Damages Last Month      -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportTurnNoTurnstxt" alignment="CENTER" layoutX="311.0" layoutY="410.0" prefHeight="20.0" prefWidth="88.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="496.0" prefHeight="20.0" prefWidth="226.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Turn Boat Last Month -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportTurnMostTurnBoattxt" layoutX="311.0" layoutY="495.0" prefHeight="20.0" prefWidth="88.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportWeatherUnstabreportTurnNoDamagestxtleMonthtxt111" layoutX="311.0" layoutY="451.0" prefHeight="20.0" prefWidth="88.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="550.0" prefHeight="168.0" prefWidth="427.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="219.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="53.0" layoutY="614.0" prefHeight="20.0" prefWidth="202.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Dockings Last Month -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="655.0" prefHeight="20.0" prefWidth="202.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Available No Docks          -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportDockNoAvailableDockstxt" layoutX="299.0" layoutY="655.0" prefHeight="20.0" prefWidth="112.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportDockNoDockingstxt" alignment="CENTER" layoutX="299.0" layoutY="614.0" prefHeight="20.0" prefWidth="112.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="484.0" layoutY="156.0" prefHeight="219.0" prefWidth="427.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="676.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/3091714-200.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="498.0" layoutY="240.0" prefHeight="20.0" prefWidth="216.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Registered Crew Count    -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="281.0" prefHeight="20.0" prefWidth="216.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="New Crew Last Month      -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportCrewNewCrewCounttxt" layoutX="760.0" layoutY="281.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportCrewCrewCounttxt" alignment="CENTER" layoutX="760.0" layoutY="240.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="497.0" layoutY="323.0" prefHeight="20.0" prefWidth="216.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Retired Crew Last Month -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportCrewRetiredCrewCounttxt" layoutX="759.0" layoutY="323.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="484.0" layoutY="393.0" prefHeight="328.0" prefWidth="597.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="738.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/download-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="498.0" layoutY="456.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Registered Boats Count                          -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="496.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="New Boats Last Month                            -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatNewBoatstxt" layoutX="869.0" layoutY="499.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatAllBoatstxt" alignment="CENTER" layoutX="869.0" layoutY="458.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="535.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Retired Boats Last Month                       -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatRetiredBoatstxt" layoutX="868.0" layoutY="541.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="573.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Fuel Amount For All Boats One Time -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="611.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Single Day Boats                                 -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="646.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Multi Day Boats                                  -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="498.0" layoutY="682.0" prefHeight="20.0" prefWidth="298.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Harvest Boat Last Month             -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportCrewNewCrewCounttxt1reportBoatSingleDayBoatstxt" layoutX="869.0" layoutY="611.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatFueltxt" alignment="CENTER" layoutX="869.0" layoutY="572.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatMultiDayBoatstxt" layoutX="868.0" layoutY="648.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportBoatHarvestBoattxt" layoutX="868.0" layoutY="682.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="933.0" layoutY="159.0" prefHeight="219.0" prefWidth="597.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="1210.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/download-removebg-preview%20(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="949.0" layoutY="230.0" prefHeight="20.0" prefWidth="354.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Harvest Fish Last Month                    -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="949.0" layoutY="261.0" prefHeight="20.0" prefWidth="354.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Harvest Fish Weight Last Month     -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="949.0" layoutY="294.0" prefHeight="20.0" prefWidth="354.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="All Harvest Fish Weight Last Month         -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="949.0" layoutY="327.0" prefHeight="20.0" prefWidth="354.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Most Harvest Month Last Year                   -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportFishFishNametxt" alignment="CENTER" layoutX="1309.0" layoutY="230.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportFishFishWeighttxt" alignment="CENTER" layoutX="1309.0" layoutY="261.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportFishTotalWeighttxt" alignment="CENTER" layoutX="1309.0" layoutY="291.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportFishMonthtxt" alignment="CENTER" layoutX="1309.0" layoutY="327.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1096.0" layoutY="392.0" prefHeight="328.0" prefWidth="433.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="1287.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/images-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="1107.0" layoutY="494.0" prefHeight="20.0" prefWidth="261.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Cost For Fish Last Month              -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="1107.0" layoutY="535.0" prefHeight="20.0" prefWidth="261.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Wrath Of Stock For Current Day -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportStockWrathtxt" layoutX="1388.0" layoutY="535.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reportStockCostxt" alignment="CENTER" layoutX="1388.0" layoutY="494.0" prefHeight="20.0" prefWidth="99.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

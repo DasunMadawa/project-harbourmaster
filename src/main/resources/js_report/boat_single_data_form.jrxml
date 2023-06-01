@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="boat_single_data_form" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27b74006-d90b-4d14-9e2e-94ff41f0b245">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM boat WHERE boatId = 'B007';]]>
+	</queryString>
+	<field name="boatId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="boatId"/>
+		<property name="com.jaspersoft.studio.field.label" value="boatId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="boatOwner" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="boatOwner"/>
+		<property name="com.jaspersoft.studio.field.label" value="boatOwner"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="boatName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="boatName"/>
+		<property name="com.jaspersoft.studio.field.label" value="boatName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="boatType" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="boatType"/>
+		<property name="com.jaspersoft.studio.field.label" value="boatType"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="noCrew" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="noCrew"/>
+		<property name="com.jaspersoft.studio.field.label" value="noCrew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="fuelTankCap" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fuelTankCap"/>
+		<property name="com.jaspersoft.studio.field.label" value="fuelTankCap"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="freshWaterCap" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="freshWaterCap"/>
+		<property name="com.jaspersoft.studio.field.label" value="freshWaterCap"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="maxWeight" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="maxWeight"/>
+		<property name="com.jaspersoft.studio.field.label" value="maxWeight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<field name="boatOwnerEmail" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="boatOwnerEmail"/>
+		<property name="com.jaspersoft.studio.field.label" value="boatOwnerEmail"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="5a3e4d28-c5d1-42f1-93b7-33e5d6813c20"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="7032b5b2-d3e7-4865-856b-dd1b4d47e725"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Boat Details ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="ac7f26b5-a0c0-46f5-acfc-65b34052e4f4"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[HARBOURMASTER]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="490" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="30" width="246" height="30" uuid="296b1892-68dd-44db-8971-8c6893d741d2"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boatId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="30" width="140" height="30" uuid="0eb8651d-dcd4-4cd5-9327-9a0b1a5bf9ca"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Boat Id		-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="80" width="246" height="30" uuid="57e37733-13e0-4733-a3e9-581bc599930c"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boatOwner}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="80" width="140" height="30" uuid="e0e16e7e-2353-45d2-ae08-3564c92b41d0"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Boat Owner	-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="130" width="246" height="30" uuid="0a098a91-fc0e-41a1-a814-2024fa5efbb4"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boatName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="130" width="140" height="30" uuid="a25b0512-3dc0-4550-9e77-defae97a4479"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Boat Name	-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="180" width="246" height="30" uuid="fe876c94-c858-4f92-bc76-b1fb60c9eccc"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boatType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="180" width="140" height="30" uuid="2a4b0a5a-2374-489f-a0a1-f4ed6dadeee4"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Boat Type		-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="230" width="246" height="30" uuid="67a4d52c-3422-4b14-b830-d83c15741b1d"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noCrew}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="230" width="140" height="30" uuid="def05583-fd31-4a13-b49f-120f35da3749"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[No Crew		-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="280" width="246" height="30" uuid="a01634d7-38bc-45ee-bc88-72d3eda52500"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fuelTankCap}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="280" width="140" height="30" uuid="0715886e-c263-48da-adbc-467c73ec2938"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Fuel Tank Cap	-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="330" width="246" height="30" uuid="00b5e443-2d7b-4e93-bd41-149dfd345bee"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{freshWaterCap}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="330" width="140" height="30" uuid="ab1b733a-d11a-4c17-8a7f-b525949c7dcd"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Fresh Water Cap-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="380" width="246" height="30" uuid="04c108f9-c539-4fa0-857b-7f8ee3a92bcc"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maxWeight}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="380" width="140" height="30" uuid="b04c1e94-32a5-43a8-9d9a-cec63fe81e3f"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Max Weight	-]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="430" width="246" height="30" uuid="c0fbd35d-3bc1-4fcc-9777-d22f2fbf75e3"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{boatOwnerEmail}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="430" width="140" height="30" uuid="cedf8470-c34a-4e18-961d-b51941109481"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Boat Owner Mail -]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

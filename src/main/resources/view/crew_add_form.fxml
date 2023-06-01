@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="980.0" prefWidth="1910.0" style="-fx-background-color: #2C74B3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.CrewAddFormController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="952.0" prefWidth="1882.0" style="-fx-background-color: #E8F9FD; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="907.0" layoutY="26.0" prefHeight="56.0" prefWidth="294.0" text="Crew - Add Crew" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="crewImage" fitHeight="286.0" fitWidth="254.0" layoutX="77.0" layoutY="320.0" onMouseClicked="#crewImageViewOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/396915-200.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="498.0" layoutY="175.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Name" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="278.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="NIC" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="485.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="DOB" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="384.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Address" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="594.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Gender" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="700.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Contact" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="498.0" layoutY="807.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="E-Mail" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="-100.0" endY="862.0" layoutX="486.0" layoutY="23.0" startX="-100.0" startY="95.0" />
+            <JFXButton fx:id="backBtn" layoutX="1522.0" layoutY="887.0" onAction="#backBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="mainBtn" layoutX="1694.0" layoutY="886.0" onAction="#mainBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Main" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="registerBtn" layoutX="1594.0" layoutY="438.0" onAction="#registerBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Register" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <ComboBox fx:id="genderComboBox" layoutX="717.0" layoutY="602.0" onAction="#genderComboBoxOnAction" prefHeight="41.0" prefWidth="192.0" promptText="Select Gender" />
+            <JFXTextField fx:id="emailtxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="810.0" onAction="#emailtxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="contactTxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="703.0" onAction="#contactTxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="dobtxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="488.0" onAction="#dobtxtOnAction" prefHeight="51.0" prefWidth="595.0" promptText="DD-MM-YYYY" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="addresstxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="387.0" onAction="#addresstxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="nictxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="281.0" onAction="#nictxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="nameTxt" alignment="CENTER" labelFloat="true" layoutX="717.0" layoutY="178.0" onAction="#nameTxtOnAction" prefHeight="51.0" prefWidth="595.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

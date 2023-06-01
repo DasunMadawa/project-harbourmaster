@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="980.0" prefWidth="1910.0" style="-fx-background-color: #2C74B3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.TurnSearchTurnFormController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="952.0" prefWidth="1882.0" style="-fx-background-color: #E8F9FD; -fx-background-radius: 50;">
+         <children>
+            <Label layoutX="907.0" layoutY="26.0" prefHeight="56.0" prefWidth="294.0" text="Turn - Search Turn" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="86.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Turn Id" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="149.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Crew Count" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="211.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Out Date" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="275.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Out Time" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="backBtn" layoutX="1654.0" layoutY="885.0" onAction="#backBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="mainBtn" layoutX="1654.0" layoutY="825.0" onAction="#mainBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Main" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="76.0" layoutY="337.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="In Date" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="399.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="In Time" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="476.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Boat Id" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="539.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Boat Name" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="601.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Boat Type" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="665.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="No Crew" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="76.0" layoutY="794.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Fish Id" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="turnIdLbl" alignment="CENTER" layoutX="307.0" layoutY="86.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="533.0" layoutX="134.0" layoutY="463.0" startX="-100.0" />
+            <Line endX="-100.0" endY="650.0" layoutX="767.0" layoutY="96.0" startX="-100.0" startY="-13.0" />
+            <Label layoutX="1019.0" layoutY="109.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Name" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="1019.0" layoutY="171.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="NIC" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="1019.0" layoutY="235.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="DOB" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="1019.0" layoutY="297.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Contact" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="1019.0" layoutY="359.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="E-Mail" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="779.0" layoutY="395.0" prefHeight="31.0" prefWidth="84.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Captain" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="capImageView" fitHeight="286.0" fitWidth="254.0" layoutX="691.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="capNameLbl" alignment="CENTER" layoutX="1250.0" layoutY="109.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="capDOBLbl" alignment="CENTER" layoutX="1250.0" layoutY="234.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="capContactLbl" alignment="CENTER" layoutX="1250.0" layoutY="297.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailLbl" alignment="CENTER" layoutX="1250.0" layoutY="358.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="boatNameLbl" alignment="CENTER" layoutX="307.0" layoutY="539.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="boatTypeLbl" alignment="CENTER" layoutX="307.0" layoutY="601.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="noCrewLbl" alignment="CENTER" layoutX="307.0" layoutY="665.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="fuelCapLbl" alignment="CENTER" layoutX="307.0" layoutY="727.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="waterCapLbl" alignment="CENTER" layoutX="307.0" layoutY="789.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="maxWeightLbl" alignment="CENTER" layoutX="307.0" layoutY="854.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="searchBtn" layoutX="1654.0" layoutY="186.0" onAction="#searchBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Search" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="endTurnBtn" layoutX="1654.0" layoutY="265.0" onAction="#endTurnBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="End Turn" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label layoutX="76.0" layoutY="865.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Weight" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="boatIdLbl" alignment="CENTER" layoutX="307.0" layoutY="476.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="capNIClbl" alignment="CENTER" layoutX="1250.0" layoutY="171.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="24.0" />
+               </font>
+            </Label>
+            <TableView fx:id="crewTbl" layoutX="757.0" layoutY="480.0" prefHeight="235.0" prefWidth="1043.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+               <columns>
+                  <TableColumn fx:id="crewNicCol" prefWidth="168.99996948242188" text="NIC" />
+                  <TableColumn fx:id="crewNameCol" minWidth="0.0" prefWidth="269.0" text="Name" />
+                  <TableColumn fx:id="crewAddressCol" minWidth="9.0" prefWidth="272.0" text="Address" />
+                  <TableColumn fx:id="crewContactCol" minWidth="9.0" prefWidth="201.0" text="Contact" />
+                  <TableColumn fx:id="crewAgeCol" minWidth="9.0" prefWidth="131.0" text="Age" />
+               </columns>
+            </TableView>
+            <Line endX="1726.0" layoutX="134.0" layoutY="747.0" startX="-100.0" />
+            <TableView fx:id="fishTable" layoutX="916.0" layoutY="764.0" prefHeight="169.0" prefWidth="706.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+               <columns>
+                  <TableColumn fx:id="fishIdCol" prefWidth="116.0" text="Fish Id" />
+                  <TableColumn fx:id="fishNameCol" minWidth="0.0" prefWidth="214.0" text="Fish Name" />
+                  <TableColumn fx:id="unitPrice" minWidth="9.0" prefWidth="125.0" text="Unit Price" />
+                  <TableColumn fx:id="qtyCol" minWidth="9.0" prefWidth="133.0" text="Qty" />
+                  <TableColumn fx:id="actionCol" minWidth="9.0" prefWidth="117.0" text="Action" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="addBtn" layoutX="802.0" layoutY="832.0" onAction="#addBtnOnAction" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Add" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <Label fx:id="fishNameLbl" alignment="CENTER" layoutX="636.0" layoutY="799.0" prefHeight="51.0" prefWidth="163.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="unitPricelbl" alignment="CENTER" layoutX="636.0" layoutY="868.0" prefHeight="51.0" prefWidth="163.0" textAlignment="CENTER" textFill="#13005a">
+               <font>
+                  <Font name="Cambria Math" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="crewCounttxt" alignment="CENTER" labelFloat="true" layoutX="307.0" layoutY="151.0" onAction="#crewCounttxtOnAction" prefHeight="51.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="outDateTxt" alignment="CENTER" layoutX="307.0" layoutY="214.0" onAction="#outDateTxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="DD-MM-YYYY" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="outTimeTxt" alignment="CENTER" layoutX="307.0" layoutY="278.0" onAction="#outTimeTxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="HH:MM:SS" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="inDatetxt" alignment="CENTER" layoutX="307.0" layoutY="340.0" onAction="#inDatetxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="DD-MM-YYYY" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="inTimetxt" alignment="CENTER" layoutX="307.0" layoutY="402.0" onAction="#inTimetxtOnAction" prefHeight="51.0" prefWidth="318.0" promptText="HH:MM:SS" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="fishIdTxt" alignment="CENTER" labelFloat="true" layoutX="307.0" layoutY="797.0" onAction="#fishIdTxtOnSction" prefHeight="51.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="fishweight" alignment="CENTER" labelFloat="true" layoutX="307.0" layoutY="868.0" prefHeight="51.0" prefWidth="318.0" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField fx:id="turnSearchIdTxt" alignment="CENTER" labelFloat="true" layoutX="1585.0" layoutY="117.0" onAction="#turnSearchIdTxtOnAction" prefHeight="51.0" prefWidth="283.0" promptText="Search Turn Id" style="-fx-background-color: #FFFFFF;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

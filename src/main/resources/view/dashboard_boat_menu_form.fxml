@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardBoatMenuFormController">
+   <children>
+      <Pane fx:id="boatMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="25.0" layoutY="21.0" prefHeight="803.0" prefWidth="1560.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="89.0" fitWidth="88.0" layoutX="737.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/download-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="boatTbl" layoutX="72.0" layoutY="302.0" prefHeight="470.0" prefWidth="1417.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="boatBoatIdCol" prefWidth="149.00003051757812" text="Boat Id" />
+                        <TableColumn fx:id="boatBoatNameCol" minWidth="9.0" prefWidth="231.0" text="Boat Name" />
+                        <TableColumn fx:id="boatBoatOwnerCol" minWidth="9.0" prefWidth="361.0" text="Boat Owner" />
+                        <TableColumn fx:id="boatBoatTypeCol" minWidth="0.0" prefWidth="172.0" text="Boat Type" />
+                        <TableColumn fx:id="boatMaxCrewCol" minWidth="9.0" prefWidth="83.0" text="Max Crew" />
+                        <TableColumn fx:id="boatFuelCapCol" minWidth="9.0" prefWidth="91.0" text="Fuel Cap(L)" />
+                        <TableColumn fx:id="boatWaterCapCol" minWidth="9.0" prefWidth="100.0" text="Water Cap (L)" />
+                        <TableColumn fx:id="boatMaxWeightCol" minWidth="9.0" prefWidth="108.0" text="Max Weight (T)" />
+                        <TableColumn fx:id="boatDockIdCol" minWidth="9.0" prefWidth="127.0" text="Dock Id" />
+                     </columns>
+                  </TableView>
+                  <JFXButton fx:id="boatAddBoatBtn" layoutX="72.0" layoutY="178.0" onAction="#boatAddBoatBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Add Boat" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="boatSearchBoatBtn" layoutX="428.0" layoutY="178.0" onAction="#boatSearchBoatBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Search Boat" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="printReportBtn" layoutX="1332.0" layoutY="186.0" onAction="#printReportBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Print Report" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

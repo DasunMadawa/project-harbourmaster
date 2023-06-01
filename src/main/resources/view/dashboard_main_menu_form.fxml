@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="838.0" prefWidth="1598.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardMainMenuFormController">
+   <children>
+      <Pane fx:id="mainMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="28.0" layoutY="25.0" prefHeight="394.0" prefWidth="587.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <Label layoutX="32.0" layoutY="90.0" prefHeight="29.0" prefWidth="148.0" text="Day                  -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="162.0" prefHeight="29.0" prefWidth="148.0" text="Wind Speed  -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="233.0" prefHeight="29.0" prefWidth="148.0" text="Special cases -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuWeatherDaylbl" layoutX="210.0" layoutY="90.0" prefHeight="29.0" prefWidth="369.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuWeatherWSpeedlbl" layoutX="210.0" layoutY="162.0" prefHeight="29.0" prefWidth="369.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuWeatherSCaseslbl" layoutX="210.0" layoutY="233.0" prefHeight="29.0" prefWidth="369.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="305.0" prefHeight="29.0" prefWidth="148.0" text="Threat Level -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuWeatherThreatLvllbl" layoutX="210.0" layoutY="305.0" prefHeight="29.0" prefWidth="369.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="56.0" fitWidth="83.0" layoutX="254.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="28.0" layoutY="430.0" prefHeight="394.0" prefWidth="587.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="41.0" fitWidth="57.0" layoutX="265.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/9806-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="24.0" layoutY="61.0" prefHeight="29.0" prefWidth="209.0" text="No. Boats On Sea  -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuTurnNoBoatsOnSealbl" layoutX="297.0" layoutY="61.0" prefHeight="29.0" prefWidth="270.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="103.0" prefHeight="29.0" prefWidth="209.0" text="No. Sailors On Sea -" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mainMenuTurnNoSailorsOnSealbl" layoutX="297.0" layoutY="103.0" prefHeight="29.0" prefWidth="270.0" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="mainMenuTurnTbl" layoutX="24.0" layoutY="191.0" prefHeight="174.0" prefWidth="547.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="mainMenuTurnTIdCol" prefWidth="107.0" text="Turn Id" />
+                        <TableColumn fx:id="mainMenuTurnOutDateCol" minWidth="0.0" prefWidth="153.0" text="Out Date" />
+                        <TableColumn fx:id="mainMenuTurnCrewcol" minWidth="9.0" prefWidth="45.0" text="Crew" />
+                        <TableColumn fx:id="mainMenuTurnCaptainCol" minWidth="0.0" prefWidth="241.0" text="Captain" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="193.0" layoutY="148.0" prefHeight="29.0" prefWidth="209.0" text="Danger Level Boats" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="626.0" layoutY="26.0" prefHeight="796.0" prefWidth="958.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="98.0" layoutX="451.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="703.0" fitWidth="805.0" layoutX="77.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/docking%20Chart.png" />
+                     </image></ImageView>
+                  <Label layoutX="86.0" layoutY="733.0" prefHeight="29.0" prefWidth="67.0" text="D111">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="86.0" layoutY="588.0" prefHeight="29.0" prefWidth="67.0" text="D112">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="86.0" layoutY="541.0" prefHeight="29.0" prefWidth="67.0" text="D121">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="86.0" layoutY="403.0" prefHeight="29.0" prefWidth="67.0" text="D122">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="86.0" layoutY="352.0" prefHeight="29.0" prefWidth="67.0" text="D131">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="86.0" layoutY="215.0" prefHeight="29.0" prefWidth="67.0" text="D132">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="731.0" prefHeight="29.0" prefWidth="67.0" text="D311">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="586.0" prefHeight="29.0" prefWidth="67.0" text="D312">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="539.0" prefHeight="29.0" prefWidth="67.0" text="D321">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="401.0" prefHeight="29.0" prefWidth="67.0" text="D322">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="350.0" prefHeight="29.0" prefWidth="67.0" text="D331">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="374.0" layoutY="213.0" prefHeight="29.0" prefWidth="67.0" text="D332">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="731.0" prefHeight="29.0" prefWidth="67.0" text="D211">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="586.0" prefHeight="29.0" prefWidth="67.0" text="D212">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="539.0" prefHeight="29.0" prefWidth="67.0" text="D221">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="401.0" prefHeight="29.0" prefWidth="67.0" text="D222">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="350.0" prefHeight="29.0" prefWidth="67.0" text="D231">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="660.0" layoutY="213.0" prefHeight="29.0" prefWidth="67.0" text="D232">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="331.0" layoutY="117.0" prefHeight="29.0" prefWidth="298.0" text="NO. Available Places In Dock" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D111" layoutX="239.0" layoutY="731.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D112" layoutX="239.0" layoutY="586.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D121" layoutX="239.0" layoutY="539.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D122" layoutX="239.0" layoutY="401.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D131" layoutX="239.0" layoutY="350.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D132" layoutX="239.0" layoutY="213.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D311" layoutX="519.0" layoutY="731.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D312" layoutX="519.0" layoutY="586.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D321" layoutX="519.0" layoutY="539.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D322" layoutX="519.0" layoutY="401.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D331" layoutX="519.0" layoutY="350.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D332" layoutX="519.0" layoutY="213.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D211" layoutX="804.0" layoutY="731.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D212" layoutX="804.0" layoutY="586.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D221" layoutX="804.0" layoutY="539.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D222" layoutX="804.0" layoutY="401.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D231" layoutX="804.0" layoutY="350.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="D232" layoutX="804.0" layoutY="213.0" prefHeight="29.0" prefWidth="67.0">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardCrewMenuFormController">
+   <children>
+      <Pane fx:id="crewMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="25.0" layoutY="22.0" prefHeight="803.0" prefWidth="1560.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="67.0" layoutX="749.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/3091714-200.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="crewTbl" layoutX="72.0" layoutY="302.0" prefHeight="470.0" prefWidth="1417.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="crewNicCol" prefWidth="237.99996948242188" text="NIC" />
+                        <TableColumn fx:id="crewNameCol" minWidth="0.0" prefWidth="448.0" text="Name" />
+                        <TableColumn fx:id="crewAddressCol" minWidth="9.0" prefWidth="369.0" text="Address" />
+                        <TableColumn fx:id="crewContactCol" minWidth="9.0" prefWidth="241.0" text="Contact" />
+                        <TableColumn fx:id="crewAgeCol" minWidth="9.0" prefWidth="120.0" text="Age" />
+                     </columns>
+                  </TableView>
+                  <JFXButton fx:id="crewAddCrewBtn" layoutX="72.0" layoutY="178.0" onAction="#crewAddCrewBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Add Crew" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="crewSearchBtn" layoutX="428.0" layoutY="178.0" onAction="#crewSearchBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Search Crew" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ComboBox fx:id="crewFilterComboBox" layoutX="1349.0" layoutY="244.0" onAction="#crewFilterComboBoxOnAction" prefHeight="31.0" prefWidth="140.0" promptText="Filter">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ComboBox>
+                  <JFXButton fx:id="printReportBtn" layoutX="1341.0" layoutY="160.0" onAction="#printReportBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Print Report" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

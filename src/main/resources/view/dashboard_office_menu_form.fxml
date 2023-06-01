@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardOfficeMenuFormController">
+   <children>
+      <Pane fx:id="officeMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="26.0" layoutY="22.0" prefHeight="803.0" prefWidth="1560.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="747.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/businessman.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="officeTbl" layoutX="161.0" layoutY="227.0" prefHeight="502.0" prefWidth="1238.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="officeNicCol" prefWidth="184.00003051757812" text="NIC" />
+                        <TableColumn fx:id="officeNameCol" minWidth="0.0" prefWidth="303.0" text="Name" />
+                        <TableColumn fx:id="officeAgeCol" minWidth="0.0" prefWidth="76.0" text="Age" />
+                        <TableColumn fx:id="officeAddressCol" minWidth="0.0" prefWidth="180.0" text="Address" />
+                        <TableColumn fx:id="officeContactCol" prefWidth="179.0" text="Contact" />
+                        <TableColumn fx:id="officeGenderCol" prefWidth="93.0" text="Gender" />
+                        <TableColumn fx:id="officePositionCol" prefWidth="221.0" text="Position" />
+                     </columns>
+                  </TableView>
+                  <JFXButton fx:id="officeAddEmployeeBtn" layoutX="161.0" layoutY="123.0" onAction="#officeAddEmployeeBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Add Employee" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="officeSearchEmployeeBtn" layoutX="489.0" layoutY="123.0" onAction="#officeSearchEmployeeBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Search Employee" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="printReportBtn" layoutX="1233.0" layoutY="739.0" onAction="#printReportBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Print Report" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

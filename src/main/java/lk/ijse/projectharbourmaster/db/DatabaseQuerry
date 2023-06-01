@@ -1,0 +1,141 @@
+ CREATE DATABASE projectHarbourmaster;
+
+ USE projectHarbourmaster;
+
+CREATE TABLE employee(
+    nic VARCHAR(12) PRIMARY KEY,
+    photo MEDIUMBLOB,
+    name VARCHAR(50) NOT NULL,
+    bod DATE NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    gender ENUM('MALE' , 'FEMALE'),
+    salary DECIMAL(8 , 2) NOT NULL,
+    position VARCHAR(30) NOT NULL,
+    email VARCHAR(30) UNIQUE
+);
+
+CREATE TABLE employeeContactDetails(
+    nic VARCHAR(12),
+    contact VARCHAR(12),
+    PRIMARY KEY (nic , contact),
+    FOREIGN KEY(nic) REFERENCES employee(nic) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE user(
+    userId VARCHAR(4) PRIMARY KEY,
+    nic VARCHAR(12),
+	userName VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(20) NOT NULL,
+	FOREIGN KEY(nic) REFERENCES employee(nic) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE weather(
+    userId VARCHAR(4),
+	windSpeed DECIMAL(5 , 2) NOT NULL,
+	specialCauses VARCHAR(50),
+	date DATE NOT NULL,
+	time TIME NOT NULL,
+	FOREIGN KEY(userId) REFERENCES user(userId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE boat(
+    boatId VARCHAR(4) PRIMARY KEY,
+    boatOwner VARCHAR(30) NOT NULL,
+    boatName VARCHAR(50),
+    boatType ENUM('DAILY' , 'MULTIDAY'),
+    noCrew INT NOT NULL,
+    fuelTankCap VARCHAR(6) NOT NULL,
+    freshWaterCap VARCHAR(6) NOT NULL,
+    maxWeight VARCHAR(6) NOT NULL,
+    boatOwnerEmail VARCHAR(30) UNIQUE
+);
+
+CREATE TABLE dock(
+    dockId VARCHAR(4) PRIMARY KEY,
+    mainDock INT NOT NULL,
+    subDock INT NOT NULL,
+    dockSide INT NOT NULL
+);
+
+CREATE TABLE boat_dock(
+    dockId VARCHAR(4),
+    boatId VARCHAR(4),
+    inDate DATE,
+    outDate DATE,
+    FOREIGN KEY(dockId) REFERENCES dock(dockId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(boatId) REFERENCES boat(boatId) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(dockId , boatId , inDate)
+);
+
+CREATE TABLE crew(
+    nic VARCHAR(12) PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    photo MEDIUMBLOB,
+    bod DATE NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    gender ENUM('MALE' , 'FEMALE'),
+    email VARCHAR(30) UNIQUE
+);
+
+CREATE TABLE turn(
+    turnId VARCHAR(4) PRIMARY KEY,
+    boatId VARCHAR(4),
+    capNIC VARCHAR(12),
+    crewCount INT NOT NULL,
+    outDate DATE,
+    outTime TIME,
+    inDate DATE,
+    inTime TIME,
+    FOREIGN KEY(boatId) REFERENCES boat(boatId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(capNic) REFERENCES crew(nic) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE crewContactDetails(
+    nic VARCHAR(12),
+    contact VARCHAR(12),
+    PRIMARY KEY(nic , contact),
+    FOREIGN KEY(nic) REFERENCES crew(nic) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE turn_crew(
+    nic VARCHAR(12),
+    turnId VARCHAR(4),
+    PRIMARY KEY(nic , turnId ),
+    FOREIGN KEY(nic) REFERENCES crew(nic) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(turnId) REFERENCES turn(turnId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE fish(
+    fishId VARCHAR(4) PRIMARY KEY,
+    name VARCHAR(50),
+    unitPrice DECIMAL(8 , 2),
+    stock DECIMAL(4,2)
+);
+
+CREATE TABLE turn_fish(
+    fishId VARCHAR(4),
+    turnId VARCHAR(4),
+    weight DECIMAL(10 , 2),
+    date DATE,
+    PRIMARY KEY(fishId , turnId),
+    FOREIGN KEY(fishId) REFERENCES fish(fishId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(turnId) REFERENCES turn(turnId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE stock(
+    stockId VARCHAR(4) PRIMARY KEY,
+    fullCapacity DECIMAL(4,2),
+    availableCapacity DECIMAL(4,2)
+);
+
+CREATE TABLE stock_fish(
+    stockId VARCHAR(4),
+    fishId VARCHAR(4),
+    weight DECIMAL(6,2),
+    date DATE,
+    unitPriceBought DECIMAL(7,2),
+    addOrRemove ENUM ('ADD' , 'REMOVE'),
+    FOREIGN KEY(fishId) REFERENCES fish(fishId) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(stockId) REFERENCES stock(stockId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+

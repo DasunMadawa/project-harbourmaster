@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.projectharbourmaster.controller.DashboardStockMenuFormController">
+   <children>
+      <Pane fx:id="stockMenuPane" prefHeight="838.0" prefWidth="1598.0">
+         <children>
+            <Pane layoutX="19.0" layoutY="18.0" prefHeight="803.0" prefWidth="1560.0" style="-fx-background-color: #1597E5; -fx-background-radius: 50;">
+               <children>
+                  <ImageView fitHeight="78.0" fitWidth="80.0" layoutX="741.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/images-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <TableView fx:id="stockTbl" layoutX="93.0" layoutY="409.0" prefHeight="354.0" prefWidth="616.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="stockStockIdCol" prefWidth="126.00003051757812" text="Stock Id" />
+                        <TableColumn fx:id="stockFishIdCol" minWidth="9.0" prefWidth="127.0" text="Fish Id" />
+                        <TableColumn fx:id="stockFishNameCol" minWidth="9.0" prefWidth="215.0" text="Fish Name" />
+                        <TableColumn fx:id="stockStockCol" minWidth="0.0" prefWidth="147.0" text="Stock(T)" />
+                     </columns>
+                  </TableView>
+                  <JFXButton fx:id="stockAddFishToStockBtn" layoutX="68.0" layoutY="112.0" onAction="#stockAddFishToStockBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Add / Remove Fish To Stock" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Line endX="-100.0" endY="496.0" layoutX="919.0" layoutY="266.0" startX="-100.00003051757812" startY="-153.0" />
+                  <Label layoutX="1113.0" layoutY="98.0" prefHeight="48.0" prefWidth="157.0" text="Stock Records" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="25.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="stockTbl1" layoutX="832.0" layoutY="179.0" prefHeight="569.0" prefWidth="719.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+                     <columns>
+                        <TableColumn fx:id="stockStockIdCol1" prefWidth="96.0" text="Stock Id" />
+                        <TableColumn fx:id="stockFishIdCol1" minWidth="9.0" prefWidth="99.0" text="Fish Id" />
+                        <TableColumn fx:id="stockFishNameCol1" minWidth="9.0" prefWidth="172.0" text="Fish Name" />
+                        <TableColumn fx:id="stockUniPriceCol" minWidth="0.0" prefWidth="122.0" text="Uni Price(LKR)" />
+                        <TableColumn fx:id="stockDateCol" minWidth="0.0" prefWidth="102.0" text="Date" />
+                        <TableColumn fx:id="stockAmountCol" minWidth="0.0" prefWidth="68.0" text="Amount(T)" />
+                        <TableColumn fx:id="stockActionCol" minWidth="0.0" prefWidth="59.0" text="Action" />
+                     </columns>
+                  </TableView>
+                  <JFXSpinner fx:id="s1StockSpinner" layoutX="192.0" layoutY="226.0" prefHeight="100.0" prefWidth="100.0" progress="0.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 50;" />
+                  <Label alignment="CENTER" layoutX="215.0" layoutY="336.0" prefHeight="56.0" prefWidth="55.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="S1" textAlignment="CENTER" textFill="#13005a">
+                     <font>
+                        <Font name="Cambria Math" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
