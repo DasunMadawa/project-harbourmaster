@@ -269,7 +269,7 @@ public class OfficeAddFormController {
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,
-                    "Database Crash",
+                    "Database Crash Chech Duplicate Data",
                     ButtonType.OK
             ).show();
             e.printStackTrace();

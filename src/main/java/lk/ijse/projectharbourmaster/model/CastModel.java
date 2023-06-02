@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CastModel {
+public class  CastModel {
     public static boolean cast(String selectedType , String message) throws SQLException {
         List<String> emailList = new ArrayList<>();
 

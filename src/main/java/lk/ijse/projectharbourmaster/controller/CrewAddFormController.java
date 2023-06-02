@@ -223,13 +223,13 @@ public class CrewAddFormController {
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,
-                    "Check Duplicate Emails",
+                    "Check Duplicate Data",
                     ButtonType.OK
             ).show();
             e.printStackTrace();
         } catch (IOException e) {
             new Alert(Alert.AlertType.ERROR,
-                    "Enter Valid",
+                    "File not Found",
                     ButtonType.OK
             ).show();
             e.printStackTrace();

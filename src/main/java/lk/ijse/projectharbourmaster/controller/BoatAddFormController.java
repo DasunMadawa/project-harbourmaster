@@ -206,7 +206,7 @@ public class BoatAddFormController {
 
             } else {
                 new Alert(Alert.AlertType.INFORMATION,
-                        "Data Not Inserted Check duplicate Email",
+                        "Data Not Inserted Check duplicate Data",
                         ButtonType.OK
                 ).show();
             }

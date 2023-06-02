@@ -337,7 +337,7 @@ public class CrewSearchFormController {
 
             } else {
                 new Alert(Alert.AlertType.INFORMATION,
-                        "Data Not Updated Check Duplicate Email",
+                        "Data Not Updated Check Duplicate Data",
                         ButtonType.OK
                 ).show();
             }
