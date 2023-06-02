@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.Weather;
+import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.model.BoatModel;
 import lk.ijse.projectharbourmaster.model.CrewModel;
 import lk.ijse.projectharbourmaster.model.EmailModel;
@@ -19,7 +18,6 @@ import lk.ijse.projectharbourmaster.util.Validations;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -116,7 +114,7 @@ public class WeatherInputDataFormController {
         String specialCauseMessage = specialCasestxt.getText();
 
         try {
-            boolean isinserted = WeatherModel.insertWeather(new Weather(LoginFormController.userId , 00 ,  specialCasestxt.getText() , dateFormateChanger() , LocalTime.now()+""));
+            boolean isinserted = WeatherModel.insertWeather(new WeatherDTO(LoginFormController.userId , 00 ,  specialCasestxt.getText() , dateFormateChanger() , LocalTime.now()+""));
 
             if (isinserted){
                 new Alert(Alert.AlertType.INFORMATION,

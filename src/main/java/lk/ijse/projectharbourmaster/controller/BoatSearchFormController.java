@@ -7,13 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Boat;
-import lk.ijse.projectharbourmaster.dto.Crew;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
 import lk.ijse.projectharbourmaster.model.BoatModel;
-import lk.ijse.projectharbourmaster.model.CrewModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
@@ -78,7 +75,7 @@ public class BoatSearchFormController {
     @FXML
     private JFXButton mainBtn;
 
-    private Boat boat;
+    private BoatDTO boatDTO;
 
     @FXML
     void initialize(){
@@ -267,7 +264,7 @@ public class BoatSearchFormController {
 
 
         try {
-            boolean isUpdated = BoatModel.updateBoat(new Boat(boatId , boatOwner ,boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email) , boatIdSearchTxt.getText() );
+            boolean isUpdated = BoatModel.updateBoat(new BoatDTO(boatId , boatOwner ,boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email) , boatIdSearchTxt.getText() );
 
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -275,7 +272,7 @@ public class BoatSearchFormController {
                         ButtonType.OK
                 ).show();
 
-                boat = null;
+                boatDTO = null;
 
                 boatIdtxt.setText("");
                 boatOwnerTxt.setText("");
@@ -311,19 +308,19 @@ public class BoatSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            boat = BoatModel.searchBoat(boatIdSearchTxt.getText());
+            boatDTO = BoatModel.searchBoat(boatIdSearchTxt.getText());
 
-            if (boat != null) {
+            if (boatDTO != null) {
 
-                boatIdtxt.setText(boat.getBoatId());
-                boatOwnerTxt.setText(boat.getBoatOwner());
-                boatNametxt.setText(boat.getBoatName());
-                boatTypetxt.setText(boat.getBoatType());
-                noCrewtxt.setText(boat.getNoCrew()+"");
-                fuelCaptxt.setText(boat.getFuelCap()+"");
-                waterCaptxt.setText(boat.getWaterCap()+"");
-                maxWeighttxt.setText(boat.getMaxWeight()+"");
-                emailtxt.setText(boat.getEmail());
+                boatIdtxt.setText(boatDTO.getBoatId());
+                boatOwnerTxt.setText(boatDTO.getBoatOwner());
+                boatNametxt.setText(boatDTO.getBoatName());
+                boatTypetxt.setText(boatDTO.getBoatType());
+                noCrewtxt.setText(boatDTO.getNoCrew()+"");
+                fuelCaptxt.setText(boatDTO.getFuelCap()+"");
+                waterCaptxt.setText(boatDTO.getWaterCap()+"");
+                maxWeighttxt.setText(boatDTO.getMaxWeight()+"");
+                emailtxt.setText(boatDTO.getEmail());
 
                 setBtns(true);
             }else {
@@ -352,7 +349,7 @@ public class BoatSearchFormController {
     @FXML
     public void deleteBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isDroped = BoatModel.dropBoat(boat.getBoatId());
+            boolean isDroped = BoatModel.dropBoat(boatDTO.getBoatId());
 
             if (isDroped){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -360,7 +357,7 @@ public class BoatSearchFormController {
                         ButtonType.OK
                 ).show();
 
-                boat = null;
+                boatDTO = null;
 
                 boatIdtxt.setText("");
                 boatOwnerTxt.setText("");
@@ -389,7 +386,7 @@ public class BoatSearchFormController {
 
     @FXML
     public void printReportBtnOnAction(ActionEvent actionEvent) {
-        if (boat != null){
+        if (boatDTO != null){
             new Thread() {
                 @Override
                 public void run() {
@@ -398,7 +395,7 @@ public class BoatSearchFormController {
                         load = JRXmlLoader.load(new File("C:\\Users\\DasunMadawa\\IdeaProjects\\project-harbourmaster\\src\\main\\resources\\js_report\\boat_single_data_form.jrxml"));
 
                         JRDesignQuery newQuery = new JRDesignQuery();
-                        String sql = "SELECT * FROM boat WHERE boatId = '" + boat.getBoatId() + "'";
+                        String sql = "SELECT * FROM boat WHERE boatId = '" + boatDTO.getBoatId() + "'";
                         newQuery.setText(sql);
                         load.setQuery(newQuery);
                         JasperReport js = JasperCompileManager.compileReport(load);

@@ -3,8 +3,7 @@ package lk.ijse.projectharbourmaster.model;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.WritableImage;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Employee;
+import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
 import lk.ijse.projectharbourmaster.dto.tm.OfficeTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
@@ -44,20 +43,20 @@ public class OfficeModel {
 
     }
 
-    public static boolean inseartData(Employee employee) throws SQLException, IOException {
+    public static boolean inseartData(EmployeeDTO employeeDTO) throws SQLException, IOException {
         Connection con = DBConnection.getInstance().getConnection();
 
         PreparedStatement ps = con.prepareStatement("INSERT INTO employee VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )");
 
-        if (employee.getEmail().length() == 0){
-            employee.setEmail(null);
+        if (employeeDTO.getEmail().length() == 0){
+            employeeDTO.setEmail(null);
         }
-        if (employee.getContact().length() == 0){
-            employee.setContact(null);
+        if (employeeDTO.getContact().length() == 0){
+            employeeDTO.setContact(null);
         }
 
-        if (employee.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(employee.getPhoto(), null);
+        if (employeeDTO.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(employeeDTO.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -70,21 +69,21 @@ public class OfficeModel {
             ps.setBinaryStream(2 , null , 0);
         }
 
-        ps.setString( 1 , employee.getNic());
-        ps.setString( 3 , employee.getName());
-        ps.setString( 4 , employee.getDob());
-        ps.setString( 5 , employee.getAddress());
-        ps.setString( 6 , employee.getGender());
-        ps.setString( 7 , employee.getSalary());
-        ps.setString( 8 , employee.getPosition());
-        ps.setString( 9 , employee.getEmail());
-        ps.setString( 10 , employee.getContact());
+        ps.setString( 1 , employeeDTO.getNic());
+        ps.setString( 3 , employeeDTO.getName());
+        ps.setString( 4 , employeeDTO.getDob());
+        ps.setString( 5 , employeeDTO.getAddress());
+        ps.setString( 6 , employeeDTO.getGender());
+        ps.setString( 7 , employeeDTO.getSalary());
+        ps.setString( 8 , employeeDTO.getPosition());
+        ps.setString( 9 , employeeDTO.getEmail());
+        ps.setString( 10 , employeeDTO.getContact());
 
         return ps.executeUpdate() > 0;
 
     }
 
-    public static Employee searchEmployee(String nicSearchTxtText) throws SQLException, IOException {
+    public static EmployeeDTO searchEmployee(String nicSearchTxtText) throws SQLException, IOException {
         String sql = "SELECT * FROM employee WHERE nic = ? || name = ?";
 
         ResultSet rs = CrudUtil.execute(sql, nicSearchTxtText, nicSearchTxtText);
@@ -112,20 +111,20 @@ public class OfficeModel {
             String email = rs.getString(9);
             String contact = rs.getString(10);
 
-            return new Employee(nic, photo, name, dob, address, gender, salary, position, email, contact);
+            return new EmployeeDTO(nic, photo, name, dob, address, gender, salary, position, email, contact);
         }
         return null;
     }
 
-    public static boolean updateEmployee(Employee employee, String nicOld) throws IOException, SQLException {
+    public static boolean updateEmployee(EmployeeDTO employeeDTO, String nicOld) throws IOException, SQLException {
         PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement( "UPDATE employee SET nic = ? , photo = ? , name = ? , bod = ? , address = ? , gender = ? , salary = ? , position = ?, email = ? , contact = ? WHERE nic = ?" );
 
-        if (employee.getEmail() == null){
-            employee.setEmail(null);
+        if (employeeDTO.getEmail() == null){
+            employeeDTO.setEmail(null);
         }
 
-        if (employee.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(employee.getPhoto(), null);
+        if (employeeDTO.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(employeeDTO.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -138,15 +137,15 @@ public class OfficeModel {
             ps.setBinaryStream(2 , null , 0);
         }
 
-        ps.setString( 1 , employee.getNic());
-        ps.setString( 3 , employee.getName());
-        ps.setString( 4 , employee.getDob());
-        ps.setString( 5 , employee.getAddress());
-        ps.setString( 6 , employee.getGender());
-        ps.setString( 7 , employee.getSalary());
-        ps.setString( 8 , employee.getPosition());
-        ps.setString( 9 , employee.getEmail());
-        ps.setString( 10 , employee.getContact());
+        ps.setString( 1 , employeeDTO.getNic());
+        ps.setString( 3 , employeeDTO.getName());
+        ps.setString( 4 , employeeDTO.getDob());
+        ps.setString( 5 , employeeDTO.getAddress());
+        ps.setString( 6 , employeeDTO.getGender());
+        ps.setString( 7 , employeeDTO.getSalary());
+        ps.setString( 8 , employeeDTO.getPosition());
+        ps.setString( 9 , employeeDTO.getEmail());
+        ps.setString( 10 , employeeDTO.getContact());
         ps.setString(11 , nicOld);
 
         return ps.executeUpdate() > 0;

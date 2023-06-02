@@ -28,7 +28,7 @@
                   </JFXButton>
                   <ImageView fitHeight="66.0" fitWidth="88.0" layoutX="736.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weatherDTO-forecasting-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Line endX="-100.0" endY="616.0" layoutX="1297.0" layoutY="146.0" startX="-100.0" startY="-105.0" />

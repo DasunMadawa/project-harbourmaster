@@ -10,10 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import lk.ijse.projectharbourmaster.dto.Boat;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Fish;
-import lk.ijse.projectharbourmaster.dto.Turn;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishSearchTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishTM;
@@ -150,9 +150,9 @@ public class TurnSearchTurnFormController {
     @FXML
     private JFXButton addBtn;
 
-    Turn turn;
-    Boat boat;
-    Crew cap;
+    TurnDTO turnDTO;
+    BoatDTO boatDTO;
+    CrewDTO cap;
 
     private ObservableList<TurnFishTM> turnFishTMObList = FXCollections.observableArrayList();
 
@@ -337,9 +337,9 @@ public class TurnSearchTurnFormController {
 
         try {
 
-            turn = TurnModel.searchTurn(turnSearchIdTxt.getText());
+            turnDTO = TurnModel.searchTurn(turnSearchIdTxt.getText());
 
-            if (turn == null){
+            if (turnDTO == null){
                 new Alert(Alert.AlertType.ERROR ,
                         "Invalid TurnId" ,
                         ButtonType.OK
@@ -348,8 +348,8 @@ public class TurnSearchTurnFormController {
                 return;
             }
 
-            boat = BoatModel.searchBoat(turn.getBoatId());
-            cap = CrewModel.searchCrew(turn.getCapNIC());
+            boatDTO = BoatModel.searchBoat(turnDTO.getBoatId());
+            cap = CrewModel.searchCrew(turnDTO.getCapNIC());
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -358,26 +358,26 @@ public class TurnSearchTurnFormController {
         }
 
         //turn
-        turnIdLbl.setText(turn.getTurnId());
-        crewCounttxt.setText(turn.getCrewCount()+"");
-        outDateTxt.setText(turn.getOutDate());
-        outTimeTxt.setText(turn.getOutTime());
+        turnIdLbl.setText(turnDTO.getTurnId());
+        crewCounttxt.setText(turnDTO.getCrewCount()+"");
+        outDateTxt.setText(turnDTO.getOutDate());
+        outTimeTxt.setText(turnDTO.getOutTime());
 
-        if (turn.getInDate() == null || turn.getInDate().equals("")) {
+        if (turnDTO.getInDate() == null || turnDTO.getInDate().equals("")) {
             inDatetxt.setText("");
             inTimetxt.setText("");
 
             setUpdatable(true);
         }else {
-            inDatetxt.setText(turn.getInDate());
-            inTimetxt.setText(turn.getInTime());
+            inDatetxt.setText(turnDTO.getInDate());
+            inTimetxt.setText(turnDTO.getInTime());
         }
 
         //boat
-        boatIdLbl.setText(boat.getBoatId());
-        boatNameLbl.setText(boat.getBoatName());
-        boatTypeLbl.setText(boat.getBoatType());
-        noCrewLbl.setText(boat.getNoCrew()+"");
+        boatIdLbl.setText(boatDTO.getBoatId());
+        boatNameLbl.setText(boatDTO.getBoatName());
+        boatTypeLbl.setText(boatDTO.getBoatType());
+        noCrewLbl.setText(boatDTO.getNoCrew()+"");
 
         //cap
         capNIClbl.setText(cap.getNic());
@@ -390,7 +390,7 @@ public class TurnSearchTurnFormController {
             capImageView.setImage(cap.getPhoto());
         }
 
-        List<CrewTM> crewTM = turn.getCrewTM();
+        List<CrewTM> crewTM = turnDTO.getCrewTM();
         ObservableList<CrewTM> crewTMObservableList = FXCollections.observableArrayList();
         for (CrewTM crew:crewTM){
             crewTMObservableList.add(crew);
@@ -400,7 +400,7 @@ public class TurnSearchTurnFormController {
 
         //fish
         try {
-            List<TurnFishSearchTM> fishTM = TurnFishModel.getFishForTurnFishTBL(turn.getTurnId());
+            List<TurnFishSearchTM> fishTM = TurnFishModel.getFishForTurnFishTBL(turnDTO.getTurnId());
             ObservableList<TurnFishSearchTM> turnFishOblist = FXCollections.observableArrayList();
 
             if (fishTM != null){
@@ -455,10 +455,10 @@ public class TurnSearchTurnFormController {
             return;
         }
 
-        turn.setInDate(dateFormateChanger());
-        turn.setInTime(inTimetxt.getText());
+        turnDTO.setInDate(dateFormateChanger());
+        turnDTO.setInTime(inTimetxt.getText());
         try {
-            boolean isEnded = TurnModel.endTurn(turn , turnFishTMObList);
+            boolean isEnded = TurnModel.endTurn(turnDTO, turnFishTMObList);
             if (isEnded){
                 new Alert(Alert.AlertType.INFORMATION ,
                         "Turn Ended and Details Recorded" ,
@@ -483,10 +483,10 @@ public class TurnSearchTurnFormController {
         }
 
         try {
-            Fish fish = FIshModel.searchFish(fishIdTxt.getText());
-            if (fish != null){
-                fishNameLbl.setText(fish.getFishName());
-                unitPricelbl.setText(fish.getUnitPrice()+"");
+            FishDTO fishDTO = FIshModel.searchFish(fishIdTxt.getText());
+            if (fishDTO != null){
+                fishNameLbl.setText(fishDTO.getFishName());
+                unitPricelbl.setText(fishDTO.getUnitPrice()+"");
 
             }else {
                 new Alert(Alert.AlertType.INFORMATION ,

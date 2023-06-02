@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Weather {
-    private String userId;
-    private double windSpeed;
-    private String specialCauses;
-    private String date;
-    private String time;
+public class FishDTO {
+    private String fishId;
+    private String fishName;
+    private double unitPrice;
+    private double stock;
+
 }

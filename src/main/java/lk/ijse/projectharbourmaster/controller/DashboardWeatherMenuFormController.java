@@ -10,18 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import lk.ijse.projectharbourmaster.dto.Weather;
-import lk.ijse.projectharbourmaster.dto.WeatherAPI;
-import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
+import lk.ijse.projectharbourmaster.dto.WeatherDTO;
+import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.tm.WeatherTM;
 import lk.ijse.projectharbourmaster.model.*;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -71,7 +66,7 @@ public class DashboardWeatherMenuFormController {
     @FXML
     private Label weatherTemplbl;
 
-    public static WeatherAPI weatherAPI;
+    public static WeatherAPIDTO weatherAPIDTO;
 
     @FXML
     public void initialize() {
@@ -100,9 +95,9 @@ public class DashboardWeatherMenuFormController {
                     sendWeatherReportsByEmail(BoatModel.getAllEmails());
 
                     System.out.println(WeatherEmailModel.insert(LocalDate.now()+""));
-                    WeatherModel.insertWeather(new Weather(
+                    WeatherModel.insertWeather(new WeatherDTO(
                             null,
-                            DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh() ,
+                            DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() ,
                             null ,
                             LocalDate.now()+"" ,
                             LocalTime.now()+""
@@ -136,20 +131,20 @@ public class DashboardWeatherMenuFormController {
     }
 
     void setDailyInformation(){
-        if (weatherAPI.getWsTodat_Kmh() < 37) {
+        if (weatherAPIDTO.getWsTodat_Kmh() < 37) {
             setRiskLevelImg(stableImg);
-        } else if (weatherAPI.getWsTodat_Kmh() < 62) {
+        } else if (weatherAPIDTO.getWsTodat_Kmh() < 62) {
             setRiskLevelImg(stableImg);
-        } else if (weatherAPI.getWsTodat_Kmh() < 88) {
+        } else if (weatherAPIDTO.getWsTodat_Kmh() < 88) {
             setRiskLevelImg(threatImg);
-        } else if (weatherAPI.getWsTodat_Kmh() < 118) {
+        } else if (weatherAPIDTO.getWsTodat_Kmh() < 118) {
             setRiskLevelImg(threatImg);
         } else {
             setRiskLevelImg(criticleImg);
         }
 
-        weatherWindSpeedlbl.setText(weatherAPI.getWsTodat_Kmh()+" Kmh");
-        weatherTemplbl.setText(weatherAPI.getTempToday_C()+" C");
+        weatherWindSpeedlbl.setText(weatherAPIDTO.getWsTodat_Kmh()+" Kmh");
+        weatherTemplbl.setText(weatherAPIDTO.getTempToday_C()+" C");
 
         String specialCauses = null;
         try {
@@ -179,7 +174,7 @@ public class DashboardWeatherMenuFormController {
     public void sendWeatherReportsByEmail(List<String> crewEmailAr){
         String nextDate = LocalDate.now().getYear()+ "-" + LocalDate.now().getMonthValue() + "-" + (LocalDate.now().getDayOfMonth()+1);
 
-        double wsTomorrow_kmh = weatherAPI.getWsTomorrow_Kmh();
+        double wsTomorrow_kmh = weatherAPIDTO.getWsTomorrow_Kmh();
 
         for (int i = 0; i < crewEmailAr.size(); i++){
             try {

@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import lk.ijse.projectharbourmaster.dto.Fish;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.dto.tm.StockRecordsTM;
 import lk.ijse.projectharbourmaster.dto.tm.StockStockTM;
 import lk.ijse.projectharbourmaster.model.FIshModel;
@@ -109,16 +109,16 @@ public class DashboardStockMenuFormController {
 
     private void setStockTableValues() {
         try {
-            List<Fish> fishList = FIshModel.getAllOrderBy("ORDER BY fishId");
+            List<FishDTO> fishDTOList = FIshModel.getAllOrderBy("ORDER BY fishId");
 
             ObservableList<StockStockTM> obListStock = FXCollections.observableArrayList();
 
-            for (Fish fish : fishList) {
+            for (FishDTO fishDTO : fishDTOList) {
                 obListStock.add(new StockStockTM(
                                 "S1",
-                                fish.getFishId(),
-                                fish.getFishName(),
-                                fish.getStock()
+                                fishDTO.getFishId(),
+                                fishDTO.getFishName(),
+                                fishDTO.getStock()
                         )
                 );
             }

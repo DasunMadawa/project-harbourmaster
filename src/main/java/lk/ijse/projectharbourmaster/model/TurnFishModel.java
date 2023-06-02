@@ -1,7 +1,6 @@
 package lk.ijse.projectharbourmaster.model;
 
-import javafx.collections.FXCollections;
-import lk.ijse.projectharbourmaster.dto.Fish;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishSearchTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
@@ -14,9 +13,9 @@ import java.util.List;
 public class TurnFishModel {
 
     public static TurnFishTM searchFishTM(String fishId, Double fishWeight) throws SQLException {
-        Fish fish = FIshModel.searchFish(fishId);
+        FishDTO fishDTO = FIshModel.searchFish(fishId);
 
-        return new TurnFishTM(fish.getFishId() , fish.getFishName() , fish.getUnitPrice() ,  fishWeight , null);
+        return new TurnFishTM(fishDTO.getFishId() , fishDTO.getFishName() , fishDTO.getUnitPrice() ,  fishWeight , null);
 
     }
 

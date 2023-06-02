@@ -35,7 +35,7 @@
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                              <Image url="@../img/209-2098400_partly-cloudy-day-icon-weatherDTO-forecasting-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Stock {
-    private String stockId;
-    private double fullCapacity;
-    private double availableCapacity;
-
+public class WeatherAPIDTO {
+    private double tempTomorrow_C;
+    private double wsTomorrow_Kmh;
+    private double tempToday_C;
+    private double wsTodat_Kmh;
 
 }

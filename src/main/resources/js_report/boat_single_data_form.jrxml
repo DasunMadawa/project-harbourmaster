@@ -4,52 +4,52 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM boat WHERE boatId = 'B007';]]>
+		<![CDATA[SELECT * FROM boatDTO WHERE boatId = 'B007';]]>
 	</queryString>
 	<field name="boatId" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatId"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatOwner" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatOwner"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatOwner"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatName" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatName"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatName"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatType" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatType"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatType"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="noCrew" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="noCrew"/>
 		<property name="com.jaspersoft.studio.field.label" value="noCrew"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="fuelTankCap" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="fuelTankCap"/>
 		<property name="com.jaspersoft.studio.field.label" value="fuelTankCap"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="freshWaterCap" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="freshWaterCap"/>
 		<property name="com.jaspersoft.studio.field.label" value="freshWaterCap"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="maxWeight" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="maxWeight"/>
 		<property name="com.jaspersoft.studio.field.label" value="maxWeight"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatOwnerEmail" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatOwnerEmail"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatOwnerEmail"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>

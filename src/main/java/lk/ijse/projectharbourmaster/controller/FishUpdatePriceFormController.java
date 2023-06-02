@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.Fish;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.model.FIshModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -37,7 +37,7 @@ public class FishUpdatePriceFormController {
     @FXML
     private JFXButton mainBtn;
 
-    private Fish fish;
+    private FishDTO fishDTO;
 
     @FXML
     void initialize(){
@@ -65,12 +65,12 @@ public class FishUpdatePriceFormController {
 
     private void setComboBoxValue() {
         try {
-            List<Fish> allFish = FIshModel.getAllOrderBy("");
+            List<FishDTO> allFishDTOS = FIshModel.getAllOrderBy("");
 
             ObservableList<String> fishIdObservableList = FXCollections.observableArrayList();
 
-            for (Fish fish : allFish) {
-                fishIdObservableList.add(fish.getFishId());
+            for (FishDTO fishDTO : allFishDTOS) {
+                fishIdObservableList.add(fishDTO.getFishId());
 
             }
             fishIdComboBox.setItems(fishIdObservableList);
@@ -140,12 +140,12 @@ public class FishUpdatePriceFormController {
 
         }
 
-        fish.setFishName(fishNametxt.getText());
-        fish.setUnitPrice(Double.parseDouble(pricetxt.getText()));
+        fishDTO.setFishName(fishNametxt.getText());
+        fishDTO.setUnitPrice(Double.parseDouble(pricetxt.getText()));
 
         boolean isUpdated = false;
         try {
-            isUpdated = FIshModel.updateFishPrice(fish);
+            isUpdated = FIshModel.updateFishPrice(fishDTO);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -173,11 +173,11 @@ public class FishUpdatePriceFormController {
 
     public void fishIdComboBoxOnAction(ActionEvent actionEvent) {
         try {
-            fish = FIshModel.searchFish(fishIdComboBox.getValue()+"");
+            fishDTO = FIshModel.searchFish(fishIdComboBox.getValue()+"");
 
-            if (fish != null){
-                fishNametxt.setText(fish.getFishName());
-                pricetxt.setText(fish.getUnitPrice()+"");
+            if (fishDTO != null){
+                fishNametxt.setText(fishDTO.getFishName());
+                pricetxt.setText(fishDTO.getUnitPrice()+"");
 
                 setUpdatable(true);
             }else {

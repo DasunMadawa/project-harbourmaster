@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import lk.ijse.projectharbourmaster.dto.User;
+import lk.ijse.projectharbourmaster.dto.UserDTO;
 import lk.ijse.projectharbourmaster.model.UserModel;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class ForgetPassword2FormController {
             }
 
             try {
-                if (UserModel.updateUser(new User(userId , null , userName , password))){
+                if (UserModel.updateUser(new UserDTO(userId , null , userName , password))){
                     new Alert(Alert.AlertType.INFORMATION ,
                             "Password changed" ,
                             ButtonType.OK

@@ -11,10 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.Boat;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Turn;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnCrewTM;
 import lk.ijse.projectharbourmaster.model.BoatModel;
@@ -119,8 +118,8 @@ public class TurnStartTurnFormController {
     @FXML
     private JFXButton addBtn;
 
-    private Boat boat;
-    private Crew  cap;
+    private BoatDTO boatDTO;
+    private CrewDTO cap;
     private Image defaultImg;
     private ObservableList<TurnCrewTM> obListCrew = FXCollections.observableArrayList();
 
@@ -268,12 +267,12 @@ public class TurnStartTurnFormController {
         String crewNic = crewNICComboBox.getValue();
 
         try {
-            Crew crew = CrewModel.searchCrew(crewNic);
+            CrewDTO crewDTO = CrewModel.searchCrew(crewNic);
 
-            String name = crew.getName();
-            String address = crew.getAddress();
-            String contact = crew.getContact();
-            String dob = crew.getDob();
+            String name = crewDTO.getName();
+            String address = crewDTO.getAddress();
+            String contact = crewDTO.getContact();
+            String dob = crewDTO.getDob();
 
             int age = LocalDate.now().getYear() - Integer.valueOf(dob.substring(0, 4));
 
@@ -331,14 +330,14 @@ public class TurnStartTurnFormController {
     @FXML
     void boatIdComboBoxOnAction(ActionEvent event) {
         try {
-            boat = BoatModel.searchBoat(boatIdComboBox.getValue());
+            boatDTO = BoatModel.searchBoat(boatIdComboBox.getValue());
 
-            boatNameLbl.setText(boat.getBoatName());
-            boatTypeLbl.setText(boat.getBoatType());
-            noCrewLbl.setText(boat.getNoCrew()+"");
-            fuelCapLbl.setText(boat.getFuelCap()+"");
-            waterCapLbl.setText(boat.getWaterCap()+"");
-            maxWeightLbl.setText(boat.getMaxWeight()+"");
+            boatNameLbl.setText(boatDTO.getBoatName());
+            boatTypeLbl.setText(boatDTO.getBoatType());
+            noCrewLbl.setText(boatDTO.getNoCrew()+"");
+            fuelCapLbl.setText(boatDTO.getFuelCap()+"");
+            waterCapLbl.setText(boatDTO.getWaterCap()+"");
+            maxWeightLbl.setText(boatDTO.getMaxWeight()+"");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -390,7 +389,7 @@ public class TurnStartTurnFormController {
             return;
         }
 
-        if (cap == null || boat == null){
+        if (cap == null || boatDTO == null){
             new Alert(Alert.AlertType.WARNING,
                     "SELECT Boat And Captain",
                     ButtonType.OK
@@ -423,8 +422,8 @@ public class TurnStartTurnFormController {
                 ));
             }
 
-            boolean isStarted = TurnCrewModel.startTurn(new Turn(turnId ,
-                    boat.getBoatId() ,
+            boolean isStarted = TurnCrewModel.startTurn(new TurnDTO(turnId ,
+                    boatDTO.getBoatId() ,
                     cap.getNic() ,
                     crewCount ,
                     outDate ,

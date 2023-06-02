@@ -10,11 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.projectharbourmaster.dto.User;
+import lk.ijse.projectharbourmaster.dto.UserDTO;
 import lk.ijse.projectharbourmaster.model.UserModel;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginFormController {
@@ -54,9 +53,9 @@ public class LoginFormController {
     @FXML
     void loginBtnOnAction(ActionEvent event) {
         try {
-            User user = UserModel.searchUser(userNameTxt.getText());
-            if (user != null && user.getPassword().equals(passwordField.getText())){
-                this.userId = user.getUserId();
+            UserDTO userDTO = UserModel.searchUser(userNameTxt.getText());
+            if (userDTO != null && userDTO.getPassword().equals(passwordField.getText())){
+                this.userId = userDTO.getUserId();
                 root.getChildren().clear();
                 try {
                     root.getChildren().add(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml")));

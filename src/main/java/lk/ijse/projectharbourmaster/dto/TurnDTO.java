@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Turn {
+public class TurnDTO {
     private String turnId;
     private String boatId;
     private String capNIC;

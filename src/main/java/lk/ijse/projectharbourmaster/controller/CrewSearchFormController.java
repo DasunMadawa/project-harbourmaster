@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -16,9 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Crew;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
 import lk.ijse.projectharbourmaster.model.CrewModel;
-import lk.ijse.projectharbourmaster.model.WeatherModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
@@ -29,7 +27,6 @@ import net.sf.jasperreports.view.JasperViewer;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.Blob;
 import java.sql.SQLException;
 
 public class CrewSearchFormController {
@@ -82,7 +79,7 @@ public class CrewSearchFormController {
     @FXML
     private JFXButton deleteCrewBtn;
 
-    private Crew crew;
+    private CrewDTO crewDTO;
     private Image image;
     private WritableImage tempImg;
 
@@ -212,7 +209,7 @@ public class CrewSearchFormController {
     @FXML
     void deleteCrewBtnOnAction(ActionEvent event) {
         try {
-            boolean isDroped = CrewModel.dropCrew(crew.getNic());
+            boolean isDroped = CrewModel.dropCrew(crewDTO.getNic());
 
             if (isDroped) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -220,7 +217,7 @@ public class CrewSearchFormController {
                         ButtonType.OK
                 ).show();
 
-                crew = null;
+                crewDTO = null;
 
                 crewImageView.setImage(image);
                 nameTxt.clear();
@@ -296,7 +293,7 @@ public class CrewSearchFormController {
             return;
         }
 
-        String nicOld = crew.getNic();
+        String nicOld = crewDTO.getNic();
 
         String nic = nictxt.getText();
         String name = nameTxt.getText();
@@ -313,7 +310,7 @@ public class CrewSearchFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isUpdated = CrewModel.updateCrew(new Crew(nic, name, photo, dob, address, gender, email, contact), nicOld);
+            boolean isUpdated = CrewModel.updateCrew(new CrewDTO(nic, name, photo, dob, address, gender, email, contact), nicOld);
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -321,7 +318,7 @@ public class CrewSearchFormController {
                         ButtonType.OK
                 ).show();
 
-                crew = null;
+                crewDTO = null;
 
                 nicSearchTxt.clear();
 
@@ -356,20 +353,20 @@ public class CrewSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            crew = CrewModel.searchCrew(nicSearchTxt.getText());
+            crewDTO = CrewModel.searchCrew(nicSearchTxt.getText());
 
-            if (crew != null) {
-                if (crew.getPhoto() != null) {
-                    crewImageView.setImage(crew.getPhoto());
-                    tempImg = crew.getPhoto();
+            if (crewDTO != null) {
+                if (crewDTO.getPhoto() != null) {
+                    crewImageView.setImage(crewDTO.getPhoto());
+                    tempImg = crewDTO.getPhoto();
                 }
-                nameTxt.setText(crew.getName());
-                nictxt.setText(crew.getNic());
-                addresstxt.setText(crew.getAddress());
-                dobtxt.setText(crew.getDob());
-                gendertxt.setText(crew.getGender());
-                contactTxt.setText(crew.getContact());
-                emailtxt.setText(crew.getEmail());
+                nameTxt.setText(crewDTO.getName());
+                nictxt.setText(crewDTO.getNic());
+                addresstxt.setText(crewDTO.getAddress());
+                dobtxt.setText(crewDTO.getDob());
+                gendertxt.setText(crewDTO.getGender());
+                contactTxt.setText(crewDTO.getContact());
+                emailtxt.setText(crewDTO.getEmail());
 
                 setBtns(true);
             } else {
@@ -423,7 +420,7 @@ public class CrewSearchFormController {
 
     @FXML
     public void printReportBtnOnAction(ActionEvent actionEvent) {
-        if (crew != null) {
+        if (crewDTO != null) {
             new Thread() {
                 @Override
                 public void run() {
@@ -432,7 +429,7 @@ public class CrewSearchFormController {
                         load = JRXmlLoader.load(new File("C:\\Users\\DasunMadawa\\IdeaProjects\\project-harbourmaster\\src\\main\\resources\\js_report\\crew_single_data_form.jrxml"));
 
                         JRDesignQuery newQuery = new JRDesignQuery();
-                        String sql = "SELECT nic , name , DATE_FORMAT(crew.bod , '%Y-%m-%d') as Date , address , gender , email , contact FROM crew WHERE nic = '" + crew.getNic() + "'";
+                        String sql = "SELECT nic , name , DATE_FORMAT(crew.bod , '%Y-%m-%d') as Date , address , gender , email , contact FROM crew WHERE nic = '" + crewDTO.getNic() + "'";
                         newQuery.setText(sql);
                         load.setQuery(newQuery);
                         JasperReport js = JasperCompileManager.compileReport(load);

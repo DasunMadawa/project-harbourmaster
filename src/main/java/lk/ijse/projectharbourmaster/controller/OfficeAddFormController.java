@@ -9,16 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Employee;
-import lk.ijse.projectharbourmaster.model.CrewModel;
+import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
 import lk.ijse.projectharbourmaster.model.OfficeModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -244,7 +241,7 @@ public class OfficeAddFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isInserted = OfficeModel.inseartData(new Employee( nic , photo , name , dob , address , gender , salary , position , email , contact ));
+            boolean isInserted = OfficeModel.inseartData(new EmployeeDTO( nic , photo , name , dob , address , gender , salary , position , email , contact ));
             if (isInserted){
                 new Alert(Alert.AlertType.INFORMATION,
                         "Data Inserted",

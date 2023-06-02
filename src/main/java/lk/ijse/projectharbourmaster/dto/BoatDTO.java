@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Boat {
+public class BoatDTO {
     private String boatId;
     private String boatOwner;
     private String boatName;

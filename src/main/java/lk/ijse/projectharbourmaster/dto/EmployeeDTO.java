@@ -9,13 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Crew {
+public class EmployeeDTO {
     private String nic;
-    private String name;
     private WritableImage photo;
+    private String name;
     private String dob;
     private String address;
     private String gender;
+    private String salary;
+    private String position;
     private String email;
     private String contact;
 

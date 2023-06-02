@@ -4,32 +4,32 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT boatId , boatOwner , boatName , boatType , noCrew FROM boat;]]>
+		<![CDATA[SELECT boatId , boatOwner , boatName , boatType , noCrew FROM boatDTO;]]>
 	</queryString>
 	<field name="boatId" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatId"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatOwner" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatOwner"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatOwner"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatName" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatName"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatName"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="boatType" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="boatType"/>
 		<property name="com.jaspersoft.studio.field.label" value="boatType"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<field name="noCrew" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="noCrew"/>
 		<property name="com.jaspersoft.studio.field.label" value="noCrew"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="boat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="boatDTO"/>
 	</field>
 	<background>
 		<band/>

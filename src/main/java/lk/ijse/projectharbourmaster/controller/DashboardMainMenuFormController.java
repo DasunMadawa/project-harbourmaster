@@ -6,8 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import lk.ijse.projectharbourmaster.dto.User;
-import lk.ijse.projectharbourmaster.dto.WeatherAPI;
+import lk.ijse.projectharbourmaster.dto.UserDTO;
+import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
 import lk.ijse.projectharbourmaster.model.DockModel;
 import lk.ijse.projectharbourmaster.model.TurnCrewModel;
@@ -25,7 +25,7 @@ import java.util.List;
 
 public class DashboardMainMenuFormController {
 
-    public static User user;
+    public static UserDTO userDTO;
 
     @FXML
     private Pane mainMenuPane;
@@ -125,7 +125,7 @@ public class DashboardMainMenuFormController {
             new Thread() {
                 @Override
                 public void run() {
-                    DashboardWeatherMenuFormController.weatherAPI = informationGatherAPI();
+                    DashboardWeatherMenuFormController.weatherAPIDTO = informationGatherAPI();
                     this.stop();
                 }
 
@@ -209,7 +209,7 @@ public class DashboardMainMenuFormController {
     }
 
     void setDailyInformation(){
-        if (DashboardWeatherMenuFormController.weatherAPI == null){
+        if (DashboardWeatherMenuFormController.weatherAPIDTO == null){
             new Alert(Alert.AlertType.INFORMATION,
                     "Connect To the Internet",
                     ButtonType.OK
@@ -217,19 +217,19 @@ public class DashboardMainMenuFormController {
             return;
         }
 
-        if (DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh() > 37) {
+        if (DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() > 37) {
             mainMenuWeatherThreatLvllbl.setText("low");
-        } else if (DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh() > 62) {
+        } else if (DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() > 62) {
             mainMenuWeatherThreatLvllbl.setText("medium");
-        } else if (DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh() > 88) {
+        } else if (DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() > 88) {
             mainMenuWeatherThreatLvllbl.setText("high");
-        } else if (DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh() > 118) {
+        } else if (DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() > 118) {
             mainMenuWeatherThreatLvllbl.setText("critical");
         } else {
             mainMenuWeatherThreatLvllbl.setText("stable");
         }
 
-        mainMenuWeatherWSpeedlbl.setText(DashboardWeatherMenuFormController.weatherAPI.getWsTodat_Kmh()+" Kmh");
+        mainMenuWeatherWSpeedlbl.setText(DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh()+" Kmh");
         mainMenuWeatherDaylbl.setText(LocalDate.now()+"");
 
         String specialCauses = null;
@@ -249,7 +249,7 @@ public class DashboardMainMenuFormController {
 
     }
 
-    public WeatherAPI informationGatherAPI(){
+    public WeatherAPIDTO informationGatherAPI(){
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Beruwala&days=14"))
                 .header("X-RapidAPI-Key", "b01129e8fcmsh04f353984676b9fp1b2e56jsn11e9ba0e2ca6")
@@ -278,7 +278,7 @@ public class DashboardMainMenuFormController {
         double wsTommorrow = windSpeedSpliter(splitWindSpeed[1]);
         double wsDayAfterTommorrow = windSpeedSpliter(splitWindSpeed[1]);
 
-        return new WeatherAPI(tempTommorrow , wsTommorrow , tempToday , wsToday);
+        return new WeatherAPIDTO(tempTommorrow , wsTommorrow , tempToday , wsToday);
 
     }
 

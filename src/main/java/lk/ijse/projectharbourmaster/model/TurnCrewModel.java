@@ -1,9 +1,8 @@
 package lk.ijse.projectharbourmaster.model;
 
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Turn;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
-import lk.ijse.projectharbourmaster.dto.tm.TurnCrewTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.sql.Connection;
@@ -48,17 +47,17 @@ public class TurnCrewModel {
     }
 
 
-    public static boolean startTurn(Turn turn) throws SQLException {
+    public static boolean startTurn(TurnDTO turnDTO) throws SQLException {
         Connection con = null;
 
         try {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
-            boolean isUpdatedTurn = TurnModel.registerTurn(turn);
+            boolean isUpdatedTurn = TurnModel.registerTurn(turnDTO);
 
             if (isUpdatedTurn){
-                boolean isUpdatedTurnCrew = TurnCrewModel.placeCrewInTurn(turn.getCrewTM() , turn.getCapNIC() , turn.getTurnId());
+                boolean isUpdatedTurnCrew = TurnCrewModel.placeCrewInTurn(turnDTO.getCrewTM() , turnDTO.getCapNIC() , turnDTO.getTurnId());
 
                 if (isUpdatedTurnCrew) {
                     con.commit();

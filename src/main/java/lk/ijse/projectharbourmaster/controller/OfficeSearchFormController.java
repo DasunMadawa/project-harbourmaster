@@ -8,16 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Employee;
-import lk.ijse.projectharbourmaster.model.CrewModel;
+import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
 import lk.ijse.projectharbourmaster.model.OfficeModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -83,7 +80,7 @@ public class OfficeSearchFormController {
     private JFXButton searchBtn;
 
     private Image image;
-    private Employee employee;
+    private EmployeeDTO employeeDTO;
     private WritableImage tempImg;
 
     @FXML
@@ -282,22 +279,22 @@ public class OfficeSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            employee = OfficeModel.searchEmployee(nicSearchTxt.getText());
+            employeeDTO = OfficeModel.searchEmployee(nicSearchTxt.getText());
 
-            if (employee != null) {
-                if (employee.getPhoto() != null) {
-                    employeeImageView.setImage(employee.getPhoto());
-                    tempImg = employee.getPhoto();
+            if (employeeDTO != null) {
+                if (employeeDTO.getPhoto() != null) {
+                    employeeImageView.setImage(employeeDTO.getPhoto());
+                    tempImg = employeeDTO.getPhoto();
                 }
-                nictxt.setText(employee.getNic());
-                nameTxt.setText(employee.getName());
-                dobtxt.setText(employee.getDob());
-                addresstxt.setText(employee.getAddress());
-                gendertxt.setText(employee.getGender());
-                salaryTxt.setText(employee.getSalary());
-                positionTxt.setText(employee.getPosition());
-                emailtxt.setText(employee.getEmail());
-                contactTxt.setText(employee.getContact());
+                nictxt.setText(employeeDTO.getNic());
+                nameTxt.setText(employeeDTO.getName());
+                dobtxt.setText(employeeDTO.getDob());
+                addresstxt.setText(employeeDTO.getAddress());
+                gendertxt.setText(employeeDTO.getGender());
+                salaryTxt.setText(employeeDTO.getSalary());
+                positionTxt.setText(employeeDTO.getPosition());
+                emailtxt.setText(employeeDTO.getEmail());
+                contactTxt.setText(employeeDTO.getContact());
 
                 setBtns(true);
             }else {
@@ -347,7 +344,7 @@ public class OfficeSearchFormController {
 
         }
 
-        String nicOld = employee.getNic();
+        String nicOld = employeeDTO.getNic();
 
         String nic = nictxt.getText();
 
@@ -366,7 +363,7 @@ public class OfficeSearchFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isUpdated = OfficeModel.updateEmployee(new Employee(nic , photo , name , dob, address, gender, salary , position , email, contact) , nicOld );
+            boolean isUpdated = OfficeModel.updateEmployee(new EmployeeDTO(nic , photo , name , dob, address, gender, salary , position , email, contact) , nicOld );
 
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -408,7 +405,7 @@ public class OfficeSearchFormController {
     @FXML
     public void deleteBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isDroped = OfficeModel.dropEmployee(employee.getNic());
+            boolean isDroped = OfficeModel.dropEmployee(employeeDTO.getNic());
 
             if (isDroped){
                 new Alert(Alert.AlertType.INFORMATION,

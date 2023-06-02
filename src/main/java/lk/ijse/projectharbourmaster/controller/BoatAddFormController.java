@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.Boat;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
 import lk.ijse.projectharbourmaster.model.BoatModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -187,7 +186,7 @@ public class BoatAddFormController {
         String email = emailtxt.getText();
 
         try {
-            boolean isInserted = BoatModel.insertData(new Boat(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, email));
+            boolean isInserted = BoatModel.insertData(new BoatDTO(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, email));
 
             if (isInserted) {
                 new Alert(Alert.AlertType.INFORMATION,

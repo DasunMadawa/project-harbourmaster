@@ -1,8 +1,8 @@
 package lk.ijse.projectharbourmaster.model;
 
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Fish;
-import lk.ijse.projectharbourmaster.dto.StockUpdate;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
+import lk.ijse.projectharbourmaster.dto.StockUpdateDTO;
 import lk.ijse.projectharbourmaster.dto.tm.StockRecordsTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
@@ -15,16 +15,16 @@ import java.util.List;
 
 public class StockFishModel {
 
-    public static boolean addStock(StockUpdate stockUpdate) {
+    public static boolean addStock(StockUpdateDTO stockUpdateDTO) {
         try {
-            if (stockUpdate.isAdd()) {
-                if (!StockModel.spaceCheck(stockUpdate.getStockId(), stockUpdate.getWeight())) {
+            if (stockUpdateDTO.isAdd()) {
+                if (!StockModel.spaceCheck(stockUpdateDTO.getStockId(), stockUpdateDTO.getWeight())) {
                     System.out.println("No Space Left");
                     return false;
                 }
             } else {
-                Fish fish = FIshModel.searchFish(stockUpdate.getFish().getFishId());
-                double balance = fish.getStock() - stockUpdate.getWeight();
+                FishDTO fishDTO = FIshModel.searchFish(stockUpdateDTO.getFishDTO().getFishId());
+                double balance = fishDTO.getStock() - stockUpdateDTO.getWeight();
 
                 if (balance < 0) {
                     System.out.println("No Stock Left On This Fish");
@@ -40,13 +40,13 @@ public class StockFishModel {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
-            boolean isUpdatedStockFish = updateStockFish(stockUpdate);
+            boolean isUpdatedStockFish = updateStockFish(stockUpdateDTO);
             if (isUpdatedStockFish) {
 
-                boolean isUpdatedStock = StockModel.stockSpaceUpdate(stockUpdate);
+                boolean isUpdatedStock = StockModel.stockSpaceUpdate(stockUpdateDTO);
                 if (isUpdatedStock) {
 
-                    boolean isUpdatedFishstock = FIshModel.updateFishStock(stockUpdate);
+                    boolean isUpdatedFishstock = FIshModel.updateFishStock(stockUpdateDTO);
                     if (isUpdatedFishstock) {
                         con.commit();
                         return true;
@@ -70,20 +70,20 @@ public class StockFishModel {
 
     }
 
-    private static boolean updateStockFish(StockUpdate stockUpdate) throws SQLException {
+    private static boolean updateStockFish(StockUpdateDTO stockUpdateDTO) throws SQLException {
         String addOrRemove = "ADD";
-        if (!stockUpdate.isAdd()) {
+        if (!stockUpdateDTO.isAdd()) {
             addOrRemove = "REMOVE";
         }
 
         String sql = "INSERT INTO stock_fish VALUES ( ? , ? , ? , ? , ? , ? )";
 
         return CrudUtil.execute(sql,
-                stockUpdate.getStockId(),
-                stockUpdate.getFish().getFishId(),
-                stockUpdate.getWeight(),
+                stockUpdateDTO.getStockId(),
+                stockUpdateDTO.getFishDTO().getFishId(),
+                stockUpdateDTO.getWeight(),
                 LocalDate.now(),
-                stockUpdate.getFish().getUnitPrice(),
+                stockUpdateDTO.getFishDTO().getUnitPrice(),
                 addOrRemove
 
         );

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class User {
+public class WeatherDTO {
     private String userId;
-    private String nic;
-    private String userName;
-    private String password;
-
+    private double windSpeed;
+    private String specialCauses;
+    private String date;
+    private String time;
 }

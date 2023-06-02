@@ -4,17 +4,17 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT nic , name , DATE_FORMAT(employee.bod , '%Y-%m-%d') as Date , address , contact, position FROM employee;]]>
+		<![CDATA[SELECT nic , name , DATE_FORMAT(employeeDTO.bod , '%Y-%m-%d') as Date , address , contact, position FROM employeeDTO;]]>
 	</queryString>
 	<field name="nic" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nic"/>
 		<property name="com.jaspersoft.studio.field.label" value="nic"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employeeDTO"/>
 	</field>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employeeDTO"/>
 	</field>
 	<field name="Date" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Date"/>
@@ -23,17 +23,17 @@
 	<field name="address" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="address"/>
 		<property name="com.jaspersoft.studio.field.label" value="address"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employeeDTO"/>
 	</field>
 	<field name="contact" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="contact"/>
 		<property name="com.jaspersoft.studio.field.label" value="contact"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employeeDTO"/>
 	</field>
 	<field name="position" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="position"/>
 		<property name="com.jaspersoft.studio.field.label" value="position"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="employee"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="employeeDTO"/>
 	</field>
 	<background>
 		<band/>

@@ -1,33 +1,30 @@
 package lk.ijse.projectharbourmaster.model;
 
-import lk.ijse.projectharbourmaster.dto.User;
-import lk.ijse.projectharbourmaster.dto.Weather;
-import lk.ijse.projectharbourmaster.dto.WeatherAPI;
+import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.dto.tm.WeatherTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherModel {
-    public static boolean updateWeather(Weather weather , String date, String time) throws SQLException {
+    public static boolean updateWeather(WeatherDTO weatherDTO, String date, String time) throws SQLException {
         String sql = "UPDATE weather SET userId = ? , windSpeed = ? , specialCauses = ? , date = ? , time = ? WHERE date = ? && time = ?";
 
-        return CrudUtil.execute(sql , weather.getUserId() , weather.getWindSpeed() , weather.getSpecialCauses() , weather.getDate() , weather.getTime() , date , time);
+        return CrudUtil.execute(sql , weatherDTO.getUserId() , weatherDTO.getWindSpeed() , weatherDTO.getSpecialCauses() , weatherDTO.getDate() , weatherDTO.getTime() , date , time);
 
     }
 
-    public static boolean insertWeather(Weather weather) throws SQLException {
+    public static boolean insertWeather(WeatherDTO weatherDTO) throws SQLException {
         String sql = "INSERT INTO weather VALUES (? , ? , ? , ? , ?)";
 
-        return CrudUtil.execute(sql , weather.getUserId() , weather.getWindSpeed() , weather.getSpecialCauses() , weather.getDate() , weather.getTime());
+        return CrudUtil.execute(sql , weatherDTO.getUserId() , weatherDTO.getWindSpeed() , weatherDTO.getSpecialCauses() , weatherDTO.getDate() , weatherDTO.getTime());
 
     }
 
-    public static Weather searchWeather(String userId ,String date) throws SQLException {
+    public static WeatherDTO searchWeather(String userId , String date) throws SQLException {
         String sql = "SELECT * FROM weather WHERE userId = ? && date = ?";
 
         ResultSet rs = CrudUtil.execute(sql, userId, date );
@@ -37,7 +34,7 @@ public class WeatherModel {
             String specialCauses = rs.getString(3);
             String time = rs.getString(5);
 
-            return new Weather(usrId , windSpeed , specialCauses , date , time);
+            return new WeatherDTO(usrId , windSpeed , specialCauses , date , time);
         }
         return null;
 
@@ -91,10 +88,10 @@ public class WeatherModel {
 
     }
 
-    public static boolean removeWeather(Weather weather) throws SQLException {
+    public static boolean removeWeather(WeatherDTO weatherDTO) throws SQLException {
         String sql = "DELETE FROM weather WHERE date = ? && time = ?";
 
-        return CrudUtil.execute(sql , weather.getDate() , weather.getTime());
+        return CrudUtil.execute(sql , weatherDTO.getDate() , weatherDTO.getTime());
 
     }
 

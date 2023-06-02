@@ -2,8 +2,7 @@ package lk.ijse.projectharbourmaster.model;
 
 import javafx.scene.image.WritableImage;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Weather;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
@@ -23,18 +22,18 @@ import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 
 public class CrewModel {
-    public static boolean inseartData(Crew crew) throws SQLException, IOException {
+    public static boolean inseartData(CrewDTO crewDTO) throws SQLException, IOException {
         PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement( "INSERT INTO crew VALUES( ? , ? , ? , ? , ? , ? , ? , ? )" );
 
-        if (crew.getEmail().length() == 0){
-            crew.setEmail(null);
+        if (crewDTO.getEmail().length() == 0){
+            crewDTO.setEmail(null);
         }
-        if (crew.getContact().length() == 0){
-            crew.setContact(null);
+        if (crewDTO.getContact().length() == 0){
+            crewDTO.setContact(null);
         }
 
-        if (crew.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(crew.getPhoto(), null);
+        if (crewDTO.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(crewDTO.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -47,14 +46,14 @@ public class CrewModel {
             ps.setBinaryStream(3 , null , 0);
         }
 
-        ps.setString(1 , crew.getNic());
-        ps.setString(2 , crew.getName());
+        ps.setString(1 , crewDTO.getNic());
+        ps.setString(2 , crewDTO.getName());
 
-        ps.setString(4 , crew.getDob());
-        ps.setString(5 , crew.getAddress());
-        ps.setString(6 , crew.getGender());
-        ps.setString(7 , crew.getEmail());
-        ps.setString(8 , crew.getContact());
+        ps.setString(4 , crewDTO.getDob());
+        ps.setString(5 , crewDTO.getAddress());
+        ps.setString(6 , crewDTO.getGender());
+        ps.setString(7 , crewDTO.getEmail());
+        ps.setString(8 , crewDTO.getContact());
 
 
         return ps.executeUpdate() > 0;
@@ -88,7 +87,7 @@ public class CrewModel {
     }
 
 
-    public static Crew searchCrew(String nicSearchTxtText) throws SQLException, IOException {
+    public static CrewDTO searchCrew(String nicSearchTxtText) throws SQLException, IOException {
         String sql = "SELECT * FROM crew WHERE nic = ? || name = ?";
 
         ResultSet rs = CrudUtil.execute(sql, nicSearchTxtText, nicSearchTxtText);
@@ -114,7 +113,7 @@ public class CrewModel {
             String email = rs.getString(7);
             String contact = rs.getString(8);
 
-            return new Crew(nic , name , photo ,dob , address , gender , email , contact );
+            return new CrewDTO(nic , name , photo ,dob , address , gender , email , contact );
 
         }
 
@@ -122,15 +121,15 @@ public class CrewModel {
 
     }
 
-    public static boolean updateCrew(Crew crew , String nicOld) throws SQLException, IOException {
+    public static boolean updateCrew(CrewDTO crewDTO, String nicOld) throws SQLException, IOException {
         PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement( "UPDATE crew SET nic = ? , name = ? , photo = ? , bod = ? , address = ? , gender = ? , email = ? , contact = ? WHERE nic = ?" );
 
-        if (crew.getEmail() == null){
-            crew.setEmail(null);
+        if (crewDTO.getEmail() == null){
+            crewDTO.setEmail(null);
         }
 
-        if (crew.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(crew.getPhoto(), null);
+        if (crewDTO.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(crewDTO.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -143,14 +142,14 @@ public class CrewModel {
             ps.setBinaryStream(3 , null , 0);
         }
 
-        ps.setString(1 , crew.getNic());
-        ps.setString(2 , crew.getName());
+        ps.setString(1 , crewDTO.getNic());
+        ps.setString(2 , crewDTO.getName());
 
-        ps.setString(4 , crew.getDob());
-        ps.setString(5 , crew.getAddress());
-        ps.setString(6 , crew.getGender());
-        ps.setString(7 , crew.getEmail());
-        ps.setString(8 , crew.getContact());
+        ps.setString(4 , crewDTO.getDob());
+        ps.setString(5 , crewDTO.getAddress());
+        ps.setString(6 , crewDTO.getGender());
+        ps.setString(7 , crewDTO.getEmail());
+        ps.setString(8 , crewDTO.getContact());
         ps.setString(9 , nicOld);
 
         return ps.executeUpdate() > 0;

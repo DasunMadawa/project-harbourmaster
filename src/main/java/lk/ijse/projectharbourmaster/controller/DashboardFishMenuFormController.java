@@ -12,7 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Fish;
+import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.model.FIshModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
@@ -34,7 +34,7 @@ public class DashboardFishMenuFormController {
     private Pane fishMenuPane;
 
     @FXML
-    private TableView<Fish> fishTbl;
+    private TableView<FishDTO> fishTbl;
 
     @FXML
     private TableColumn<?, ?> fishFishIdCol;
@@ -58,7 +58,7 @@ public class DashboardFishMenuFormController {
     private JFXTextField fishRemoveFishTxt;
 
     @FXML
-    private TableView<Fish> fishHighesRatesTbl;
+    private TableView<FishDTO> fishHighesRatesTbl;
 
     @FXML
     private TableColumn<?, ?> fishFishIdCol1;
@@ -73,7 +73,7 @@ public class DashboardFishMenuFormController {
     private TableColumn<?, ?> fishStockCol1;
 
     @FXML
-    private TableView<Fish> fishHighestStockTbl;
+    private TableView<FishDTO> fishHighestStockTbl;
 
     @FXML
     private TableColumn<?, ?> fishFishIdCol11;
@@ -112,24 +112,24 @@ public class DashboardFishMenuFormController {
 
     private void setTables() {
         try {
-            List<Fish> fishTable = FIshModel.getAllOrderBy("");
-            List<Fish> fishHighestRatesTable = FIshModel.getAllOrderBy(" ORDER BY unitPrice DESC LIMIT 5");
-            List<Fish> fishHighestStockTable = FIshModel.getAllOrderBy(" ORDER BY stock DESC LIMIT 5");
+            List<FishDTO> fishDTOTable = FIshModel.getAllOrderBy("");
+            List<FishDTO> fishDTOHighestRatesTable = FIshModel.getAllOrderBy(" ORDER BY unitPrice DESC LIMIT 5");
+            List<FishDTO> fishDTOHighestStockTable = FIshModel.getAllOrderBy(" ORDER BY stock DESC LIMIT 5");
 
             ObservableList fishTableOblist = FXCollections.observableArrayList();
             ObservableList fishHighestRatesTableOblist = FXCollections.observableArrayList();
             ObservableList fishHighestStockTableOblist = FXCollections.observableArrayList();
 
-            for (Fish fish : fishTable) {
-                fishTableOblist.add(fish);
+            for (FishDTO fishDTO : fishDTOTable) {
+                fishTableOblist.add(fishDTO);
             }
 
-            for (Fish fish : fishHighestRatesTable) {
-                fishHighestRatesTableOblist.add(fish);
+            for (FishDTO fishDTO : fishDTOHighestRatesTable) {
+                fishHighestRatesTableOblist.add(fishDTO);
             }
 
-            for (Fish fish : fishHighestStockTable) {
-                fishHighestStockTableOblist.add(fish);
+            for (FishDTO fishDTO : fishDTOHighestStockTable) {
+                fishHighestStockTableOblist.add(fishDTO);
             }
 
             fishTbl.setItems(fishTableOblist);
@@ -197,10 +197,10 @@ public class DashboardFishMenuFormController {
         }
 
         try {
-            Fish fish = FIshModel.searchFish(fishRemoveFishTxt.getText());
+            FishDTO fishDTO = FIshModel.searchFish(fishRemoveFishTxt.getText());
 
-            if (fish != null){
-                boolean isDroped = FIshModel.drop(fish);
+            if (fishDTO != null){
+                boolean isDroped = FIshModel.drop(fishDTO);
 
                 if (isDroped) {
                     new Alert(Alert.AlertType.INFORMATION,

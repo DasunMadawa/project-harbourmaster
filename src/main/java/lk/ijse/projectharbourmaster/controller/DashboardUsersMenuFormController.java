@@ -6,10 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.User;
+import lk.ijse.projectharbourmaster.dto.UserDTO;
 import lk.ijse.projectharbourmaster.model.UserModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -112,9 +111,9 @@ public class DashboardUsersMenuFormController {
 
     private void setUserData() {
         try {
-            User u001 = UserModel.searchUserById("U001");
-            User u002 = UserModel.searchUserById("U002");
-            User u003 = UserModel.searchUserById("U003");
+            UserDTO u001 = UserModel.searchUserById("U001");
+            UserDTO u002 = UserModel.searchUserById("U002");
+            UserDTO u003 = UserModel.searchUserById("U003");
 
             user1UserIdTxt.setText(u001.getUserId());
             user1EmpIdTxt.setText(u001.getNic());
@@ -192,26 +191,26 @@ public class DashboardUsersMenuFormController {
 
 
         try {
-            User user1 = new User(
+            UserDTO userDTO1 = new UserDTO(
                     user1UserIdTxt.getText(),
                     user1EmpIdTxt.getText(),
                     user1UserNameTxt.getText(),
                     user1Passwordxt.getText() );
-            User user2 = new User(
+            UserDTO userDTO2 = new UserDTO(
                     user2UserIdTxt.getText(),
                     user2EmpIdTxt.getText(),
                     user2UserNameTxt.getText(),
                     user2Passwordxt.getText()
             );
 
-            User user3 = new User(
+            UserDTO userDTO3 = new UserDTO(
                     user3UserIdTxt.getText(),
                     user3EmpIdTxt.getText(),
                     user3UserNameTxt.getText(),
                     user3Passwordxt.getText()
             );
 
-            boolean isUpdated = UserModel.updateUserAll(user1 , user2 , user3);
+            boolean isUpdated = UserModel.updateUserAll(userDTO1, userDTO2, userDTO3);
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION ,

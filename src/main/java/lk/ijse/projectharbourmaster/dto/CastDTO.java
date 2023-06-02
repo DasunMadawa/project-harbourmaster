@@ -10,6 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Cast {
+public class CastDTO {
     private List<String> emails;
 }

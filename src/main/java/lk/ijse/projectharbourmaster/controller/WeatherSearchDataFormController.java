@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
-import lk.ijse.projectharbourmaster.dto.Weather;
+import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.model.WeatherModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
@@ -48,7 +47,7 @@ public class WeatherSearchDataFormController {
     @FXML
     private JFXButton saveBtn;
 
-    private Weather weather;
+    private WeatherDTO weatherDTO;
 
     @FXML
     void initialize() {
@@ -110,7 +109,7 @@ public class WeatherSearchDataFormController {
 
     @FXML
     void removeBtnOnAction(ActionEvent event) {
-        if (weather == null) {
+        if (weatherDTO == null) {
             new Alert(Alert.AlertType.WARNING,
                     "Search First",
                     ButtonType.OK
@@ -119,9 +118,9 @@ public class WeatherSearchDataFormController {
         }
 
         try {
-            boolean isRemoved = WeatherModel.removeWeather(weather);
+            boolean isRemoved = WeatherModel.removeWeather(weatherDTO);
             if (isRemoved) {
-                weather = null;
+                weatherDTO = null;
                 new Alert(Alert.AlertType.INFORMATION,
                         "Data deleted",
                         ButtonType.OK
@@ -170,13 +169,13 @@ public class WeatherSearchDataFormController {
 
         }
 
-        String dateOld = weather.getDate();
+        String dateOld = weatherDTO.getDate();
 
-        weather.setSpecialCauses(specialCasestxt.getText() + "");
-        weather.setDate(datetxt.getText() + "");
+        weatherDTO.setSpecialCauses(specialCasestxt.getText() + "");
+        weatherDTO.setDate(datetxt.getText() + "");
 
         try {
-            boolean isUpdated = WeatherModel.updateWeather(weather, dateOld, weather.getTime());
+            boolean isUpdated = WeatherModel.updateWeather(weatherDTO, dateOld, weatherDTO.getTime());
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -223,14 +222,14 @@ public class WeatherSearchDataFormController {
         }
 
         try {
-            weather = WeatherModel.searchWeather(userIdTxt.getText(), dateFormateChanger());
+            weatherDTO = WeatherModel.searchWeather(userIdTxt.getText(), dateFormateChanger());
 
-            if (weather.getSpecialCauses() == null) {
-                weather.setSpecialCauses("Not Mentioned");
+            if (weatherDTO.getSpecialCauses() == null) {
+                weatherDTO.setSpecialCauses("Not Mentioned");
             }
 
-            specialCasestxt.setText(weather.getSpecialCauses() + "");
-            datetxt.setText(weather.getDate());
+            specialCasestxt.setText(weatherDTO.getSpecialCauses() + "");
+            datetxt.setText(weatherDTO.getDate());
 
             updateBtn.setVisible(true);
             removeBtn.setVisible(true);

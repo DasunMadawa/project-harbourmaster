@@ -14,17 +14,17 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="true"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT nic , name , DATE_FORMAT(crew.bod , '%Y-%m-%d') as Date , address , gender , email , contact FROM crew WHERE nic = '200200200';]]>
+		<![CDATA[SELECT nic , name , DATE_FORMAT(crewDTO.bod , '%Y-%m-%d') as Date , address , gender , email , contact FROM crewDTO WHERE nic = '200200200';]]>
 	</queryString>
 	<field name="nic" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nic"/>
 		<property name="com.jaspersoft.studio.field.label" value="nic"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<field name="Date" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Date"/>
@@ -33,22 +33,22 @@
 	<field name="address" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="address"/>
 		<property name="com.jaspersoft.studio.field.label" value="address"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<field name="gender" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="gender"/>
 		<property name="com.jaspersoft.studio.field.label" value="gender"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<field name="email" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="email"/>
 		<property name="com.jaspersoft.studio.field.label" value="email"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<field name="contact" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="contact"/>
 		<property name="com.jaspersoft.studio.field.label" value="contact"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="crew"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="crewDTO"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>

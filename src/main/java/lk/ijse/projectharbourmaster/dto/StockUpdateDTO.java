@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class StockUpdate {
+public class StockUpdateDTO {
     private String stockId;
     private double weight;
     private boolean add;
-    private Fish fish;
+    private FishDTO fishDTO;
 
 }

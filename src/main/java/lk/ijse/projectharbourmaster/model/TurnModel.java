@@ -1,21 +1,13 @@
 package lk.ijse.projectharbourmaster.model;
 
-import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.WritableImage;
 import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Crew;
-import lk.ijse.projectharbourmaster.dto.Turn;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,16 +61,16 @@ public class TurnModel {
 
     }
 
-    public static boolean registerTurn(Turn turn) throws SQLException {
+    public static boolean registerTurn(TurnDTO turnDTO) throws SQLException {
         String sql = "INSERT INTO turn VALUES (? , ? , ? , ? , ? , ? , ? , ?)";
 
         boolean isInserted = CrudUtil.execute(sql ,
-                turn.getTurnId() ,
-                turn.getBoatId() ,
-                turn.getCapNIC() ,
-                turn.getCrewCount() ,
-                turn.getOutDate() ,
-                turn.getOutTime() ,
+                turnDTO.getTurnId() ,
+                turnDTO.getBoatId() ,
+                turnDTO.getCapNIC() ,
+                turnDTO.getCrewCount() ,
+                turnDTO.getOutDate() ,
+                turnDTO.getOutTime() ,
                 null ,
                 null
         );
@@ -87,7 +79,7 @@ public class TurnModel {
 
     }
 
-    public static Turn searchTurn(String turnIdSearch) throws SQLException, IOException {
+    public static TurnDTO searchTurn(String turnIdSearch) throws SQLException, IOException {
         String sql = "SELECT * FROM turn WHERE turnId = ? ";
         ResultSet rs = CrudUtil.execute(sql, turnIdSearch );
 
@@ -102,7 +94,7 @@ public class TurnModel {
 
             List<CrewTM> allCrewInTurn = TurnCrewModel.getAllCrewInATurn(turnIdSearch);
 
-            return new Turn(turnIdSearch , boatId , capNIC , crewCount , outDate , outTime , inDate , inTime , allCrewInTurn);
+            return new TurnDTO(turnIdSearch , boatId , capNIC , crewCount , outDate , outTime , inDate , inTime , allCrewInTurn);
 
         }
 
@@ -110,7 +102,7 @@ public class TurnModel {
 
     }
 
-    public static boolean endTurn(Turn turn , List<TurnFishTM> turnFishTMList ) throws SQLException {
+    public static boolean endTurn(TurnDTO turnDTO, List<TurnFishTM> turnFishTMList ) throws SQLException {
 
         Connection con = null;
 
@@ -118,10 +110,10 @@ public class TurnModel {
             con = DBConnection.getInstance().getConnection();
             con.setAutoCommit(false);
 
-            boolean isInserted = TurnFishModel.insertTurnFishDetails( turnFishTMList , turn.getTurnId() , turn.getInDate() );
+            boolean isInserted = TurnFishModel.insertTurnFishDetails( turnFishTMList , turnDTO.getTurnId() , turnDTO.getInDate() );
 
             if (isInserted){
-                boolean isUpdated = TurnModel.endTurnDetailsUpdate(turn);
+                boolean isUpdated = TurnModel.endTurnDetailsUpdate(turnDTO);
 
                 if (isUpdated){
                     con.commit();
@@ -141,10 +133,10 @@ public class TurnModel {
 
     }
 
-    private static boolean endTurnDetailsUpdate(Turn turn) throws SQLException {
+    private static boolean endTurnDetailsUpdate(TurnDTO turnDTO) throws SQLException {
         String sql = "UPDATE turn SET inDate = ? , inTime = ? WHERE turnId = ?";
 
-        return CrudUtil.execute( sql , turn.getInDate() , turn.getInTime() , turn.getTurnId() );
+        return CrudUtil.execute( sql , turnDTO.getInDate() , turnDTO.getInTime() , turnDTO.getTurnId() );
 
     }
 

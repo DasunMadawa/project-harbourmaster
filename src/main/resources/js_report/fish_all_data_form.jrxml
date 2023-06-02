@@ -4,27 +4,27 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT fishId , name , unitPrice , stock  FROM fish;]]>
+		<![CDATA[SELECT fishId , name , unitPrice , stock  FROM fishDTO;]]>
 	</queryString>
 	<field name="fishId" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="fishId"/>
 		<property name="com.jaspersoft.studio.field.label" value="fishId"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fishDTO"/>
 	</field>
 	<field name="name" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="name"/>
 		<property name="com.jaspersoft.studio.field.label" value="name"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fishDTO"/>
 	</field>
 	<field name="unitPrice" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="unitPrice"/>
 		<property name="com.jaspersoft.studio.field.label" value="unitPrice"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fishDTO"/>
 	</field>
 	<field name="stock" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.name" value="stock"/>
 		<property name="com.jaspersoft.studio.field.label" value="stock"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="fish"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fishDTO"/>
 	</field>
 	<background>
 		<band/>

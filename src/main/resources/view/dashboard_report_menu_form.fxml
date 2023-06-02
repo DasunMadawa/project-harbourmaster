@@ -26,7 +26,7 @@
                   </Label>
                   <ImageView fitHeight="44.0" fitWidth="62.0" layoutX="212.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weatherDTO-forecasting-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="53.0" layoutY="220.0" prefHeight="20.0" prefWidth="190.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Stable Days Last Month -" textAlignment="CENTER" textFill="#13005a">

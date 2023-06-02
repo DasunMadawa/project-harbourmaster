@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class WeatherAPI {
-    private double tempTomorrow_C;
-    private double wsTomorrow_Kmh;
-    private double tempToday_C;
-    private double wsTodat_Kmh;
+public class UserDTO {
+    private String userId;
+    private String nic;
+    private String userName;
+    private String password;
 
 }

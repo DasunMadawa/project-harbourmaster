@@ -1,6 +1,6 @@
 package lk.ijse.projectharbourmaster.model;
 
-import lk.ijse.projectharbourmaster.dto.StockUpdate;
+import lk.ijse.projectharbourmaster.dto.StockUpdateDTO;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -37,20 +37,20 @@ public class StockModel {
         return -1;
     }
 
-    public static boolean stockSpaceUpdate(StockUpdate stockUpdate) throws SQLException {
-        double availableSpace = getAvailableSpace(stockUpdate.getStockId());
+    public static boolean stockSpaceUpdate(StockUpdateDTO stockUpdateDTO) throws SQLException {
+        double availableSpace = getAvailableSpace(stockUpdateDTO.getStockId());
         double balance = 0;
 
-        if (stockUpdate.isAdd()){
-            balance = availableSpace - stockUpdate.getWeight();
+        if (stockUpdateDTO.isAdd()){
+            balance = availableSpace - stockUpdateDTO.getWeight();
         }else {
-            balance = availableSpace + stockUpdate.getWeight();
+            balance = availableSpace + stockUpdateDTO.getWeight();
         }
 
 
         String sql = "UPDATE stock SET availableCapacity = ? WHERE stockId = ?";
 
-        return CrudUtil.execute(sql, balance , stockUpdate.getStockId());
+        return CrudUtil.execute(sql, balance , stockUpdateDTO.getStockId());
 
     }
 

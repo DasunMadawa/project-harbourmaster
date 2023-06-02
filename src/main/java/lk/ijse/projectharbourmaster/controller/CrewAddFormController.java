@@ -9,21 +9,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.projectharbourmaster.dto.Crew;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
 import lk.ijse.projectharbourmaster.model.CrewModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -202,7 +198,7 @@ public class CrewAddFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isInserted = CrewModel.inseartData(new Crew(nic, name, photo, dob, address, gender, email, contact));
+            boolean isInserted = CrewModel.inseartData(new CrewDTO(nic, name, photo, dob, address, gender, email, contact));
             if (isInserted) {
                 new Alert(Alert.AlertType.INFORMATION,
                         "Data Inserted",

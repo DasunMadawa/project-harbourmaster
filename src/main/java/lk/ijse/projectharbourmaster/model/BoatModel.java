@@ -1,16 +1,11 @@
 package lk.ijse.projectharbourmaster.model;
 
-import lk.ijse.projectharbourmaster.db.DBConnection;
-import lk.ijse.projectharbourmaster.dto.Boat;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
 import lk.ijse.projectharbourmaster.dto.tm.BoatTM;
-import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,18 +50,18 @@ public class BoatModel {
     }
 
 
-    public static boolean insertData(Boat boat) throws SQLException {
+    public static boolean insertData(BoatDTO boatDTO) throws SQLException {
         String sql = ( "INSERT INTO boat VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? )" );
 
-        if (boat.getEmail().length() == 0){
-            boat.setEmail(null);
+        if (boatDTO.getEmail().length() == 0){
+            boatDTO.setEmail(null);
         }
 
-        return CrudUtil.execute(sql , boat.getBoatId() , boat.getBoatOwner() , boat.getBoatName() , boat.getBoatType() , boat.getNoCrew() , boat.getFuelCap() , boat.getWaterCap() , boat.getMaxWeight() , boat.getEmail() );
+        return CrudUtil.execute(sql , boatDTO.getBoatId() , boatDTO.getBoatOwner() , boatDTO.getBoatName() , boatDTO.getBoatType() , boatDTO.getNoCrew() , boatDTO.getFuelCap() , boatDTO.getWaterCap() , boatDTO.getMaxWeight() , boatDTO.getEmail() );
 
     }
 
-    public static Boat searchBoat(String boatIdSearch) throws SQLException {
+    public static BoatDTO searchBoat(String boatIdSearch) throws SQLException {
         String sql = "SELECT * FROM boat WHERE boatId = ? ";
 
         ResultSet rs = CrudUtil.execute(sql, boatIdSearch);
@@ -82,21 +77,21 @@ public class BoatModel {
             double maxWeight = rs.getDouble(8);
             String email = rs.getString(9);
 
-            return new Boat( boatId , boatOwner , boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email );
+            return new BoatDTO( boatId , boatOwner , boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email );
 
         }
         return null;
 
     }
 
-    public static boolean updateBoat(Boat boat, String boatId) throws SQLException {
+    public static boolean updateBoat(BoatDTO boatDTO, String boatId) throws SQLException {
         String sql = "UPDATE boat set boatId = ? , boatOwner = ? , boatName = ? , boatType = ? , noCrew = ? , fuelTankCap = ? , freshWaterCap = ? , maxWeight = ? , boatOwnerEmail = ? WHERE boatId = ?";
 
-        if (boat.getEmail() == null){
-            boat.setEmail(null);
+        if (boatDTO.getEmail() == null){
+            boatDTO.setEmail(null);
         }
 
-        return CrudUtil.execute(sql , boat.getBoatId() , boat.getBoatOwner() , boat.getBoatName() , boat.getBoatType() , boat.getNoCrew() , boat.getFuelCap() , boat.getWaterCap() , boat.getMaxWeight() , boat.getEmail() , boatId );
+        return CrudUtil.execute(sql , boatDTO.getBoatId() , boatDTO.getBoatOwner() , boatDTO.getBoatName() , boatDTO.getBoatType() , boatDTO.getNoCrew() , boatDTO.getFuelCap() , boatDTO.getWaterCap() , boatDTO.getMaxWeight() , boatDTO.getEmail() , boatId );
 
     }
 
