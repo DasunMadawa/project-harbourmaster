@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface BoatDAO extends CrudDAO<Boat> {
-
+    public List<String> getAllId() throws SQLException;
+    public List<String> getAllEmails() throws SQLException;
 
 }

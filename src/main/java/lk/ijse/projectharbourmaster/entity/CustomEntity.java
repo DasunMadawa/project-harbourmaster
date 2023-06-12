@@ -1,5 +1,6 @@
 package lk.ijse.projectharbourmaster.entity;
 
+import javafx.scene.image.WritableImage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,10 @@ public class CustomEntity {
     private String boatOwner;
     private String boatName;
     private String boatType;
-    private String boatNoCrew;
-    private String fuelTankCap;
-    private String freshWaterCap;
-    private String maxWeight;
+    private int boatNoCrew;
+    private double fuelTankCap;
+    private double freshWaterCap;
+    private double maxWeight;
     private String boatOwnerEmail;
 
     private String dockId; //boat dock
@@ -25,7 +26,7 @@ public class CustomEntity {
 
     private String crewNic; //crew
     private String crewName;
-    private String crewPhoto;
+    private WritableImage crewPhoto;
     private String crewBod;
     private String crewAddress;
     private String crewGender;
@@ -33,35 +34,35 @@ public class CustomEntity {
     private String crewContact;
 
 //    private String dockId;  //dock
-    private String mainDock;
-    private String subDock;
-    private String dockSide;
+    private int mainDock;
+    private int subDock;
+    private int dockSide;
 
     private String employeeNic;  // employee
-    private String employeePhoto;
+    private WritableImage employeePhoto;
     private String employeeName;
     private String employeeBod;
     private String employeeAddress;
     private String employeeGender;
-    private String employeeSalary;
+    private double employeeSalary;
     private String employeePosition;
     private String employeeEmail;
     private String employeeContact;
 
     private String fishId;  //fish
     private String fishName;
-    private String fishUnitPrice;
-    private String fishStock;
+    private double fishUnitPrice;
+    private double fishStock;
 
     private String stockId; //stock
-    private String stockFullCapacity;
-    private String stockAvailableCapacity;
+    private double stockFullCapacity;
+    private double stockAvailableCapacity;
 
 //    private String stockId; //stock fish
 //    private String fishId;
-    private String weight;
+    private double weight;
     private String date;
-    private String unitPriceBought;
+    private double unitPriceBought;
     private String addOrRemove;
 
     private String turnId; //turn
@@ -87,14 +88,14 @@ public class CustomEntity {
     private String userPassword;
 
 //    private String userId; //weather
-    private String windSpeed;
+    private double windSpeed;
     private String specialCauses;
     private String weatherDate;
     private String time;
 
     private String emailDate; // weather email
 
-    public CustomEntity(String boatId, String boatOwner, String boatName, String boatType, String boatNoCrew, String fuelTankCap, String freshWaterCap, String maxWeight, String dockId) {
+    public CustomEntity(String boatId, String boatOwner, String boatName, String boatType, int boatNoCrew, double fuelTankCap, double freshWaterCap, double maxWeight, String dockId) {
         this.boatId = boatId;
         this.boatOwner = boatOwner;
         this.boatName = boatName;

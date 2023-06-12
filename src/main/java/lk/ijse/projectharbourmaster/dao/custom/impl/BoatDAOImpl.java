@@ -69,6 +69,43 @@ public class BoatDAOImpl implements BoatDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        return false;
+        String sql = "DELETE FROM boat WHERE boatId = ?";
+
+        return CrudUtil.execute(sql, id);
+
     }
+
+    @Override
+    public List<String> getAllId() throws SQLException {
+        String sql = "SELECT * FROM boat";
+
+        ResultSet rs = CrudUtil.execute(sql);
+
+        List<String> boatIdList = new ArrayList<>();
+
+        while (rs.next()) {
+            boatIdList.add(rs.getString(1));
+        }
+
+        return boatIdList;
+
+    }
+
+    @Override
+    public List<String> getAllEmails() throws SQLException {
+        String sql = "SELECT boatOwnerEmail FROM boat WHERE boatOwnerEmail IS NOT NULL;";
+
+        ResultSet rs = CrudUtil.execute(sql);
+
+        List<String> emails = new ArrayList<>();
+
+        while (rs.next()) {
+            emails.add(rs.getString(1));
+        }
+
+        return emails;
+
+    }
+
+
 }
