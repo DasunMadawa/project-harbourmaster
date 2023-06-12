@@ -17,7 +17,7 @@ public class QuaryDAOImpl implements QuaryDAO {
 
         ResultSet rs = CrudUtil.execute(sql);
 
-        List<CustomEntity> boatTMList = new ArrayList<>();
+        List<CustomEntity> boatList = new ArrayList<>();
 
         while (rs.next()) {
             String boatId = rs.getString(1);
@@ -43,10 +43,11 @@ public class QuaryDAOImpl implements QuaryDAO {
                 dockId = "Not docked";
             }
 
-            boatTMList.add(new CustomEntity(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, dockId));
+            boatList.add(new CustomEntity(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, dockId));
+
         }
 
-        return boatTMList;
+        return boatList;
 
     }
 

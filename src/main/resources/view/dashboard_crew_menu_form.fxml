@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -47,11 +46,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <ComboBox fx:id="crewFilterComboBox" layoutX="1349.0" layoutY="244.0" onAction="#crewFilterComboBoxOnAction" prefHeight="31.0" prefWidth="140.0" promptText="Filter">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ComboBox>
                   <JFXButton fx:id="printReportBtn" layoutX="1341.0" layoutY="160.0" onAction="#printReportBtnOnAction" prefHeight="51.0" prefWidth="157.0" style="-fx-background-color: #13005A; -fx-background-radius: 50;" text="Print Report" textFill="WHITE">
                      <font>
                         <Font size="21.0" />

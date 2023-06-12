@@ -76,7 +76,7 @@ public class BoatDAOImpl implements BoatDAO {
     }
 
     @Override
-    public List<String> getAllId() throws SQLException {
+    public List<String> getAllIds() throws SQLException {
         String sql = "SELECT * FROM boat";
 
         ResultSet rs = CrudUtil.execute(sql);
