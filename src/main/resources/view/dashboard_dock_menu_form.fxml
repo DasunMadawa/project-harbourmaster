@@ -22,7 +22,7 @@
                <children>
                   <ImageView fitHeight="62.0" fitWidth="67.0" layoutX="749.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
+                        <Image url="@img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <JFXButton fx:id="dockBoatBtn" layoutX="1243.0" layoutY="256.0" onAction="#dockBoatBtnOnAction" prefHeight="66.0" prefWidth="291.0" style="-fx-background-color: #146886; -fx-background-radius: 10;" text="Dock Boat" textFill="WHITE">
@@ -99,7 +99,7 @@
             </Pane>
             <ImageView fitHeight="703.0" fitWidth="805.0" layoutX="87.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/docking%20Chart.png" />
+                  <Image url="@img/docking%20Chart.png" />
                </image>
             </ImageView>
             <Label layoutX="96.0" layoutY="743.0" prefHeight="29.0" prefWidth="67.0" text="D111">

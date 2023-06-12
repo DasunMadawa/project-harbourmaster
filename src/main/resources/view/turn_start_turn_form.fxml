@@ -137,7 +137,7 @@
             </Label>
             <ImageView fx:id="capImageView" fitHeight="286.0" fitWidth="254.0" layoutX="691.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/3091714-200.png" />
+                  <Image url="@img/3091714-200.png" />
                </image></ImageView>
             <Label fx:id="capNameLbl" alignment="CENTER" layoutX="1250.0" layoutY="109.0" prefHeight="56.0" prefWidth="318.0" textAlignment="CENTER" textFill="#13005a">
                <font>

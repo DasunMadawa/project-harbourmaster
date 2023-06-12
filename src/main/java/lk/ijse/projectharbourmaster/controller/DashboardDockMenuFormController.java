@@ -212,8 +212,8 @@ public class DashboardDockMenuFormController {
         }
 
         try {
-            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()));
-            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()) > 0);
+//            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()));
+//            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()) > 0);
 
             if (DockModel.getAvailableCount(dockDockIdText.getText()) > 0 ) {
                 boolean isDocked = DockModel.dockBoats(dockDockIdText.getText(), dockDockBoatIdComboBox.getValue());
@@ -229,6 +229,12 @@ public class DashboardDockMenuFormController {
                             ButtonType.OK
                     ).show();
                 }
+            }else {
+                new Alert(Alert.AlertType.CONFIRMATION,
+                        "No Space Left On This Dock Id ! Try Another Dock Id ",
+                        ButtonType.OK
+                ).show();
+
             }
 
         } catch (SQLException e) {

@@ -22,7 +22,7 @@
             </Label>
             <ImageView fx:id="employeeImageView" fitHeight="286.0" fitWidth="254.0" layoutX="77.0" layoutY="320.0" onMouseClicked="#employeeImageViewOnMouseClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/businessman.png" />
+                  <Image url="@img/businessman.png" />
                </image>
             </ImageView>
             <Label layoutX="498.0" layoutY="117.0" prefHeight="56.0" prefWidth="185.0" style="-fx-background-color: #59C1BD; -fx-background-radius: 10;" text="Name" textAlignment="CENTER" textFill="#13005a">

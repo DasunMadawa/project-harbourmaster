@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="89.0" fitWidth="88.0" layoutX="737.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/download-removebg-preview.png" />
+                        <Image url="@img/download-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <TableView fx:id="boatTbl" layoutX="72.0" layoutY="302.0" prefHeight="470.0" prefWidth="1417.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">

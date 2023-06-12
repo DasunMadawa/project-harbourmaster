@@ -57,7 +57,7 @@
                   </Label>
                   <ImageView fitHeight="56.0" fitWidth="83.0" layoutX="254.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
+                        <Image url="@img/209-2098400_partly-cloudy-day-icon-weather-forecasting-removebg-preview.png" />
                      </image>
                   </ImageView>
                </children>
@@ -66,7 +66,7 @@
                <children>
                   <ImageView fitHeight="41.0" fitWidth="57.0" layoutX="265.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/9806-removebg-preview.png" />
+                        <Image url="@img/9806-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="24.0" layoutY="61.0" prefHeight="29.0" prefWidth="209.0" text="No. Boats On Sea  -" textAlignment="CENTER" textFill="#13005a">
@@ -108,12 +108,12 @@
                <children>
                   <ImageView fitHeight="56.0" fitWidth="98.0" layoutX="451.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
+                        <Image url="@img/anchor-icon-flat-style-trendy-logo-template-free-vector-removebg-preview.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="703.0" fitWidth="805.0" layoutX="77.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/docking%20Chart.png" />
+                        <Image url="@img/docking%20Chart.png" />
                      </image></ImageView>
                   <Label layoutX="86.0" layoutY="733.0" prefHeight="29.0" prefWidth="67.0" text="D111">
                      <font>

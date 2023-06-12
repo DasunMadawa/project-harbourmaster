@@ -19,7 +19,7 @@
                <children>
                   <ImageView fitHeight="62.0" fitWidth="67.0" layoutX="749.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/3091714-200.png" />
+                        <Image url="@img/3091714-200.png" />
                      </image>
                   </ImageView>
                   <TableView fx:id="crewTbl" layoutX="72.0" layoutY="302.0" prefHeight="470.0" prefWidth="1417.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
