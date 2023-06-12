@@ -11,7 +11,7 @@ public class Turn {
     private String turnId;
     private String boatId;
     private String capNIC;
-    private String crewCount;
+    private int crewCount;
     private String outDate;
     private String outTime;
     private String inDate;

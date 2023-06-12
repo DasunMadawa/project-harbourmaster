@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Stock {
     private String stockId;
-    private String fullCapacity;
-    private String availableCapacity;
+    private double fullCapacity;
+    private double availableCapacity;
 
 }

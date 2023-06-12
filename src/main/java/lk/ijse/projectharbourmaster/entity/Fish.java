@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Fish {
     private String fishId;
     private String name;
-    private String unitPrice;
-    private String stock;
+    private double unitPrice;
+    private double stock;
 
 }

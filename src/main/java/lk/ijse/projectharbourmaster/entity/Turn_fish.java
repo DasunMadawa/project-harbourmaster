@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Turn_fish {
     private String fishId;
     private String turnId;
-    private String weight;
+    private double weight;
     private String date;
 
 }

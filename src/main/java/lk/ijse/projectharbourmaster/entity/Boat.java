@@ -12,10 +12,10 @@ public class Boat {
     private String boatOwner;
     private String boatName;
     private String boatType;
-    private String noCrew;
-    private String fuelTankCap;
-    private String freshWaterCap;
-    private String maxWeight;
+    private int noCrew;
+    private double fuelTankCap;
+    private double freshWaterCap;
+    private double maxWeight;
     private String boatOwnerEmail;
 
 }

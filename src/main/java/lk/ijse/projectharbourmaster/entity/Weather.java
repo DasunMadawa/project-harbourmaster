@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Weather {
     private String userId;
-    private String windSpeed;
+    private double windSpeed;
     private String specialCauses;
     private String date;
     private String time;

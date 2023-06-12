@@ -1,5 +1,6 @@
 package lk.ijse.projectharbourmaster.entity;
 
+import javafx.scene.image.WritableImage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Employee {
     private String nic;
-    private String photo;
+    private WritableImage photo;
     private String name;
     private String bod;
     private String address;
     private String gender;
-    private String salary;
+    private double salary;
     private String position;
     private String email;
     private String contact;

@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Dock {
     private String dockId;
-    private String mainDock;
-    private String subDock;
-    private String dockSide;
+    private int mainDock;
+    private int subDock;
+    private int dockSide;
 
 }
