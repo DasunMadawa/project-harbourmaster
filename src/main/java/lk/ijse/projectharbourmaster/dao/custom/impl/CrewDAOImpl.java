@@ -48,18 +48,18 @@ public class CrewDAOImpl implements CrewDAO {
     }
 
     @Override
-    public boolean add(Crew entity) throws SQLException, IOException {
+    public boolean add(Crew crew) throws SQLException, IOException {
         PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement( "INSERT INTO crew VALUES( ? , ? , ? , ? , ? , ? , ? , ? )" );
 
-        if (entity.getEmail().length() == 0){
-            entity.setEmail(null);
+        if (crew.getEmail().length() == 0){
+            crew.setEmail(null);
         }
-        if (entity.getContact().length() == 0){
-            entity.setContact(null);
+        if (crew.getContact().length() == 0){
+            crew.setContact(null);
         }
 
-        if (entity.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(entity.getPhoto(), null);
+        if (crew.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(crew.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -72,14 +72,14 @@ public class CrewDAOImpl implements CrewDAO {
             ps.setBinaryStream(3 , null , 0);
         }
 
-        ps.setString(1 , entity.getNic());
-        ps.setString(2 , entity.getName());
+        ps.setString(1 , crew.getNic());
+        ps.setString(2 , crew.getName());
 
-        ps.setString(4 , entity.getBod());
-        ps.setString(5 , entity.getAddress());
-        ps.setString(6 , entity.getGender());
-        ps.setString(7 , entity.getEmail());
-        ps.setString(8 , entity.getContact());
+        ps.setString(4 , crew.getBod());
+        ps.setString(5 , crew.getAddress());
+        ps.setString(6 , crew.getGender());
+        ps.setString(7 , crew.getEmail());
+        ps.setString(8 , crew.getContact());
 
 
         return ps.executeUpdate() > 0;
@@ -87,15 +87,15 @@ public class CrewDAOImpl implements CrewDAO {
     }
 
     @Override
-    public boolean update(Crew entity, String id) throws SQLException, IOException {
+    public boolean update(Crew crew, String id) throws SQLException, IOException {
         PreparedStatement ps = DBConnection.getInstance().getConnection().prepareStatement( "UPDATE crew SET nic = ? , name = ? , photo = ? , bod = ? , address = ? , gender = ? , email = ? , contact = ? WHERE nic = ?" );
 
-        if (entity.getEmail() == null){
-            entity.setEmail(null);
+        if (crew.getEmail() == null){
+            crew.setEmail(null);
         }
 
-        if (entity.getPhoto() != null){
-            BufferedImage bImage = SwingFXUtils.fromFXImage(entity.getPhoto(), null);
+        if (crew.getPhoto() != null){
+            BufferedImage bImage = SwingFXUtils.fromFXImage(crew.getPhoto(), null);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             ImageIO.write(bImage, "png", outputStream);
@@ -108,14 +108,14 @@ public class CrewDAOImpl implements CrewDAO {
             ps.setBinaryStream(3 , null , 0);
         }
 
-        ps.setString(1 , entity.getNic());
-        ps.setString(2 , entity.getName());
+        ps.setString(1 , crew.getNic());
+        ps.setString(2 , crew.getName());
 
-        ps.setString(4 , entity.getBod());
-        ps.setString(5 , entity.getAddress());
-        ps.setString(6 , entity.getGender());
-        ps.setString(7 , entity.getEmail());
-        ps.setString(8 , entity.getContact());
+        ps.setString(4 , crew.getBod());
+        ps.setString(5 , crew.getAddress());
+        ps.setString(6 , crew.getGender());
+        ps.setString(7 , crew.getEmail());
+        ps.setString(8 , crew.getContact());
         ps.setString(9 , id);
 
         return ps.executeUpdate() > 0;

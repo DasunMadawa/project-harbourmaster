@@ -23,6 +23,7 @@ public class TurnModel {
         if (rs.next()) {
             return splitTurnId(rs.getString(1));
         }
+
         return splitTurnId(null);
 
     }

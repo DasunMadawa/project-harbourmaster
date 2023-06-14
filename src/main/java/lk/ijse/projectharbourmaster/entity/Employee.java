@@ -20,4 +20,14 @@ public class Employee {
     private String email;
     private String contact;
 
+    public Employee(String nic, String name, String address , String contact , String bod , String gender, String position) {
+        this.nic = nic;
+        this.name = name;
+        this.bod = bod;
+        this.address = address;
+        this.gender = gender;
+        this.position = position;
+        this.contact = contact;
+    }
+
 }

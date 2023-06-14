@@ -107,4 +107,22 @@ public class CustomEntity {
         this.dockId = dockId;
     }
 
+    public CustomEntity(String stockId, String fishId , double weight, String date, double unitPriceBought, String addOrRemove , String fishName ) {
+        this.fishId = fishId;
+        this.stockId = stockId;
+        this.weight = weight;
+        this.date = date;
+        this.unitPriceBought = unitPriceBought;
+        this.addOrRemove = addOrRemove;
+        this.fishName = fishName;
+
+    }
+
+    public CustomEntity(String crewNic, String crewName, String crewAddress, String crewContact , String crewBod ) {
+        this.crewNic = crewNic;
+        this.crewName = crewName;
+        this.crewBod = crewBod;
+        this.crewAddress = crewAddress;
+        this.crewContact = crewContact;
+    }
 }

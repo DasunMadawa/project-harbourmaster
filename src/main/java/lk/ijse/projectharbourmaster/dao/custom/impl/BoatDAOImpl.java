@@ -20,37 +20,36 @@ public class BoatDAOImpl implements BoatDAO {
     }
 
     @Override
-    public boolean add(Boat entity) throws SQLException {
+    public boolean add(Boat boat) throws SQLException {
         String sql = ( "INSERT INTO boat VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? )" );
 
-        if (entity.getBoatOwnerEmail().length() == 0){
-            entity.setBoatOwnerEmail(null);
+        if (boat.getBoatOwnerEmail().length() == 0){
+            boat.setBoatOwnerEmail(null);
         }
 
-        return CrudUtil.execute(sql , entity.getBoatId() , entity.getBoatOwner() , entity.getBoatName() , entity.getBoatType() , entity.getNoCrew() , entity.getFuelTankCap() , entity.getFreshWaterCap() , entity.getMaxWeight() , entity.getBoatOwnerEmail() );
+        return CrudUtil.execute(sql , boat.getBoatId() , boat.getBoatOwner() , boat.getBoatName() , boat.getBoatType() , boat.getNoCrew() , boat.getFuelTankCap() , boat.getFreshWaterCap() , boat.getMaxWeight() , boat.getBoatOwnerEmail() );
 
     }
 
     @Override
-    public boolean update(Boat entity, String id) throws SQLException {
+    public boolean update(Boat boat, String boatId) throws SQLException {
         String sql = "UPDATE boat set boatId = ? , boatOwner = ? , boatName = ? , boatType = ? , noCrew = ? , fuelTankCap = ? , freshWaterCap = ? , maxWeight = ? , boatOwnerEmail = ? WHERE boatId = ?";
 
-        if (entity.getBoatOwnerEmail().length() == 0){
-            entity.setBoatOwnerEmail(null);
+        if (boat.getBoatOwnerEmail().length() == 0){
+            boat.setBoatOwnerEmail(null);
         }
 
-        return CrudUtil.execute(sql , entity.getBoatId() , entity.getBoatOwner() , entity.getBoatName() , entity.getBoatType() , entity.getNoCrew() , entity.getFuelTankCap() , entity.getFreshWaterCap() , entity.getMaxWeight() , entity.getBoatOwnerEmail() , id );
+        return CrudUtil.execute(sql , boat.getBoatId() , boat.getBoatOwner() , boat.getBoatName() , boat.getBoatType() , boat.getNoCrew() , boat.getFuelTankCap() , boat.getFreshWaterCap() , boat.getMaxWeight() , boat.getBoatOwnerEmail() , boatId );
 
     }
 
     @Override
-    public Boat search(String id) throws SQLException {
+    public Boat search(String boatId) throws SQLException {
         String sql = "SELECT * FROM boat WHERE boatId = ? ";
 
-        ResultSet rs = CrudUtil.execute(sql, id);
+        ResultSet rs = CrudUtil.execute(sql, boatId);
 
         if (rs.next()) {
-            String boatId = rs.getString(1);
             String boatOwner = rs.getString(2);
             String boatName = rs.getString(3);
             String boatType = rs.getString(4);
@@ -68,10 +67,10 @@ public class BoatDAOImpl implements BoatDAO {
     }
 
     @Override
-    public boolean delete(String id) throws SQLException {
+    public boolean delete(String boatId) throws SQLException {
         String sql = "DELETE FROM boat WHERE boatId = ?";
 
-        return CrudUtil.execute(sql, id);
+        return CrudUtil.execute(sql, boatId);
 
     }
 
