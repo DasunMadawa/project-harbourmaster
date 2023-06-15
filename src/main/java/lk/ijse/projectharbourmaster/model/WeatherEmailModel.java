@@ -4,7 +4,6 @@ import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class WeatherEmailModel {
     public static boolean isUpdatableDay(String nextDate) throws SQLException {
