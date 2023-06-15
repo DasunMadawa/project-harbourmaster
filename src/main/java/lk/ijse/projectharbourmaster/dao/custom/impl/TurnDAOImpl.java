@@ -75,7 +75,7 @@ public class TurnDAOImpl implements TurnDAO {
 
     @Override
     public List<String> getAllBoatsInSea() throws SQLException {
-        String sql = "SELECT * FROM TURN WHERE inDate IS NULL";
+        String sql = "SELECT * FROM turn WHERE inDate IS NULL";
 
         ResultSet rs = CrudUtil.execute(sql);
         List<String> boatIdList = new ArrayList<>();

@@ -159,23 +159,24 @@ public class CrewDAOImpl implements CrewDAO {
 
     @Override
     public boolean delete(String id) throws SQLException {
-        String sql = "DELETE FROM boat WHERE boatId = ?";
+        String sql = "DELETE FROM crew WHERE nic = ?";
 
-        return CrudUtil.execute(sql, id);
+        return CrudUtil.execute(sql , id);
 
     }
 
     @Override
     public List<String> getAllEmails() throws SQLException {
-        String sql = "SELECT boatOwnerEmail FROM boat WHERE boatOwnerEmail IS NOT NULL;";
+        String sql = "SELECT email FROM crew WHERE email IS NOT NULL;";
 
         ResultSet rs = CrudUtil.execute(sql);
 
         List<String> emails = new ArrayList<>();
 
-        while (rs.next()) {
+        while (rs.next()){
             emails.add(rs.getString(1));
         }
+
 
         return emails;
 

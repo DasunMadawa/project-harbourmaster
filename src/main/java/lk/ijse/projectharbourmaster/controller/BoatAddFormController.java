@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.BoatBO;
 import lk.ijse.projectharbourmaster.dto.BoatDTO;
-import lk.ijse.projectharbourmaster.model.BoatModel;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -52,6 +54,8 @@ public class BoatAddFormController {
 
     @FXML
     private JFXButton mainBtn;
+
+    BoatBO boatBO = (BoatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOAT);
 
     @FXML
     void initialize() {
@@ -186,7 +190,7 @@ public class BoatAddFormController {
         String email = emailtxt.getText();
 
         try {
-            boolean isInserted = BoatModel.insertData(new BoatDTO(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, email));
+            boolean isInserted = boatBO.addBoat(new BoatDTO(boatId, boatOwner, boatName, boatType, noCrew, fuelCap, waterCap, maxWeight, email));
 
             if (isInserted) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -211,7 +215,9 @@ public class BoatAddFormController {
                 ).show();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
     }

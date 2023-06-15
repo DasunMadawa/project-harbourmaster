@@ -22,9 +22,9 @@ public class DockDAOImpl implements DockDAO {
 
         List<Boat_dock> list = new ArrayList<>();
 
-        while (rs.next()){
-            list.add(new Boat_dock(rs.getString(1) ,
-                    rs.getString(2) ,
+        while (rs.next()) {
+            list.add(new Boat_dock(rs.getString(1),
+                    rs.getString(2),
                     rs.getString(3))
 
             );
@@ -38,7 +38,7 @@ public class DockDAOImpl implements DockDAO {
     public boolean add(Boat_dock entity) throws SQLException, IOException {
         String sql = "INSERT INTO BOAT_dock (dockId , boatId , inDate) VALUES (? , ? , ?)";
 
-        return CrudUtil.execute(sql , entity.getDockId() , entity.getBoatId() , LocalDate.now());
+        return CrudUtil.execute(sql, entity.getDockId(), entity.getBoatId(), LocalDate.now());
 
     }
 
@@ -46,7 +46,7 @@ public class DockDAOImpl implements DockDAO {
     public boolean update(Boat_dock entity, String id) throws SQLException, IOException {
         String sql = "UPDATE BOAT_dock SET outDate = ? WHERE dockId = ? && boatId = ? ";
 
-        return CrudUtil.execute(sql , LocalDate.now() , entity.getDockId() , entity.getBoatId() );
+        return CrudUtil.execute(sql, LocalDate.now(), entity.getDockId(), entity.getBoatId());
 
     }
 
@@ -54,9 +54,9 @@ public class DockDAOImpl implements DockDAO {
     public Boat_dock search(String id) throws SQLException, IOException {
         String sql = "SELECT * FROM boat_dock WHERE inDate IS NOT NULL && outDate IS NULL && boatId = ?";
 
-        ResultSet rs = CrudUtil.execute(sql , id);
+        ResultSet rs = CrudUtil.execute(sql, id);
 
-        if (rs.next()){
+        if (rs.next()) {
             return new Boat_dock(
                     rs.getString(1),
                     rs.getString(2),
@@ -77,11 +77,11 @@ public class DockDAOImpl implements DockDAO {
     public int getAvailableCount(String dockId) throws SQLException {
         String sql = "SELECT dockId , COUNT(dockId) FROM boat_dock WHERE dockId = ? && outDate IS NULL";
 
-        ResultSet rs = CrudUtil.execute(sql , dockId);
+        ResultSet rs = CrudUtil.execute(sql, dockId);
 
-        if (rs.next()){
+        if (rs.next()) {
             int count = rs.getInt(2);
-            return (10-count);
+            return (10 - count);
         }
         System.out.println("sql error");
         return 10;
@@ -92,11 +92,11 @@ public class DockDAOImpl implements DockDAO {
     public List<String> getBoatIdForUndock(String dockId) throws SQLException {
         String sql = "SELECT * FROM boat_dock WHERE outDate IS NULL && dockId = ?";
 
-        ResultSet rs = CrudUtil.execute(sql , dockId);
+        ResultSet rs = CrudUtil.execute(sql, dockId);
 
         List<String> boatIds = new ArrayList<>();
 
-        while (rs.next()){
+        while (rs.next()) {
             boatIds.add(rs.getString(2));
         }
 
@@ -107,9 +107,9 @@ public class DockDAOImpl implements DockDAO {
     public boolean getBoatIdForDock(String boatId) throws SQLException {
         String sql = "SELECT * FROM boat_dock WHERE inDate IS NOT NULL && outDate IS NULL && boatId = ?";
 
-        ResultSet rs = CrudUtil.execute(sql , boatId);
+        ResultSet rs = CrudUtil.execute(sql, boatId);
 
-        if (rs.next()){
+        if (rs.next()) {
             return false;
         }
 

@@ -11,9 +11,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.BoatBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
+import lk.ijse.projectharbourmaster.dto.BoatDTO;
+import lk.ijse.projectharbourmaster.dto.CustomDTO;
 import lk.ijse.projectharbourmaster.dto.tm.BoatTM;
-import lk.ijse.projectharbourmaster.model.BoatModel;
+import lk.ijse.projectharbourmaster.entity.CustomEntity;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
 import lk.ijse.projectharbourmaster.model.CrewModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -23,6 +28,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardBoatMenuFormController {
@@ -69,11 +75,31 @@ public class DashboardBoatMenuFormController {
     @FXML
     private JFXButton boatSearchBoatBtn;
 
+    BoatBO boatBO = (BoatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOAT);
+
     @FXML
-    void initialize(){
+    void initialize() {
         setCellValueFactory();
         try {
-            loadBoatToTable(BoatModel.getAllWithFilter());
+            List<BoatTM> boatTMList = new ArrayList<>();
+
+            for (CustomDTO customDTO : boatBO.getAllBoats()) {
+                boatTMList.add(new BoatTM(
+                                customDTO.getBoatId(),
+                                customDTO.getBoatOwner(),
+                                customDTO.getBoatName(),
+                                customDTO.getBoatType(),
+                                customDTO.getBoatNoCrew(),
+                                customDTO.getBoatFuelCap(),
+                                customDTO.getBoatWaterCap(),
+                                customDTO.getBoatMaxWeight(),
+                                customDTO.getDockId()
+                        )
+                );
+
+            }
+
+            loadBoatToTable(boatTMList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -135,7 +161,7 @@ public class DashboardBoatMenuFormController {
 
                     JasperPrint jp = JasperFillManager.fillReport(js, null, DBConnection.getInstance().getConnection());
 
-                    JasperViewer viewer = new JasperViewer(jp , false);
+                    JasperViewer viewer = new JasperViewer(jp, false);
                     viewer.show();
 
                 } catch (

@@ -8,9 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.BoatBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
 import lk.ijse.projectharbourmaster.dto.BoatDTO;
-import lk.ijse.projectharbourmaster.model.BoatModel;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
@@ -76,6 +78,8 @@ public class BoatSearchFormController {
     private JFXButton mainBtn;
 
     private BoatDTO boatDTO;
+
+    BoatBO boatBO = (BoatBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOAT);
 
     @FXML
     void initialize(){
@@ -264,7 +268,7 @@ public class BoatSearchFormController {
 
 
         try {
-            boolean isUpdated = BoatModel.updateBoat(new BoatDTO(boatId , boatOwner ,boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email) , boatIdSearchTxt.getText() );
+            boolean isUpdated = boatBO.updateBoat(new BoatDTO(boatId , boatOwner ,boatName , boatType , noCrew , fuelCap , waterCap , maxWeight , email) , boatIdSearchTxt.getText() );
 
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -300,7 +304,9 @@ public class BoatSearchFormController {
                     "Database Crash Check Duplicate BoatId",
                     ButtonType.OK
             ).show();
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
     }
@@ -308,7 +314,7 @@ public class BoatSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            boatDTO = BoatModel.searchBoat(boatIdSearchTxt.getText());
+            boatDTO = boatBO.searchBoat(boatIdSearchTxt.getText());
 
             if (boatDTO != null) {
 
@@ -331,7 +337,9 @@ public class BoatSearchFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
     }
@@ -349,7 +357,7 @@ public class BoatSearchFormController {
     @FXML
     public void deleteBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isDroped = BoatModel.dropBoat(boatDTO.getBoatId());
+            boolean isDroped = boatBO.deleteBoat(boatDTO.getBoatId());
 
             if (isDroped){
                 new Alert(Alert.AlertType.INFORMATION,

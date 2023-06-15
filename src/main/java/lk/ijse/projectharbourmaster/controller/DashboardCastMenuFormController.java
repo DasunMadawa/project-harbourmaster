@@ -8,7 +8,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import lk.ijse.projectharbourmaster.model.CastModel;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.CastBO;
+//import lk.ijse.projectharbourmaster.model.CastModel;
 
 import java.sql.SQLException;
 
@@ -32,6 +34,8 @@ public class DashboardCastMenuFormController {
     void initialize(){
         setComboBoxValue();
     }
+
+    CastBO castBO = (CastBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CAST);
 
     private void setComboBoxValue() {
         castCastingPeopleComboBox.getItems().addAll(
@@ -65,7 +69,7 @@ public class DashboardCastMenuFormController {
             public void run(){
                 boolean isCast = false;
                 try {
-                    isCast = CastModel.cast(selectedType , temp);
+                    isCast = castBO.cast(selectedType , temp);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

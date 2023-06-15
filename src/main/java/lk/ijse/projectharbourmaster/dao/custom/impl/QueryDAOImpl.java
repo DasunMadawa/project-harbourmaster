@@ -1,7 +1,6 @@
 package lk.ijse.projectharbourmaster.dao.custom.impl;
 
-import lk.ijse.projectharbourmaster.dao.custom.QuaryDAO;
-import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
+import lk.ijse.projectharbourmaster.dao.custom.QueryDAO;
 import lk.ijse.projectharbourmaster.entity.CustomEntity;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
@@ -11,9 +10,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuaryDAOImpl implements QuaryDAO {
+public class QueryDAOImpl implements QueryDAO {
     @Override
-    public List<CustomEntity> geAllBoats() throws SQLException {
+    public List<CustomEntity> getAllBoats() throws SQLException {
         String sql = "SELECT * FROM boat";
 
         ResultSet rs = CrudUtil.execute(sql);

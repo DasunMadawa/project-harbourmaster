@@ -2,9 +2,16 @@ package lk.ijse.projectharbourmaster.dto;
 
 import javafx.scene.image.WritableImage;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomDTO {
 
     // BoatDTO
@@ -60,18 +67,29 @@ public class CustomDTO {
     private boolean stockUpdateAdd;
 
     // TurnDTO
-        private String turnId;
-//        private String boatId;
-        private String turnCapNIC;
-        private int turnCrewCount;
-        private String turnOutDate;
-        private String turnoutTime;
-        private String inDate;
-        private String inTime;
-        private List<CrewTM> crewTM;
+    private String turnId;
+    //        private String boatId;
+    private String turnCapNIC;
+    private int turnCrewCount;
+    private String turnOutDate;
+    private String turnoutTime;
+    private String inDate;
+    private String inTime;
+    private List<CrewTM> crewTM;
 
+    private String dockId;
 
-
+    public CustomDTO(String boatId, String boatOwner, String boatName, String boatType, int boatNoCrew, double fuelTankCap, double freshWaterCap, double maxWeight, String dockId) {
+        this.boatId = boatId;
+        this.boatOwner = boatOwner;
+        this.boatName = boatName;
+        this.boatType = boatType;
+        this.boatNoCrew = boatNoCrew;
+        this.boatFuelCap = fuelTankCap;
+        this.boatWaterCap = freshWaterCap;
+        this.boatMaxWeight = maxWeight;
+        this.dockId = dockId;
+    }
 
 
 }

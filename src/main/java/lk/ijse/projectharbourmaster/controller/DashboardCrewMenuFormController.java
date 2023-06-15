@@ -11,9 +11,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.CrewBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
+import lk.ijse.projectharbourmaster.dto.CrewDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
-import lk.ijse.projectharbourmaster.model.CrewModel;
+//import lk.ijse.projectharbourmaster.model.CrewModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -22,6 +25,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardCrewMenuFormController {
@@ -59,12 +63,30 @@ public class DashboardCrewMenuFormController {
     @FXML
     private ComboBox<String> crewFilterComboBox;
 
+
+    CrewBO crewBO = (CrewBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CREW);
+
     @FXML
     void initialize(){
         setCellValueFactory();
 
         try {
-            loadCrewsTOTbl(CrewModel.getAllForTableFilter());
+            List<CrewTM> crewTMList = new ArrayList<>();
+
+            for (CrewDTO crewDTO : crewBO.getAll() ) {
+                crewTMList.add(
+                        new CrewTM(
+                                crewDTO.getNic(),
+                                crewDTO.getName(),
+                                crewDTO.getAddress(),
+                                crewDTO.getContact(),
+                                crewDTO.getDob()
+                        )
+                );
+            }
+
+            loadCrewsTOTbl(crewTMList );
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,15 +130,6 @@ public class DashboardCrewMenuFormController {
 
     }
 
-    @FXML
-    void crewFilterComboBoxOnAction(ActionEvent event) {
-        try {
-            loadCrewsTOTbl(CrewModel.getAllForTableFilter((" ORDER BY "+crewFilterComboBox.getValue())));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     void crewSearchBtnOnAction(ActionEvent event) {

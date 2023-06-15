@@ -14,9 +14,11 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.CrewBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
 import lk.ijse.projectharbourmaster.dto.CrewDTO;
-import lk.ijse.projectharbourmaster.model.CrewModel;
+//import lk.ijse.projectharbourmaster.model.CrewModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
@@ -82,6 +84,8 @@ public class CrewSearchFormController {
     private CrewDTO crewDTO;
     private Image image;
     private WritableImage tempImg;
+
+    CrewBO crewBO = (CrewBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CREW);
 
     @FXML
     void initialize() {
@@ -209,7 +213,7 @@ public class CrewSearchFormController {
     @FXML
     void deleteCrewBtnOnAction(ActionEvent event) {
         try {
-            boolean isDroped = CrewModel.dropCrew(crewDTO.getNic());
+            boolean isDroped = crewBO.deleteCrew(crewDTO.getNic());
 
             if (isDroped) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -239,7 +243,9 @@ public class CrewSearchFormController {
                 ).show();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
@@ -310,7 +316,7 @@ public class CrewSearchFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isUpdated = CrewModel.updateCrew(new CrewDTO(nic, name, photo, dob, address, gender, email, contact), nicOld);
+            boolean isUpdated = crewBO.updateCrew(new CrewDTO(nic, name, photo, dob, address, gender, email, contact), nicOld);
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -353,7 +359,7 @@ public class CrewSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            crewDTO = CrewModel.searchCrew(nicSearchTxt.getText());
+            crewDTO = crewBO.searchCrew(nicSearchTxt.getText());
 
             if (crewDTO != null) {
                 if (crewDTO.getPhoto() != null) {

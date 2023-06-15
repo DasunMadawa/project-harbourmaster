@@ -15,8 +15,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.CrewBO;
 import lk.ijse.projectharbourmaster.dto.CrewDTO;
-import lk.ijse.projectharbourmaster.model.CrewModel;
+//import lk.ijse.projectharbourmaster.model.CrewModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import javax.imageio.ImageIO;
@@ -63,6 +65,8 @@ public class CrewAddFormController {
     private JFXButton registerBtn;
 
     private Image defaultImg;
+
+    CrewBO crewBO = (CrewBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CREW);
 
     @FXML
     void initialize() {
@@ -198,7 +202,7 @@ public class CrewAddFormController {
         String contact = contactTxt.getText();
 
         try {
-            boolean isInserted = CrewModel.inseartData(new CrewDTO(nic, name, photo, dob, address, gender, email, contact));
+            boolean isInserted = crewBO.addCrew(new CrewDTO(nic, name, photo, dob, address, gender, email, contact));
             if (isInserted) {
                 new Alert(Alert.AlertType.INFORMATION,
                         "Data Inserted",
