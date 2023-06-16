@@ -34,7 +34,7 @@ public class WeatherModel {
             String specialCauses = rs.getString(3);
             String time = rs.getString(5);
 
-            return new WeatherDTO(usrId , windSpeed , specialCauses , date , time);
+            return new WeatherDTO(usrId , windSpeed , specialCauses , date , time , null);
         }
         return null;
 

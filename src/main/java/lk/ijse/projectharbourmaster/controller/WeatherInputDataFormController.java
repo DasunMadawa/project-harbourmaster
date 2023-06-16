@@ -8,11 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.WeatherBO;
 import lk.ijse.projectharbourmaster.dto.WeatherDTO;
-import lk.ijse.projectharbourmaster.model.BoatModel;
-import lk.ijse.projectharbourmaster.model.CrewModel;
-import lk.ijse.projectharbourmaster.model.EmailModel;
-import lk.ijse.projectharbourmaster.model.WeatherModel;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
+//import lk.ijse.projectharbourmaster.model.CrewModel;
+//import lk.ijse.projectharbourmaster.model.EmailModel;
+//import lk.ijse.projectharbourmaster.model.WeatherModel;
+import lk.ijse.projectharbourmaster.util.EmailUtil;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import javax.mail.MessagingException;
@@ -37,6 +40,9 @@ public class WeatherInputDataFormController {
 
     @FXML
     private JFXButton mainBtn;
+
+
+    WeatherBO weatherBO = (WeatherBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.WEATHER);
 
     @FXML
     void initialize(){
@@ -114,7 +120,7 @@ public class WeatherInputDataFormController {
         String specialCauseMessage = specialCasestxt.getText();
 
         try {
-            boolean isinserted = WeatherModel.insertWeather(new WeatherDTO(LoginFormController.userId , 00 ,  specialCasestxt.getText() , dateFormateChanger() , LocalTime.now()+""));
+            boolean isinserted = weatherBO.addWeatherRecords(new WeatherDTO(LoginFormController.userId , 00 ,  specialCasestxt.getText() , dateFormateChanger() , LocalTime.now()+"" , null));
 
             if (isinserted){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -132,12 +138,14 @@ public class WeatherInputDataFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
 
             new Alert(Alert.AlertType.ERROR ,
                     "Database Crash" ,
                     ButtonType.OK
             ).show();
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
 
@@ -153,8 +161,8 @@ public class WeatherInputDataFormController {
 
     private void informSpecialCausesByEmail(String specialCause) {
         try {
-            List<String> allEmailsCrew = CrewModel.getAllEmails();
-            List<String> allEmailsBoatOwners = BoatModel.getAllEmails();
+            List<String> allEmailsCrew = weatherBO.getAllEmailsCrew();
+            List<String> allEmailsBoatOwners = weatherBO.getAllEmailsBoat();
 
             try {
                 sendSpecialCausesMails(allEmailsCrew, specialCause);
@@ -173,7 +181,7 @@ public class WeatherInputDataFormController {
     private void sendSpecialCausesMails(List<String> allEmailsCrew, String specialCause) {
         for (String email:allEmailsCrew) {
             try {
-                EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , email , specialCause);
+                EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , email , specialCause);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }

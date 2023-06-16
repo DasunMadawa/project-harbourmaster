@@ -9,8 +9,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.FishBO;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
-import lk.ijse.projectharbourmaster.model.FIshModel;
+//import lk.ijse.projectharbourmaster.model.FIshModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -39,6 +41,9 @@ public class FishUpdatePriceFormController {
 
     private FishDTO fishDTO;
 
+
+    FishBO fishBO = (FishBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.FISH);
+
     @FXML
     void initialize(){
         setUpdatable(false);
@@ -65,7 +70,7 @@ public class FishUpdatePriceFormController {
 
     private void setComboBoxValue() {
         try {
-            List<FishDTO> allFishDTOS = FIshModel.getAllOrderBy("");
+            List<FishDTO> allFishDTOS = fishBO.getAllOrderBy("");
 
             ObservableList<String> fishIdObservableList = FXCollections.observableArrayList();
 
@@ -145,9 +150,11 @@ public class FishUpdatePriceFormController {
 
         boolean isUpdated = false;
         try {
-            isUpdated = FIshModel.updateFishPrice(fishDTO);
+            isUpdated = fishBO.updateFishPrice(fishDTO , null);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
         if (isUpdated){
@@ -173,7 +180,7 @@ public class FishUpdatePriceFormController {
 
     public void fishIdComboBoxOnAction(ActionEvent actionEvent) {
         try {
-            fishDTO = FIshModel.searchFish(fishIdComboBox.getValue()+"");
+            fishDTO = fishBO.searchFish(fishIdComboBox.getValue()+"");
 
             if (fishDTO != null){
                 fishNametxt.setText(fishDTO.getFishName());
@@ -188,7 +195,9 @@ public class FishUpdatePriceFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }

@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.UserBO;
 import lk.ijse.projectharbourmaster.dto.UserDTO;
-import lk.ijse.projectharbourmaster.model.UserModel;
+//import lk.ijse.projectharbourmaster.model.UserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +30,9 @@ public class ForgetPassword2FormController {
     @FXML
     private JFXPasswordField passwordFieldConfirm;
 
+
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+
     @FXML
     void changeBtnOnAction(ActionEvent event) {
         if (!((userNameTxt.getText().length() | passwordField.getText().length() | passwordFieldConfirm.getText().length()) == 0 )){
@@ -45,7 +50,7 @@ public class ForgetPassword2FormController {
             }
 
             try {
-                if (UserModel.updateUser(new UserDTO(userId , null , userName , password))){
+                if (userBO.updateUser(new UserDTO(userId , null , userName , password))){
                     new Alert(Alert.AlertType.INFORMATION ,
                             "Password changed" ,
                             ButtonType.OK
@@ -71,6 +76,8 @@ public class ForgetPassword2FormController {
                         "Check Duplicate User Name" ,
                         ButtonType.OK
                 ).show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
         }else {

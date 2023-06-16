@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.FishBO;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
-import lk.ijse.projectharbourmaster.model.FIshModel;
+//import lk.ijse.projectharbourmaster.model.FIshModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -35,6 +37,10 @@ public class FishAddFormController {
     @FXML
     private JFXButton mainBtn;
 
+
+    FishBO fishBO = (FishBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.FISH);
+
+
     @FXML
     void initialize(){
         setTextFieldValidations();
@@ -57,7 +63,7 @@ public class FishAddFormController {
         double price = Double.parseDouble(pricetxt.getText());
 
         try {
-            boolean isInserted = FIshModel.addFish(new FishDTO(fishIdTemp , fishName , price , 0.0));
+            boolean isInserted = fishBO.addFish(new FishDTO(fishIdTemp , fishName , price , 0.0));
 
             if (isInserted){
                 new Alert(Alert.AlertType.INFORMATION ,
@@ -80,8 +86,9 @@ public class FishAddFormController {
                     "Check Duplicate FishIds" ,
                     ButtonType.OK
             ).show();
+        } catch (IOException e) {
+            System.out.println(e);
         }
-
 
 
     }

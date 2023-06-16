@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class TurnTM {
-    String turnId;
-    String boatId;
-    String capNic;
-    int noCrew;
-    String outDate;
-    String outTime;
-    String inDate;
-    String inTime;
+    private String turnId;
+    private String boatId;
+    private String capNic;
+    private int noCrew;
+    private String outDate;
+    private String outTime;
+    private String inDate;
+    private String inTime;
 
 }

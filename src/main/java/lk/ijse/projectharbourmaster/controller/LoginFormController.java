@@ -10,8 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.UserBO;
 import lk.ijse.projectharbourmaster.dto.UserDTO;
-import lk.ijse.projectharbourmaster.model.UserModel;
+//import lk.ijse.projectharbourmaster.model.UserModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,6 +37,9 @@ public class LoginFormController {
     public static String userId;
 
 
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+
+
     @FXML
     public void initialize(){
         rootcopy = root;
@@ -53,7 +58,7 @@ public class LoginFormController {
     @FXML
     void loginBtnOnAction(ActionEvent event) {
         try {
-            UserDTO userDTO = UserModel.searchUser(userNameTxt.getText());
+            UserDTO userDTO = userBO.searchUserByUserName(userNameTxt.getText());
             if (userDTO != null && userDTO.getPassword().equals(passwordField.getText())){
                 this.userId = userDTO.getUserId();
                 root.getChildren().clear();

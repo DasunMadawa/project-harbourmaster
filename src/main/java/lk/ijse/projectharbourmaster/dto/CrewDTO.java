@@ -19,4 +19,12 @@ public class CrewDTO {
     private String email;
     private String contact;
 
+    public CrewDTO(String crewNic, String crewName, String crewAddress, String crewContact , String crewBod ) {
+        this.nic = crewNic;
+        this.name = crewName;
+        this.dob = crewBod;
+        this.address = crewAddress;
+        this.contact = crewContact;
+    }
+
 }

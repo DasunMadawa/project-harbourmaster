@@ -12,12 +12,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.StockBO;
+import lk.ijse.projectharbourmaster.dto.CustomDTO;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.dto.tm.StockRecordsTM;
 import lk.ijse.projectharbourmaster.dto.tm.StockStockTM;
-import lk.ijse.projectharbourmaster.model.FIshModel;
-import lk.ijse.projectharbourmaster.model.StockFishModel;
-import lk.ijse.projectharbourmaster.model.StockModel;
+//import lk.ijse.projectharbourmaster.model.FIshModel;
+//import lk.ijse.projectharbourmaster.model.StockFishModel;
+//import lk.ijse.projectharbourmaster.model.StockModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -79,6 +82,9 @@ public class DashboardStockMenuFormController {
     @FXML
     private TableColumn<?, ?> stockStockCol1;
 
+
+    StockBO stockBO = (StockBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STOCK);
+
     @FXML
     void initialize() {
         s1StockSpinner.setProgress(calculateStockProgress() / 100);
@@ -91,12 +97,21 @@ public class DashboardStockMenuFormController {
 
     private void setStockRecords() {
         try {
-            List<StockRecordsTM> stockRecordsTMList = StockFishModel.getAll();
 
             ObservableList<StockRecordsTM> obListStock = FXCollections.observableArrayList();
 
-            for (StockRecordsTM stockRecordsTM : stockRecordsTMList) {
-                obListStock.add(stockRecordsTM);
+            for (CustomDTO customDTO : stockBO.getAllStockRecords()) {
+                obListStock.add(
+                        new StockRecordsTM(
+                                customDTO.getStockId(),
+                                customDTO.getFishId(),
+                                customDTO.getWeight(),
+                                customDTO.getDate(),
+                                customDTO.getUnitPriceBought(),
+                                customDTO.getAddOrRemove(),
+                                customDTO.getFishName()
+                        )
+                );
             }
 
             stockTbl1.setItems(obListStock);
@@ -109,7 +124,7 @@ public class DashboardStockMenuFormController {
 
     private void setStockTableValues() {
         try {
-            List<FishDTO> fishDTOList = FIshModel.getAllOrderBy("ORDER BY fishId");
+            List<FishDTO> fishDTOList = stockBO.getAllOrderBy("ORDER BY fishId");
 
             ObservableList<StockStockTM> obListStock = FXCollections.observableArrayList();
 
@@ -149,7 +164,7 @@ public class DashboardStockMenuFormController {
 
     private double calculateStockProgress() {
         try {
-            double availableSpace = StockModel.getAvailableSpace("S1");
+            double availableSpace = stockBO.getAvailableSpace("S1");
 
             return (((10 - availableSpace) / 10) * 100);
 

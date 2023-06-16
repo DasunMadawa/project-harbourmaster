@@ -6,13 +6,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.TurnBO;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
-import lk.ijse.projectharbourmaster.model.TurnModel;
+//import lk.ijse.projectharbourmaster.model.TurnModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -89,6 +91,9 @@ public class DashboardTurnMenuFormController {
     List <TurnTM> completedTurns;
     List <TurnTM> inCompletedTurns;
 
+
+    TurnBO turnBO = (TurnBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.TURN);
+
     @FXML
     void initialize(){
         setCellValueFactory();
@@ -120,8 +125,36 @@ public class DashboardTurnMenuFormController {
 
     private void setTables() {
         try {
-            completedTurns = TurnModel.getAllCompletedTurns();
-            inCompletedTurns = TurnModel.getAllInCompletedTurns();
+            for (TurnDTO turnDTO : turnBO.getAllCompletedTurns() ) {
+                completedTurns.add(
+                        new TurnTM(
+                                turnDTO.getTurnId(),
+                                turnDTO.getBoatId(),
+                                turnDTO.getCapNIC(),
+                                turnDTO.getCrewCount(),
+                                turnDTO.getOutDate(),
+                                turnDTO.getOutTime(),
+                                turnDTO.getInDate(),
+                                turnDTO.getInTime()
+                        )
+                );
+            }
+
+            for (TurnDTO turnDTO : turnBO.getAllInCompletedTurns() ) {
+                inCompletedTurns.add(
+                        new TurnTM(
+                                turnDTO.getTurnId(),
+                                turnDTO.getBoatId(),
+                                turnDTO.getCapNIC(),
+                                turnDTO.getCrewCount(),
+                                turnDTO.getOutDate(),
+                                turnDTO.getOutTime(),
+                                turnDTO.getInDate(),
+                                turnDTO.getInTime()
+                        )
+                );
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

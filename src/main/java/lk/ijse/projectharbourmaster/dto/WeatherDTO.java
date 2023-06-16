@@ -14,4 +14,5 @@ public class WeatherDTO {
     private String specialCauses;
     private String date;
     private String time;
+    private String threatLevel;
 }

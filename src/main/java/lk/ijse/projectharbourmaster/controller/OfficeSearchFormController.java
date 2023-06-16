@@ -14,8 +14,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.OfficeBO;
 import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
-import lk.ijse.projectharbourmaster.model.OfficeModel;
+//import lk.ijse.projectharbourmaster.model.OfficeModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import javax.imageio.ImageIO;
@@ -82,6 +84,9 @@ public class OfficeSearchFormController {
     private Image image;
     private EmployeeDTO employeeDTO;
     private WritableImage tempImg;
+
+
+    OfficeBO officeBO = (OfficeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.OFFICE);
 
     @FXML
     void initialize(){
@@ -279,7 +284,7 @@ public class OfficeSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            employeeDTO = OfficeModel.searchEmployee(nicSearchTxt.getText());
+            employeeDTO = officeBO.searchEmployee(nicSearchTxt.getText());
 
             if (employeeDTO != null) {
                 if (employeeDTO.getPhoto() != null) {
@@ -291,7 +296,7 @@ public class OfficeSearchFormController {
                 dobtxt.setText(employeeDTO.getDob());
                 addresstxt.setText(employeeDTO.getAddress());
                 gendertxt.setText(employeeDTO.getGender());
-                salaryTxt.setText(employeeDTO.getSalary());
+                salaryTxt.setText(employeeDTO.getSalary() + "");
                 positionTxt.setText(employeeDTO.getPosition());
                 emailtxt.setText(employeeDTO.getEmail());
                 contactTxt.setText(employeeDTO.getContact());
@@ -357,13 +362,13 @@ public class OfficeSearchFormController {
         String dob = dateFormateChanger();
         String address = addresstxt.getText();
         String gender = gendertxt.getText();
-        String salary = salaryTxt.getText();
+        double salary = Double.parseDouble(salaryTxt.getText());
         String position = positionTxt.getText();
         String email = emailtxt.getText();
         String contact = contactTxt.getText();
 
         try {
-            boolean isUpdated = OfficeModel.updateEmployee(new EmployeeDTO(nic , photo , name , dob, address, gender, salary , position , email, contact) , nicOld );
+            boolean isUpdated = officeBO.updateEmployee(new EmployeeDTO(nic , photo , name , dob, address, gender, salary , position , email, contact) , nicOld );
 
             if (isUpdated){
                 new Alert(Alert.AlertType.INFORMATION,
@@ -405,7 +410,7 @@ public class OfficeSearchFormController {
     @FXML
     public void deleteBtnOnAction(ActionEvent actionEvent) {
         try {
-            boolean isDroped = OfficeModel.dropEmployee(employeeDTO.getNic());
+            boolean isDroped = officeBO.deleteEmployee(employeeDTO.getNic());
 
             if (isDroped){
                 new Alert(Alert.AlertType.INFORMATION,

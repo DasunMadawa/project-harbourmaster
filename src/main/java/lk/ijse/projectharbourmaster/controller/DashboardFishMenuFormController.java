@@ -11,9 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.FishBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
-import lk.ijse.projectharbourmaster.model.FIshModel;
+//import lk.ijse.projectharbourmaster.model.FIshModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -90,6 +92,9 @@ public class DashboardFishMenuFormController {
     @FXML
     private JFXButton updatePriceBtn;
 
+
+    FishBO fishBO = (FishBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.FISH);
+
     @FXML
     void initialize(){
         setCellValueFactory();
@@ -112,9 +117,9 @@ public class DashboardFishMenuFormController {
 
     private void setTables() {
         try {
-            List<FishDTO> fishDTOTable = FIshModel.getAllOrderBy("");
-            List<FishDTO> fishDTOHighestRatesTable = FIshModel.getAllOrderBy(" ORDER BY unitPrice DESC LIMIT 5");
-            List<FishDTO> fishDTOHighestStockTable = FIshModel.getAllOrderBy(" ORDER BY stock DESC LIMIT 5");
+            List<FishDTO> fishDTOTable = fishBO.getAllOrderBy("");
+            List<FishDTO> fishDTOHighestRatesTable = fishBO.getAllOrderBy(" ORDER BY unitPrice DESC LIMIT 5");
+            List<FishDTO> fishDTOHighestStockTable = fishBO.getAllOrderBy(" ORDER BY stock DESC LIMIT 5");
 
             ObservableList fishTableOblist = FXCollections.observableArrayList();
             ObservableList fishHighestRatesTableOblist = FXCollections.observableArrayList();
@@ -124,13 +129,19 @@ public class DashboardFishMenuFormController {
                 fishTableOblist.add(fishDTO);
             }
 
-            for (FishDTO fishDTO : fishDTOHighestRatesTable) {
+            for (int i=0; i < 5; i++){
+                fishHighestRatesTableOblist.add(fishDTOHighestRatesTable.get(i));
+                fishHighestStockTableOblist.add(fishDTOHighestStockTable.get(i));
+
+            }
+
+            /*for (FishDTO fishDTO : fishDTOHighestRatesTable) {
                 fishHighestRatesTableOblist.add(fishDTO);
             }
 
             for (FishDTO fishDTO : fishDTOHighestStockTable) {
                 fishHighestStockTableOblist.add(fishDTO);
-            }
+            }*/
 
             fishTbl.setItems(fishTableOblist);
             fishHighesRatesTbl.setItems(fishHighestRatesTableOblist);
@@ -197,10 +208,10 @@ public class DashboardFishMenuFormController {
         }
 
         try {
-            FishDTO fishDTO = FIshModel.searchFish(fishRemoveFishTxt.getText());
+            FishDTO fishDTO = fishBO.searchFish(fishRemoveFishTxt.getText());
 
             if (fishDTO != null){
-                boolean isDroped = FIshModel.drop(fishDTO);
+                boolean isDroped = fishBO.deleteFish(fishDTO.getFishId());
 
                 if (isDroped) {
                     new Alert(Alert.AlertType.INFORMATION,
@@ -221,7 +232,9 @@ public class DashboardFishMenuFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
 

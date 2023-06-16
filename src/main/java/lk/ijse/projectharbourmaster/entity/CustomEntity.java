@@ -125,4 +125,5 @@ public class CustomEntity {
         this.crewAddress = crewAddress;
         this.crewContact = crewContact;
     }
+
 }

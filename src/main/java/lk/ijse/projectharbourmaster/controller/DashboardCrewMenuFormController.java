@@ -73,7 +73,7 @@ public class DashboardCrewMenuFormController {
         try {
             List<CrewTM> crewTMList = new ArrayList<>();
 
-            for (CrewDTO crewDTO : crewBO.getAll() ) {
+            for (CrewDTO crewDTO : crewBO.getAllCrew() ) {
                 crewTMList.add(
                         new CrewTM(
                                 crewDTO.getNic(),
@@ -90,16 +90,6 @@ public class DashboardCrewMenuFormController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        setComboBoxValues();
-
-    }
-
-    void setComboBoxValues(){
-        crewFilterComboBox.getItems().addAll(
-                "nic" ,
-                "name"
-        );
 
     }
 

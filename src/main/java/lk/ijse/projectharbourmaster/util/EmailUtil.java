@@ -1,16 +1,13 @@
-package lk.ijse.projectharbourmaster.bo.custom.impl;
-
-import lk.ijse.projectharbourmaster.bo.custom.EmailBO;
+package lk.ijse.projectharbourmaster.util;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class EmailBOImpl implements EmailBO {
+public class EmailUtil {
 
-    @Override
-    public void sendMail(String sender , String senderPassword  , String receiver , String messageTxt) throws MessagingException {
+    public static void sendMail(String sender , String senderPassword  , String receiver , String messageTxt) throws MessagingException {
         Properties properties = new Properties();
 
         properties.setProperty("mail.smtp.auth" , "true");
@@ -30,8 +27,7 @@ public class EmailBOImpl implements EmailBO {
 
     }
 
-    @Override
-    public Message prepareMessage(Session session, String sender, String receiver, String messageTxt) throws MessagingException {
+    private static Message prepareMessage(Session session, String sender, String receiver, String messageTxt) throws MessagingException {
 
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(sender));
@@ -41,4 +37,5 @@ public class EmailBOImpl implements EmailBO {
         return message;
 
     }
+
 }

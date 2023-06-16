@@ -8,10 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.StockBO;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.dto.StockUpdateDTO;
-import lk.ijse.projectharbourmaster.model.FIshModel;
-import lk.ijse.projectharbourmaster.model.StockFishModel;
+//import lk.ijse.projectharbourmaster.model.FIshModel;
+//import lk.ijse.projectharbourmaster.model.StockFishModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -48,6 +50,9 @@ public class StockAddRemoveFishFormController {
     private JFXButton mainBtn;
 
     private FishDTO fishDTO;
+
+
+    StockBO stockBO = (StockBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STOCK);
 
     @FXML void initialize(){
         setFishIds();
@@ -91,7 +96,7 @@ public class StockAddRemoveFishFormController {
 
     private void setFishIds() {
         try {
-            List<FishDTO> allFishDTOS = FIshModel.getAllOrderBy("");
+            List<FishDTO> allFishDTOS = stockBO.getAllOrderBy("");
 
             ObservableList<String> fishIdObservableList = FXCollections.observableArrayList();
 
@@ -124,7 +129,7 @@ public class StockAddRemoveFishFormController {
 
         StockUpdateDTO stockUpdateDTO = new StockUpdateDTO(stockIdComboBox.getValue() , Double.valueOf(addingWeighttxt.getText()) , add , fishDTO);
 
-        boolean isUpdated = StockFishModel.addStock(stockUpdateDTO);
+        boolean isUpdated = stockBO.addStock(stockUpdateDTO);
         if (isUpdated){
             new Alert(Alert.AlertType.CONFIRMATION ,
                     "Stock Updated" ,
@@ -174,7 +179,7 @@ public class StockAddRemoveFishFormController {
     @FXML
     void fishIdComboBoxOnAction(ActionEvent event) {
         try {
-            fishDTO = FIshModel.searchFish(fishIdComboBox.getValue());
+            fishDTO = stockBO.searchFish(fishIdComboBox.getValue());
 
             if (fishDTO != null){
                 fishNameLabel.setText(fishDTO.getFishName());
@@ -182,6 +187,8 @@ public class StockAddRemoveFishFormController {
 
             }
         } catch (SQLException e) {
+            System.out.println(e);
+        } catch (IOException e) {
             System.out.println(e);
         }
     }

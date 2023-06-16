@@ -13,7 +13,7 @@ public interface CrewBO extends SuperBO {
     public boolean updateCrew(CrewDTO crewDTO , String id ) throws SQLException, IOException;
     public CrewDTO searchCrew(String id) throws SQLException, IOException;
     public boolean deleteCrew(String id) throws SQLException, IOException;
-    public List<CrewDTO> getAll() throws SQLException;
+    public List<CrewDTO> getAllCrew() throws SQLException;
     public List<String> getAllEmails() throws SQLException;
 
 }

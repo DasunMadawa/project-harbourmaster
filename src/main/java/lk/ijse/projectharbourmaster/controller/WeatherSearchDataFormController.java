@@ -8,8 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.WeatherBO;
 import lk.ijse.projectharbourmaster.dto.WeatherDTO;
-import lk.ijse.projectharbourmaster.model.WeatherModel;
+//import lk.ijse.projectharbourmaster.model.WeatherModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -48,6 +50,9 @@ public class WeatherSearchDataFormController {
     private JFXButton saveBtn;
 
     private WeatherDTO weatherDTO;
+
+
+    WeatherBO weatherBO = (WeatherBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.WEATHER);
 
     @FXML
     void initialize() {
@@ -118,7 +123,7 @@ public class WeatherSearchDataFormController {
         }
 
         try {
-            boolean isRemoved = WeatherModel.removeWeather(weatherDTO);
+            boolean isRemoved = weatherBO.removeWeather(weatherDTO);
             if (isRemoved) {
                 weatherDTO = null;
                 new Alert(Alert.AlertType.INFORMATION,
@@ -175,7 +180,7 @@ public class WeatherSearchDataFormController {
         weatherDTO.setDate(datetxt.getText() + "");
 
         try {
-            boolean isUpdated = WeatherModel.updateWeather(weatherDTO, dateOld, weatherDTO.getTime());
+            boolean isUpdated = weatherBO.updateWeather(weatherDTO, dateOld, weatherDTO.getTime());
 
             if (isUpdated) {
                 new Alert(Alert.AlertType.INFORMATION,
@@ -222,7 +227,7 @@ public class WeatherSearchDataFormController {
         }
 
         try {
-            weatherDTO = WeatherModel.searchWeather(userIdTxt.getText(), dateFormateChanger());
+            weatherDTO = weatherBO.searchWeather(userIdTxt.getText(), dateFormateChanger());
 
             if (weatherDTO.getSpecialCauses() == null) {
                 weatherDTO.setSpecialCauses("Not Mentioned");

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public interface StockDAO extends CrudDAO<Stock> {
     public boolean spaceCheck(String stockId , double addingWeight) throws SQLException;
     public double getAvailableSpace(String stockId) throws SQLException;
-    public boolean stockSpaceUpdate(Stock stock , boolean isAdd) throws SQLException;
+    public boolean stockSpaceUpdate(Stock stock) throws SQLException;
 
 
 }

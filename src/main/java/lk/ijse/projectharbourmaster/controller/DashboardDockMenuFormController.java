@@ -10,12 +10,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.DockBO;
+import lk.ijse.projectharbourmaster.dto.BoatDockDTO;
 import lk.ijse.projectharbourmaster.dto.tm.BoatTM;
 import lk.ijse.projectharbourmaster.dto.tm.DockTM;
-import lk.ijse.projectharbourmaster.model.BoatModel;
-import lk.ijse.projectharbourmaster.model.DockModel;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
+//import lk.ijse.projectharbourmaster.model.DockModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -117,6 +121,10 @@ public class DashboardDockMenuFormController {
     @FXML
     private Label D2321;
 
+
+    DockBO dockBO = (DockBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.DOCK);
+
+
     @FXML
     void initialize(){
         setAvailableDocks();
@@ -144,11 +152,16 @@ public class DashboardDockMenuFormController {
 
     void setColDetails(){
         try {
-            List<DockTM> all = DockModel.getAll();
             ObservableList<DockTM> obList = FXCollections.observableArrayList();
 
-            for (DockTM dockTM :all) {
-                obList.add(dockTM);
+            for (BoatDockDTO boatDockDTO : dockBO.getAll()) {
+                obList.add(
+                        new DockTM(
+                                boatDockDTO.getDockId(),
+                                boatDockDTO.getBoatId(),
+                                boatDockDTO.getInDate()
+                        )
+                );
             }
             dockTbl.setItems(obList);
 
@@ -167,24 +180,24 @@ public class DashboardDockMenuFormController {
 
     public void setAvailableDocks() {
         try {
-            D1111.setText(DockModel.getAvailableCount("D111")+"");
-            D1121.setText(DockModel.getAvailableCount("D112")+"");
-            D1211.setText(DockModel.getAvailableCount("D121")+"");
-            D1221.setText(DockModel.getAvailableCount("D122")+"");
-            D1311.setText(DockModel.getAvailableCount("D131")+"");
-            D1321.setText(DockModel.getAvailableCount("D132")+"");
-            D2111.setText(DockModel.getAvailableCount("D211")+"");
-            D2121.setText(DockModel.getAvailableCount("D212")+"");
-            D2211.setText(DockModel.getAvailableCount("D221")+"");
-            D2221.setText(DockModel.getAvailableCount("D222")+"");
-            D2311.setText(DockModel.getAvailableCount("D231")+"");
-            D2321.setText(DockModel.getAvailableCount("D232")+"");
-            D3111.setText(DockModel.getAvailableCount("D311")+"");
-            D3121.setText(DockModel.getAvailableCount("D312")+"");
-            D3211.setText(DockModel.getAvailableCount("D321")+"");
-            D3221.setText(DockModel.getAvailableCount("D322")+"");
-            D3311.setText(DockModel.getAvailableCount("D331")+"");
-            D3321.setText(DockModel.getAvailableCount("D332")+"");
+            D1111.setText(dockBO.getAvailableCount("D111")+"");
+            D1121.setText(dockBO.getAvailableCount("D112")+"");
+            D1211.setText(dockBO.getAvailableCount("D121")+"");
+            D1221.setText(dockBO.getAvailableCount("D122")+"");
+            D1311.setText(dockBO.getAvailableCount("D131")+"");
+            D1321.setText(dockBO.getAvailableCount("D132")+"");
+            D2111.setText(dockBO.getAvailableCount("D211")+"");
+            D2121.setText(dockBO.getAvailableCount("D212")+"");
+            D2211.setText(dockBO.getAvailableCount("D221")+"");
+            D2221.setText(dockBO.getAvailableCount("D222")+"");
+            D2311.setText(dockBO.getAvailableCount("D231")+"");
+            D2321.setText(dockBO.getAvailableCount("D232")+"");
+            D3111.setText(dockBO.getAvailableCount("D311")+"");
+            D3121.setText(dockBO.getAvailableCount("D312")+"");
+            D3211.setText(dockBO.getAvailableCount("D321")+"");
+            D3221.setText(dockBO.getAvailableCount("D322")+"");
+            D3311.setText(dockBO.getAvailableCount("D331")+"");
+            D3321.setText(dockBO.getAvailableCount("D332")+"");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -215,8 +228,8 @@ public class DashboardDockMenuFormController {
 //            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()));
 //            System.out.println(DockModel.getAvailableCount(dockDockIdText.getText()) > 0);
 
-            if (DockModel.getAvailableCount(dockDockIdText.getText()) > 0 ) {
-                boolean isDocked = DockModel.dockBoats(dockDockIdText.getText(), dockDockBoatIdComboBox.getValue());
+            if (dockBO.getAvailableCount(dockDockIdText.getText()) > 0 ) {
+                boolean isDocked = dockBO.dockBoats(new BoatDockDTO(dockDockIdText.getText(), dockDockBoatIdComboBox.getValue()));
                 if (isDocked) {
                     new Alert(Alert.AlertType.CONFIRMATION,
                             "Boat Successfuly Docked",
@@ -238,7 +251,9 @@ public class DashboardDockMenuFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
@@ -254,15 +269,15 @@ public class DashboardDockMenuFormController {
 
     private void setComboBoxValues() {
         try {
-            List <String> boatIdsDock = BoatModel.selectAll();
-            List <String> boatIdsUndock = DockModel.getBoatIdForUndock(dockDockIdText.getText());
+            List <String> boatIdsDock = dockBO.getAllBoatIds();
+            List <String> boatIdsUndock = dockBO.getBoatIdForUndock(dockDockIdText.getText());
 
             ObservableList<String> obListDock = FXCollections.observableArrayList();
             ObservableList<String> obListUnDock = FXCollections.observableArrayList();
 
 
             for (String boatId : boatIdsDock) {
-                boolean isOk = DockModel.getBoatIdForDock(boatId);
+                boolean isOk = dockBO.getBoatIdForDock(boatId);
                 if (isOk) {
                     obListDock.add(boatId);
                 }
@@ -289,7 +304,9 @@ public class DashboardDockMenuFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
-            DockTM dockTM = DockModel.searchBoat(boatIdSearchTxt.getText());
+            BoatDockDTO boatDockDTO = dockBO.searchBoat(boatIdSearchTxt.getText());
+
+            DockTM dockTM = new DockTM(boatDockDTO.getDockId(), boatDockDTO.getBoatId(), boatDockDTO.getInDate() );
 
             if (dockTM == null){
                 new Alert(Alert.AlertType.CONFIRMATION,
@@ -303,7 +320,9 @@ public class DashboardDockMenuFormController {
             dateLbl.setText(dockTM.getInDate());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
@@ -327,7 +346,7 @@ public class DashboardDockMenuFormController {
         }
 
         try {
-            boolean isUnDocked = DockModel.undockBoats(dockDockIdText.getText(), dockUndockBoatIdComboBox.getValue());
+            boolean isUnDocked = dockBO.undockBoats(new BoatDockDTO( dockDockIdText.getText(), dockUndockBoatIdComboBox.getValue() ) , null );
             if (isUnDocked) {
                 new Alert(Alert.AlertType.CONFIRMATION,
                         "Boat Successfuly Undocked",
@@ -346,7 +365,9 @@ public class DashboardDockMenuFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 

@@ -16,7 +16,7 @@ public class EmployeeDTO {
     private String dob;
     private String address;
     private String gender;
-    private String salary;
+    private double salary;
     private String position;
     private String email;
     private String contact;

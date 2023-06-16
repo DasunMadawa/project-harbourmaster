@@ -11,15 +11,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.TurnBO;
 import lk.ijse.projectharbourmaster.dto.BoatDTO;
 import lk.ijse.projectharbourmaster.dto.CrewDTO;
 import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnCrewTM;
-import lk.ijse.projectharbourmaster.model.BoatModel;
-import lk.ijse.projectharbourmaster.model.CrewModel;
-import lk.ijse.projectharbourmaster.model.TurnCrewModel;
-import lk.ijse.projectharbourmaster.model.TurnModel;
+//import lk.ijse.projectharbourmaster.model.BoatModel;
+//import lk.ijse.projectharbourmaster.model.CrewModel;
+//import lk.ijse.projectharbourmaster.model.TurnCrewModel;
+//import lk.ijse.projectharbourmaster.model.TurnModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -123,8 +125,11 @@ public class TurnStartTurnFormController {
     private Image defaultImg;
     private ObservableList<TurnCrewTM> obListCrew = FXCollections.observableArrayList();
 
+
+    TurnBO turnBO = (TurnBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.TURN);
+
     @FXML
-    void initialize(){
+    void initialize() {
         defaultImg = capImageView.getImage();
 
         setTurnId();
@@ -150,10 +155,10 @@ public class TurnStartTurnFormController {
         ) {
 
             return false;
-        }else if (crewCounttxt.getText().equals("") ||
+        } else if (crewCounttxt.getText().equals("") ||
                 outDateTxt.getText().equals("") ||
                 outTimeTxt.getText().equals("")
-        ){
+        ) {
             return false;
         }
         return true;
@@ -170,20 +175,35 @@ public class TurnStartTurnFormController {
     }
 
     private void setCapNicToComboBox() {
-        try{
-            List<String> allCrewInSea = TurnCrewModel.getAllCrewInSea();
-            List<CrewTM> allCrew = CrewModel.getAllForTableFilter();
+        try {
+            List<String> allCrewInSea = turnBO.getAllCrewInSea();
+            List<CrewTM> allCrew = null;
+
+
+            for (CrewDTO crewDTO : turnBO.getAllCrewForTable()) {
+                allCrew.add(
+                        new CrewTM(
+                                crewDTO.getNic(),
+                                crewDTO.getName(),
+                                crewDTO.getAddress(),
+                                crewDTO.getContact(),
+                                crewDTO.getDob()
+                        )
+                );
+            }
+
 
             ObservableList<String> nicsObList = FXCollections.observableArrayList();
 
-            L1:for (CrewTM crewTM : allCrew) {
+            L1:
+            for (CrewTM crewTM : allCrew) {
                 for (String nic : allCrewInSea) {
-                    if (crewTM.getNic() != null && crewTM.getNic().equals(nic)){
+                    if (crewTM.getNic() != null && crewTM.getNic().equals(nic)) {
                         continue L1;
                     }
                 }
-                for (TurnCrewTM crewTMOnLable:obListCrew) {
-                    if (crewTMOnLable.getNic() != null && crewTM.getNic().equals(crewTMOnLable.getNic())){
+                for (TurnCrewTM crewTMOnLable : obListCrew) {
+                    if (crewTMOnLable.getNic() != null && crewTM.getNic().equals(crewTMOnLable.getNic())) {
                         continue L1;
                     }
                 }
@@ -191,22 +211,36 @@ public class TurnStartTurnFormController {
             }
             capNICCBOX.setItems(nicsObList);
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private void setCrewToComboBox() {
-        try{
-            List<String> allCrewInSea = TurnCrewModel.getAllCrewInSea();
-            List<CrewTM> allCrew = CrewModel.getAllForTableFilter();
+        try {
+            List<String> allCrewInSea = turnBO.getAllCrewInSea();
+            List<CrewTM> allCrew = null;
+
+
+            for (CrewDTO crewDTO : turnBO.getAllCrewForTable()) {
+                allCrew.add(
+                        new CrewTM(
+                                crewDTO.getNic(),
+                                crewDTO.getName(),
+                                crewDTO.getAddress(),
+                                crewDTO.getContact(),
+                                crewDTO.getDob()
+                        )
+                );
+            }
 
             ObservableList<String> nicsObList = FXCollections.observableArrayList();
 
-            L1:for (CrewTM crewTM : allCrew) {
+            L1:
+            for (CrewTM crewTM : allCrew) {
 
                 for (String nic : allCrewInSea) {
-                    if (crewTM.getNic().equals(nic)){
+                    if (crewTM.getNic().equals(nic)) {
                         continue L1;
                     }
                 }
@@ -215,7 +249,8 @@ public class TurnStartTurnFormController {
                     continue L1;
                 }
 
-                L2:for (TurnCrewTM turnCrewTM :obListCrew) {
+                L2:
+                for (TurnCrewTM turnCrewTM : obListCrew) {
                     if (turnCrewTM.getNic().equals(crewTM.getNic())) {
                         continue L1;
                     }
@@ -224,21 +259,22 @@ public class TurnStartTurnFormController {
             }
             crewNICComboBox.setItems(nicsObList);
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     private void setBoatIdsToComboBox() {
         try {
-            List<String> boatIdList = BoatModel.selectAll();
-            List<String> allBoatsInSea = TurnModel.getAllBoatsInSea();
+            List<String> boatIdList = turnBO.getAllBoatIds();
+            List<String> allBoatsInSea = turnBO.getAllBoatsInSea();
 
             ObservableList<String> obListBoat = FXCollections.observableArrayList();
 
-            L1:for (String boatId : boatIdList) {
+            L1:
+            for (String boatId : boatIdList) {
                 for (String boatIdInSea : allBoatsInSea) {
-                    if (boatId.equals(boatIdInSea)){
+                    if (boatId.equals(boatIdInSea)) {
                         continue L1;
                     }
                 }
@@ -255,7 +291,7 @@ public class TurnStartTurnFormController {
 
     private void setTurnId() {
         try {
-            String nextTurnId = TurnModel.generateNextTurnId();
+            String nextTurnId = turnBO.generateNextTurnId();
             turnIdLbl.setText(nextTurnId);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -267,7 +303,7 @@ public class TurnStartTurnFormController {
         String crewNic = crewNICComboBox.getValue();
 
         try {
-            CrewDTO crewDTO = CrewModel.searchCrew(crewNic);
+            CrewDTO crewDTO = turnBO.searchCrew(crewNic);
 
             String name = crewDTO.getName();
             String address = crewDTO.getAddress();
@@ -279,7 +315,7 @@ public class TurnStartTurnFormController {
             Button removeBtn = new Button("Remove");
             setRemoveBtnOnAction(removeBtn);
 
-            obListCrew.add(new TurnCrewTM(crewNic , name , address , contact , age+"" , removeBtn));
+            obListCrew.add(new TurnCrewTM(crewNic, name, address, contact, age + "", removeBtn));
             crewTbl.setItems(obListCrew);
 
             setCrewToComboBox();
@@ -330,17 +366,19 @@ public class TurnStartTurnFormController {
     @FXML
     void boatIdComboBoxOnAction(ActionEvent event) {
         try {
-            boatDTO = BoatModel.searchBoat(boatIdComboBox.getValue());
+            boatDTO = turnBO.searchBoat(boatIdComboBox.getValue());
 
             boatNameLbl.setText(boatDTO.getBoatName());
             boatTypeLbl.setText(boatDTO.getBoatType());
-            noCrewLbl.setText(boatDTO.getNoCrew()+"");
-            fuelCapLbl.setText(boatDTO.getFuelCap()+"");
-            waterCapLbl.setText(boatDTO.getWaterCap()+"");
-            maxWeightLbl.setText(boatDTO.getMaxWeight()+"");
+            noCrewLbl.setText(boatDTO.getNoCrew() + "");
+            fuelCapLbl.setText(boatDTO.getFuelCap() + "");
+            waterCapLbl.setText(boatDTO.getWaterCap() + "");
+            maxWeightLbl.setText(boatDTO.getMaxWeight() + "");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
@@ -374,14 +412,14 @@ public class TurnStartTurnFormController {
 
         String[] dateAr = date.split("-");
 
-        return dateAr[2]+"-" + dateAr[1] + "-" + dateAr[0] ;
+        return dateAr[2] + "-" + dateAr[1] + "-" + dateAr[0];
 
     }
 
     @FXML
     public void startBtnOnAction(ActionEvent actionEvent) {
 
-        if (!isAllDataValidated()){
+        if (!isAllDataValidated()) {
             new Alert(Alert.AlertType.WARNING,
                     "Fill All Data Correctly",
                     ButtonType.OK
@@ -389,7 +427,7 @@ public class TurnStartTurnFormController {
             return;
         }
 
-        if (cap == null || boatDTO == null){
+        if (cap == null || boatDTO == null) {
             new Alert(Alert.AlertType.WARNING,
                     "SELECT Boat And Captain",
                     ButtonType.OK
@@ -398,9 +436,9 @@ public class TurnStartTurnFormController {
 
         }
 
-        if (Integer.valueOf(crewCounttxt.getText()) != crewTbl.getItems().size()){
-            new Alert(Alert.AlertType.INFORMATION ,
-                    "Add Suitable no. of Crew" ,
+        if (Integer.valueOf(crewCounttxt.getText()) != crewTbl.getItems().size()) {
+            new Alert(Alert.AlertType.INFORMATION,
+                    "Add Suitable no. of Crew",
                     ButtonType.OK
             ).show();
             return;
@@ -413,36 +451,38 @@ public class TurnStartTurnFormController {
 
         try {
             List<CrewTM> crewTMList = new ArrayList<>();
-            for (TurnCrewTM turnCrewTM:obListCrew){
-                crewTMList.add(new CrewTM(turnCrewTM.getNic() ,
-                        turnCrewTM.getName() ,
-                        turnCrewTM.getAddress() ,
-                        turnCrewTM.getAddress() ,
+            for (TurnCrewTM turnCrewTM : obListCrew) {
+                crewTMList.add(new CrewTM(turnCrewTM.getNic(),
+                        turnCrewTM.getName(),
+                        turnCrewTM.getAddress(),
+                        turnCrewTM.getAddress(),
                         turnCrewTM.getAge()
                 ));
             }
 
-            boolean isStarted = TurnCrewModel.startTurn(new TurnDTO(turnId ,
-                    boatDTO.getBoatId() ,
-                    cap.getNic() ,
-                    crewCount ,
-                    outDate ,
-                    outTime ,
-                    null ,
-                    null ,
-                    crewTMList
+            boolean isStarted = turnBO.startTurn(
+                    new TurnDTO(
+                            turnId,
+                            boatDTO.getBoatId(),
+                            cap.getNic(),
+                            crewCount,
+                            outDate,
+                            outTime,
+                            null,
+                            null,
+                            crewTMList
                     )
             );
 
-            if (isStarted){
-                new Alert(Alert.AlertType.INFORMATION ,
-                        "Turn Started" ,
+            if (isStarted) {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Turn Started",
                         ButtonType.OK
                 ).show();
                 backBtnOnAction(actionEvent);
-            }else {
-                new Alert(Alert.AlertType.INFORMATION ,
-                        "Turn Not Started" ,
+            } else {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Turn Not Started",
                         ButtonType.OK
                 ).show();
             }
@@ -461,34 +501,34 @@ public class TurnStartTurnFormController {
     public void capNICCBOXOnAction(ActionEvent actionEvent) {
         try {
             if (capNICCBOX.getValue() != null) {
-                cap = CrewModel.searchCrew(capNICCBOX.getValue());
+                cap = turnBO.searchCrew(capNICCBOX.getValue());
 
                 setCrewToComboBox();
 
                 if (cap == null) {
                     return;
                 }
-            }else {
+            } else {
                 return;
             }
 
             if (cap.getPhoto() != null) {
                 capImageView.setImage(cap.getPhoto());
-            }else {
+            } else {
                 capImageView.setImage(defaultImg);
             }
             capNameLbl.setText(cap.getName());
             capDOBLbl.setText(cap.getDob());
 
-            if (cap.getEmail() != null && !cap.getEmail().isEmpty()){
+            if (cap.getEmail() != null && !cap.getEmail().isEmpty()) {
                 emailLbl.setText(cap.getEmail());
-            }else {
+            } else {
                 emailLbl.setText("Not Inserted");
             }
 
-            if (cap.getContact() != null && !cap.getContact().isEmpty()){
+            if (cap.getContact() != null && !cap.getContact().isEmpty()) {
                 capContactLbl.setText(cap.getContact());
-            }else {
+            } else {
                 capContactLbl.setText("Not Inserted");
             }
 

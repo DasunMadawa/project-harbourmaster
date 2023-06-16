@@ -10,14 +10,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import lk.ijse.projectharbourmaster.dto.BoatDTO;
-import lk.ijse.projectharbourmaster.dto.CrewDTO;
-import lk.ijse.projectharbourmaster.dto.FishDTO;
-import lk.ijse.projectharbourmaster.dto.TurnDTO;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.TurnBO;
+import lk.ijse.projectharbourmaster.dto.*;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishSearchTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnFishTM;
-import lk.ijse.projectharbourmaster.model.*;
+//import lk.ijse.projectharbourmaster.model.*;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import java.io.IOException;
@@ -156,8 +155,11 @@ public class TurnSearchTurnFormController {
 
     private ObservableList<TurnFishTM> turnFishTMObList = FXCollections.observableArrayList();
 
+
+    TurnBO turnBO = (TurnBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.TURN);
+
     @FXML
-    void initialize(){
+    void initialize() {
         setCellValueFactory();
         crewCounttxt.setEditable(false);
         outDateTxt.setEditable(false);
@@ -178,7 +180,7 @@ public class TurnSearchTurnFormController {
     }
 
     private boolean isAllDataValidated() {
-        if (inDatetxt.getFocusColor().equals(javafx.scene.paint.Paint.valueOf("red")) || inTimetxt.getFocusColor().equals(javafx.scene.paint.Paint.valueOf("red")) ) {
+        if (inDatetxt.getFocusColor().equals(javafx.scene.paint.Paint.valueOf("red")) || inTimetxt.getFocusColor().equals(javafx.scene.paint.Paint.valueOf("red"))) {
 
             return false;
         }
@@ -186,8 +188,8 @@ public class TurnSearchTurnFormController {
 
     }
 
-    void setUpdatable(boolean updatable){
-        if (updatable){
+    void setUpdatable(boolean updatable) {
+        if (updatable) {
             inDatetxt.setEditable(true);
             inTimetxt.setEditable(true);
             fishIdTxt.setEditable(true);
@@ -195,7 +197,7 @@ public class TurnSearchTurnFormController {
 
             endTurnBtn.setVisible(true);
             addBtn.setVisible(true);
-        }else {
+        } else {
             inDatetxt.setEditable(false);
             inTimetxt.setEditable(false);
             fishIdTxt.setEditable(false);
@@ -244,9 +246,9 @@ public class TurnSearchTurnFormController {
     @FXML
     void addBtnOnAction(ActionEvent event) {
 
-        if (fishNameLbl.getText() == null || fishNameLbl.getText().equals("") || fishweight.getText().length() == 0){
-            new Alert(Alert.AlertType.ERROR ,
-                    "Fill Fish Id And Fish Weight" ,
+        if (fishNameLbl.getText() == null || fishNameLbl.getText().equals("") || fishweight.getText().length() == 0) {
+            new Alert(Alert.AlertType.ERROR,
+                    "Fill Fish Id And Fish Weight",
                     ButtonType.OK
             ).show();
             return;
@@ -268,13 +270,14 @@ public class TurnSearchTurnFormController {
         }
 
         try {
-            TurnFishTM turnFishTM = TurnFishModel.searchFishTM(fishIdTxt.getText() , Double.valueOf(fishweight.getText()));
+            CustomDTO customDTO = turnBO.searchFishTM(fishIdTxt.getText(), Double.valueOf(fishweight.getText()));
+            TurnFishTM turnFishTM = new TurnFishTM(customDTO.getFishId(), customDTO.getFishName(), customDTO.getFishunitPrice(), customDTO.getWeight(), null);
 
             Button removeBtn = new Button("Remove");
             setRemoveBtnOnAction(removeBtn);
-            turnFishTM.setBtn(removeBtn );
+            turnFishTM.setBtn(removeBtn);
 
-            if (turnFishTM == null){
+            if (turnFishTM == null) {
                 return;
             }
 
@@ -285,7 +288,9 @@ public class TurnSearchTurnFormController {
             fishweight.clear();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
     }
@@ -337,19 +342,19 @@ public class TurnSearchTurnFormController {
 
         try {
 
-            turnDTO = TurnModel.searchTurn(turnSearchIdTxt.getText());
+            turnDTO = turnBO.searchTurn(turnSearchIdTxt.getText());
 
-            if (turnDTO == null){
-                new Alert(Alert.AlertType.ERROR ,
-                        "Invalid TurnId" ,
+            if (turnDTO == null) {
+                new Alert(Alert.AlertType.ERROR,
+                        "Invalid TurnId",
                         ButtonType.OK
                 ).show();
                 turnSearchIdTxt.clear();
                 return;
             }
 
-            boatDTO = BoatModel.searchBoat(turnDTO.getBoatId());
-            cap = CrewModel.searchCrew(turnDTO.getCapNIC());
+            boatDTO = turnBO.searchBoat(turnDTO.getBoatId());
+            cap = turnBO.searchCrew(turnDTO.getCapNIC());
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -359,7 +364,7 @@ public class TurnSearchTurnFormController {
 
         //turn
         turnIdLbl.setText(turnDTO.getTurnId());
-        crewCounttxt.setText(turnDTO.getCrewCount()+"");
+        crewCounttxt.setText(turnDTO.getCrewCount() + "");
         outDateTxt.setText(turnDTO.getOutDate());
         outTimeTxt.setText(turnDTO.getOutTime());
 
@@ -368,7 +373,7 @@ public class TurnSearchTurnFormController {
             inTimetxt.setText("");
 
             setUpdatable(true);
-        }else {
+        } else {
             inDatetxt.setText(turnDTO.getInDate());
             inTimetxt.setText(turnDTO.getInTime());
         }
@@ -377,7 +382,7 @@ public class TurnSearchTurnFormController {
         boatIdLbl.setText(boatDTO.getBoatId());
         boatNameLbl.setText(boatDTO.getBoatName());
         boatTypeLbl.setText(boatDTO.getBoatType());
-        noCrewLbl.setText(boatDTO.getNoCrew()+"");
+        noCrewLbl.setText(boatDTO.getNoCrew() + "");
 
         //cap
         capNIClbl.setText(cap.getNic());
@@ -386,13 +391,13 @@ public class TurnSearchTurnFormController {
         capContactLbl.setText(cap.getContact());
         emailLbl.setText(cap.getEmail());
 
-        if (cap.getPhoto() != null){
+        if (cap.getPhoto() != null) {
             capImageView.setImage(cap.getPhoto());
         }
 
         List<CrewTM> crewTM = turnDTO.getCrewTM();
         ObservableList<CrewTM> crewTMObservableList = FXCollections.observableArrayList();
-        for (CrewTM crew:crewTM){
+        for (CrewTM crew : crewTM) {
             crewTMObservableList.add(crew);
         }
 
@@ -400,19 +405,25 @@ public class TurnSearchTurnFormController {
 
         //fish
         try {
-            List<TurnFishSearchTM> fishTM = TurnFishModel.getFishForTurnFishTBL(turnDTO.getTurnId());
             ObservableList<TurnFishSearchTM> turnFishOblist = FXCollections.observableArrayList();
 
-            if (fishTM != null){
-                for (TurnFishSearchTM tm : fishTM) {
-                    turnFishOblist.add(tm);
-                }
+            for (TurnFishDTO turnFishDTO : turnBO.getFishForTurnFishTBL(turnDTO.getTurnId()) ) {
+                turnFishOblist.add(
+                        new TurnFishSearchTM(
+                                turnFishDTO.getFishId(),
+                                turnFishDTO.getFishName(),
+                                turnFishDTO.getQty()
+                        )
+                );
             }
+
 
             fishTable.setItems(turnFishOblist);
 
         } catch (SQLException e) {
-//            e.printStackTrace();
+//            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
 
@@ -433,13 +444,13 @@ public class TurnSearchTurnFormController {
 
         String[] dateAr = date.split("-");
 
-        return dateAr[2]+"-" + dateAr[1] + "-" + dateAr[0] ;
+        return dateAr[2] + "-" + dateAr[1] + "-" + dateAr[0];
 
     }
 
     @FXML
     public void endTurnBtnOnAction(ActionEvent actionEvent) {
-        if (!isAllDataValidated()){
+        if (!isAllDataValidated()) {
             new Alert(Alert.AlertType.WARNING,
                     "Fill All Data Correctly",
                     ButtonType.OK
@@ -447,7 +458,7 @@ public class TurnSearchTurnFormController {
             return;
         }
 
-        if (inDatetxt.getText().equals("") || inTimetxt.getText().equals("")){
+        if (inDatetxt.getText().equals("") || inTimetxt.getText().equals("")) {
             new Alert(Alert.AlertType.WARNING,
                     "Fill All Data Correctly",
                     ButtonType.OK
@@ -458,16 +469,16 @@ public class TurnSearchTurnFormController {
         turnDTO.setInDate(dateFormateChanger());
         turnDTO.setInTime(inTimetxt.getText());
         try {
-            boolean isEnded = TurnModel.endTurn(turnDTO, turnFishTMObList);
-            if (isEnded){
-                new Alert(Alert.AlertType.INFORMATION ,
-                        "Turn Ended and Details Recorded" ,
+            boolean isEnded = turnBO.endTurn(turnDTO, turnFishTMObList);
+            if (isEnded) {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Turn Ended and Details Recorded",
                         ButtonType.OK
                 ).show();
                 backBtnOnAction(actionEvent);
-            }else {
-                new Alert(Alert.AlertType.ERROR ,
-                        "Turn Not Ended" ,
+            } else {
+                new Alert(Alert.AlertType.ERROR,
+                        "Turn Not Ended",
                         ButtonType.OK
                 ).show();
             }
@@ -478,19 +489,19 @@ public class TurnSearchTurnFormController {
 
     @FXML
     public void fishIdTxtOnSction(ActionEvent actionEvent) {
-        if (fishIdTxt.getText() == null || fishIdTxt.getText().equals("")){
+        if (fishIdTxt.getText() == null || fishIdTxt.getText().equals("")) {
             return;
         }
 
         try {
-            FishDTO fishDTO = FIshModel.searchFish(fishIdTxt.getText());
-            if (fishDTO != null){
+            FishDTO fishDTO = turnBO.searchFish(fishIdTxt.getText());
+            if (fishDTO != null) {
                 fishNameLbl.setText(fishDTO.getFishName());
-                unitPricelbl.setText(fishDTO.getUnitPrice()+"");
+                unitPricelbl.setText(fishDTO.getUnitPrice() + "");
 
-            }else {
-                new Alert(Alert.AlertType.INFORMATION ,
-                        "Invalid FishId" ,
+            } else {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Invalid FishId",
                         ButtonType.OK
                 ).show();
                 fishIdTxt.clear();
@@ -501,7 +512,9 @@ public class TurnSearchTurnFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
 

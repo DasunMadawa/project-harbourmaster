@@ -7,7 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import lk.ijse.projectharbourmaster.model.EmailModel;
+import lk.ijse.projectharbourmaster.util.EmailUtil;
+//import lk.ijse.projectharbourmaster.model.EmailModel;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class ForgetPassword1FormController {
 
     public void sendOtp(String message){
         try {
-            EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , "projectharbourmaster001@gmail.com" , message);
+            EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , "projectharbourmaster001@gmail.com" , message);
         } catch (MessagingException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR ,

@@ -6,13 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.MainMenuBO;
+import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.UserDTO;
 import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
-import lk.ijse.projectharbourmaster.model.DockModel;
-import lk.ijse.projectharbourmaster.model.TurnCrewModel;
-import lk.ijse.projectharbourmaster.model.TurnModel;
-import lk.ijse.projectharbourmaster.model.WeatherModel;
+//import lk.ijse.projectharbourmaster.model.DockModel;
+//import lk.ijse.projectharbourmaster.model.TurnCrewModel;
+//import lk.ijse.projectharbourmaster.model.TurnModel;
+//import lk.ijse.projectharbourmaster.model.WeatherModel;
 
 import java.io.IOException;
 import java.net.URI;
@@ -119,6 +122,9 @@ public class DashboardMainMenuFormController {
 
     public static int round;
 
+
+    MainMenuBO mainMenuBO = (MainMenuBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.MAIN_MENU);
+
     @FXML
     public void initialize(){
         if (round == 0) {
@@ -159,18 +165,27 @@ public class DashboardMainMenuFormController {
     private void setTurnReport() {
         try {
 
-            List<String> allBoatsInSea = TurnModel.getAllBoatsInSea();
-            List<String> allCrewInSea = TurnCrewModel.getAllCrewInSea();
+            List<String> allBoatsInSea = mainMenuBO.getAllBoatsInSea();
+            List<String> allCrewInSea = mainMenuBO.getAllCrewInSea();
 
             mainMenuTurnNoBoatsOnSealbl.setText(allBoatsInSea.size()+"");
             mainMenuTurnNoSailorsOnSealbl.setText(allCrewInSea.size()+"");
 
-            List<TurnTM> warningTurns = TurnModel.getAllInCompletedTurnsInDanger();
-
             ObservableList<TurnTM> turnTMObservableList = FXCollections.observableArrayList();
 
-            for (TurnTM turnTM : warningTurns) {
-                turnTMObservableList.add(turnTM);
+            for (TurnDTO turnDTO : mainMenuBO.getAllInCompletedTurnsInDanger()) {
+                turnTMObservableList.add(
+                        new TurnTM(
+                                turnDTO.getTurnId(),
+                                turnDTO.getBoatId(),
+                                turnDTO.getCapNIC(),
+                                turnDTO.getCrewCount(),
+                                turnDTO.getOutDate(),
+                                turnDTO.getOutTime(),
+                                turnDTO.getInDate(),
+                                turnDTO.getInTime()
+                        )
+                );
             }
 
             mainMenuTurnTbl.setItems(turnTMObservableList);
@@ -183,24 +198,24 @@ public class DashboardMainMenuFormController {
 
     public void setAvailableDocks() {
         try {
-            D111.setText(DockModel.getAvailableCount("D111") + "");
-            D112.setText(DockModel.getAvailableCount("D112") + "");
-            D121.setText(DockModel.getAvailableCount("D121") + "");
-            D122.setText(DockModel.getAvailableCount("D122") + "");
-            D131.setText(DockModel.getAvailableCount("D131") + "");
-            D132.setText(DockModel.getAvailableCount("D132") + "");
-            D211.setText(DockModel.getAvailableCount("D211") + "");
-            D212.setText(DockModel.getAvailableCount("D212") + "");
-            D221.setText(DockModel.getAvailableCount("D221") + "");
-            D222.setText(DockModel.getAvailableCount("D222") + "");
-            D231.setText(DockModel.getAvailableCount("D231") + "");
-            D232.setText(DockModel.getAvailableCount("D232") + "");
-            D311.setText(DockModel.getAvailableCount("D311") + "");
-            D312.setText(DockModel.getAvailableCount("D312") + "");
-            D321.setText(DockModel.getAvailableCount("D321") + "");
-            D322.setText(DockModel.getAvailableCount("D322") + "");
-            D331.setText(DockModel.getAvailableCount("D331") + "");
-            D332.setText(DockModel.getAvailableCount("D332") + "");
+            D111.setText(mainMenuBO.getAvailableCount("D111") + "");
+            D112.setText(mainMenuBO.getAvailableCount("D112") + "");
+            D121.setText(mainMenuBO.getAvailableCount("D121") + "");
+            D122.setText(mainMenuBO.getAvailableCount("D122") + "");
+            D131.setText(mainMenuBO.getAvailableCount("D131") + "");
+            D132.setText(mainMenuBO.getAvailableCount("D132") + "");
+            D211.setText(mainMenuBO.getAvailableCount("D211") + "");
+            D212.setText(mainMenuBO.getAvailableCount("D212") + "");
+            D221.setText(mainMenuBO.getAvailableCount("D221") + "");
+            D222.setText(mainMenuBO.getAvailableCount("D222") + "");
+            D231.setText(mainMenuBO.getAvailableCount("D231") + "");
+            D232.setText(mainMenuBO.getAvailableCount("D232") + "");
+            D311.setText(mainMenuBO.getAvailableCount("D311") + "");
+            D312.setText(mainMenuBO.getAvailableCount("D312") + "");
+            D321.setText(mainMenuBO.getAvailableCount("D321") + "");
+            D322.setText(mainMenuBO.getAvailableCount("D322") + "");
+            D331.setText(mainMenuBO.getAvailableCount("D331") + "");
+            D332.setText(mainMenuBO.getAvailableCount("D332") + "");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -234,7 +249,7 @@ public class DashboardMainMenuFormController {
 
         String specialCauses = null;
         try {
-            specialCauses = WeatherModel.searchWeatherSpecialCauses(LocalDate.now()+"");
+            specialCauses = mainMenuBO.searchWeatherSpecialCauses(LocalDate.now()+"");
         } catch (SQLException e) {
             e.printStackTrace();
         }

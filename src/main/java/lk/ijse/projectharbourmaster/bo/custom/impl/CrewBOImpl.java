@@ -74,7 +74,7 @@ public class CrewBOImpl implements CrewBO {
     }
 
     @Override
-    public List<CrewDTO> getAll() throws SQLException {
+    public List<CrewDTO> getAllCrew() throws SQLException {
         List<CrewDTO> crewDTOList = new ArrayList<>();
 
         for (Crew crew : crewDAO.getAll()) {
@@ -82,7 +82,7 @@ public class CrewBOImpl implements CrewBO {
                     new CrewDTO(crew.getNic(),
                             crew.getName(),
                             crew.getPhoto(),
-                            (LocalDate.now().getYear() - Integer.valueOf(crew.getBod() ))+"" ,
+                            (LocalDate.now().getYear() - Integer.valueOf(crew.getBod().substring(0 ,4) ))+"" ,
                             crew.getAddress(),
                             crew.getGender(),
                             crew.getEmail(),

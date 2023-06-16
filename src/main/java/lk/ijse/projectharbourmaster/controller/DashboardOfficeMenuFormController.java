@@ -10,9 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.OfficeBO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
+import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
 import lk.ijse.projectharbourmaster.dto.tm.OfficeTM;
-import lk.ijse.projectharbourmaster.model.OfficeModel;
+//import lk.ijse.projectharbourmaster.model.OfficeModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -61,6 +64,9 @@ public class DashboardOfficeMenuFormController {
     @FXML
     private JFXButton officeSearchEmployeeBtn;
 
+
+    OfficeBO officeBO = (OfficeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.OFFICE);
+
     @FXML
     void initialize(){
         setCellValueFactory();
@@ -70,11 +76,20 @@ public class DashboardOfficeMenuFormController {
 
     private void setTableValues() {
         try {
-            List<OfficeTM> officeTMList = OfficeModel.getAllEmployees();
             ObservableList<OfficeTM> obList = FXCollections.observableArrayList();
 
-            for (OfficeTM tm : officeTMList) {
-                obList.add(tm);
+            for (EmployeeDTO employeeDTO : officeBO.getAllEmployees() ) {
+                obList.add(
+                        new OfficeTM(
+                                employeeDTO.getNic(),
+                                employeeDTO.getName(),
+                                employeeDTO.getAddress(),
+                                employeeDTO.getContact(),
+                                employeeDTO.getDob(),
+                                employeeDTO.getGender(),
+                                employeeDTO.getPosition()
+                        )
+                );
             }
 
             officeTbl.setItems(obList);

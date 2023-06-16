@@ -72,20 +72,20 @@ public class StockDAOImpl implements StockDAO {
     }
 
     @Override
-    public boolean stockSpaceUpdate(Stock stock , boolean isAdd) throws SQLException {
-        double availableSpace = getAvailableSpace(stock.getStockId());
+    public boolean stockSpaceUpdate(Stock stock) throws SQLException {
+        /*double availableSpace = getAvailableSpace(stock.getStockId());
         double balance = 0;
 
         if ( isAdd ){
             balance = availableSpace - stock.getAvailableCapacity();
         }else {
             balance = availableSpace + stock.getAvailableCapacity();
-        }
+        }*/
 
 
         String sql = "UPDATE stock SET availableCapacity = ? WHERE stockId = ?";
 
-        return CrudUtil.execute(sql, balance , stock.getStockId());
+        return CrudUtil.execute(sql, stock.getAvailableCapacity() , stock.getStockId());
 
     }
 

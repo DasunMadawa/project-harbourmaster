@@ -10,10 +10,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.WeatherBO;
 import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.tm.WeatherTM;
-import lk.ijse.projectharbourmaster.model.*;
+import lk.ijse.projectharbourmaster.util.EmailUtil;
+//import lk.ijse.projectharbourmaster.model.*;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -68,6 +71,9 @@ public class DashboardWeatherMenuFormController {
 
     public static WeatherAPIDTO weatherAPIDTO;
 
+
+    WeatherBO weatherBO = (WeatherBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.WEATHER);
+
     @FXML
     public void initialize() {
 
@@ -85,30 +91,32 @@ public class DashboardWeatherMenuFormController {
                 String nextDate = LocalDate.now().getYear()+ "-" + LocalDate.now().getMonthValue() + "-" + (LocalDate.now().getDayOfMonth()+1);
                 try {
 
-                    boolean isUpdatable = WeatherEmailModel.isUpdatableDay(LocalDate.now()+"");
+                    boolean isUpdatable = weatherBO.isUpdatableDay(LocalDate.now()+"");
 
                     System.out.println(isUpdatable);
                     if (!isUpdatable){
                         return;
                     }
-                    sendWeatherReportsByEmail(CrewModel.getAllEmails());
-                    sendWeatherReportsByEmail(BoatModel.getAllEmails());
+                    sendWeatherReportsByEmail(weatherBO.getAllEmailsCrew());
+                    sendWeatherReportsByEmail(weatherBO.getAllEmailsBoat());
 
-                    System.out.println(WeatherEmailModel.insert(LocalDate.now()+""));
-                    WeatherModel.insertWeather(new WeatherDTO(
+                    System.out.println(weatherBO.addWeatherMgDates(LocalDate.now()+""));
+                    weatherBO.addWeatherRecords(new WeatherDTO(
                             null,
                             DashboardWeatherMenuFormController.weatherAPIDTO.getWsTodat_Kmh() ,
                             null ,
                             LocalDate.now()+"" ,
-                            LocalTime.now()+""
+                            LocalTime.now()+"",
+                            null
                     ));
 
 
                 } catch (SQLException e) {
-                    e.printStackTrace();
-                }finally {
-
+                    System.out.println(e);
+                } catch (IOException e) {
+                    System.out.println(e);
                 }
+
                 this.stop();
             }
         }.start();
@@ -116,11 +124,17 @@ public class DashboardWeatherMenuFormController {
 
     void setTableItems(){
         try {
-            List<WeatherTM> tableList = WeatherModel.getAll();
             ObservableList<WeatherTM> oblist = FXCollections.observableArrayList();
 
-            for (WeatherTM row : tableList) {
-                oblist.add(row);
+            for (WeatherDTO weatherDTO : weatherBO.getAllWeatherRecords() ) {
+                oblist.add(
+                        new WeatherTM(
+                                weatherDTO.getDate(),
+                                weatherDTO.getWindSpeed(),
+                                weatherDTO.getSpecialCauses(),
+                                weatherDTO.getThreatLevel()
+                        )
+                );
             }
 
             weatherTbl.setItems(oblist);
@@ -148,7 +162,7 @@ public class DashboardWeatherMenuFormController {
 
         String specialCauses = null;
         try {
-            specialCauses = WeatherModel.searchWeatherSpecialCauses(LocalDate.now()+"");
+            specialCauses = weatherBO.searchWeatherSpecialCauses(LocalDate.now()+"");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -179,15 +193,15 @@ public class DashboardWeatherMenuFormController {
         for (int i = 0; i < crewEmailAr.size(); i++){
             try {
                 if (wsTomorrow_kmh < 37) {
-                        EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Stable Wind Speed " + nextDate);
+                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Stable Wind Speed " + nextDate);
                 } else if (wsTomorrow_kmh < 62) {
-                        EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Strong Wind Warning "+ nextDate);
+                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Strong Wind Warning "+ nextDate);
                 } else if (wsTomorrow_kmh < 88) {
-                        EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Gale Warning " + nextDate);
+                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Gale Warning " + nextDate);
                 } else if (wsTomorrow_kmh < 118) {
-                        EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Storm Warning " + nextDate);
+                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Storm Warning " + nextDate);
                 } else {
-                        EmailModel.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Hurricane Force Wind Warning " + nextDate);
+                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Hurricane Force Wind Warning " + nextDate);
 
                 }
             } catch (MessagingException e) {

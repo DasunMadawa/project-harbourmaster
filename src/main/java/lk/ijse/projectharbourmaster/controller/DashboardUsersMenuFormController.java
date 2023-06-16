@@ -8,10 +8,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.UserBO;
 import lk.ijse.projectharbourmaster.dto.UserDTO;
-import lk.ijse.projectharbourmaster.model.UserModel;
+//import lk.ijse.projectharbourmaster.model.UserModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class DashboardUsersMenuFormController {
@@ -60,6 +63,9 @@ public class DashboardUsersMenuFormController {
 
     @FXML
     private JFXButton userMenuSaveBtn;
+
+
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     @FXML
     void initialize(){
@@ -111,9 +117,9 @@ public class DashboardUsersMenuFormController {
 
     private void setUserData() {
         try {
-            UserDTO u001 = UserModel.searchUserById("U001");
-            UserDTO u002 = UserModel.searchUserById("U002");
-            UserDTO u003 = UserModel.searchUserById("U003");
+            UserDTO u001 = userBO.searchUserByUserId("U001");
+            UserDTO u002 = userBO.searchUserByUserId("U002");
+            UserDTO u003 = userBO.searchUserByUserId("U003");
 
             user1UserIdTxt.setText(u001.getUserId());
             user1EmpIdTxt.setText(u001.getNic());
@@ -131,7 +137,9 @@ public class DashboardUsersMenuFormController {
             user3Passwordxt.setText(u003.getPassword());
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 
@@ -210,7 +218,7 @@ public class DashboardUsersMenuFormController {
                     user3Passwordxt.getText()
             );
 
-            boolean isUpdated = UserModel.updateUserAll(userDTO1, userDTO2, userDTO3);
+            boolean isUpdated = userBO.updateUserAll(userDTO1, userDTO2, userDTO3);
 
             if (isUpdated){
                 new Alert(Alert.AlertType.CONFIRMATION ,

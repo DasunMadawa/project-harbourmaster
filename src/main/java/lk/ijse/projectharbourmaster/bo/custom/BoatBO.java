@@ -15,7 +15,6 @@ public interface BoatBO extends SuperBO {
     public boolean updateBoat(BoatDTO boatDTO , String boatId) throws SQLException, IOException;
     public BoatDTO searchBoat(String boatId) throws SQLException, IOException;
     public boolean deleteBoat(String boatId) throws SQLException;
-    public List<String> getAllBoatIds() throws SQLException;
     public List<String> getAllEmails() throws SQLException;
 
 }

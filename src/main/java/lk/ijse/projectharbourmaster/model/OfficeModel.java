@@ -74,7 +74,7 @@ public class OfficeModel {
         ps.setString( 4 , employeeDTO.getDob());
         ps.setString( 5 , employeeDTO.getAddress());
         ps.setString( 6 , employeeDTO.getGender());
-        ps.setString( 7 , employeeDTO.getSalary());
+        ps.setDouble( 7 , employeeDTO.getSalary());
         ps.setString( 8 , employeeDTO.getPosition());
         ps.setString( 9 , employeeDTO.getEmail());
         ps.setString( 10 , employeeDTO.getContact());
@@ -106,7 +106,7 @@ public class OfficeModel {
             String dob = rs.getString(4);
             String address = rs.getString(5);
             String gender = rs.getString(6);
-            String salary = rs.getString(7);
+            double salary = rs.getDouble(7);
             String position = rs.getString(8);
             String email = rs.getString(9);
             String contact = rs.getString(10);
@@ -142,7 +142,7 @@ public class OfficeModel {
         ps.setString( 4 , employeeDTO.getDob());
         ps.setString( 5 , employeeDTO.getAddress());
         ps.setString( 6 , employeeDTO.getGender());
-        ps.setString( 7 , employeeDTO.getSalary());
+        ps.setDouble( 7 , employeeDTO.getSalary());
         ps.setString( 8 , employeeDTO.getPosition());
         ps.setString( 9 , employeeDTO.getEmail());
         ps.setString( 10 , employeeDTO.getContact());

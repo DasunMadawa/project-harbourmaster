@@ -78,6 +78,11 @@ public class CustomDTO {
     private List<CrewTM> crewTM;
 
     private String dockId;
+    private String date;
+    private double weight;
+    private double unitPriceBought;
+    private String addOrRemove;
+    private String crewBod;
 
     public CustomDTO(String boatId, String boatOwner, String boatName, String boatType, int boatNoCrew, double fuelTankCap, double freshWaterCap, double maxWeight, String dockId) {
         this.boatId = boatId;
@@ -91,5 +96,32 @@ public class CustomDTO {
         this.dockId = dockId;
     }
 
+    public CustomDTO(String stockId, String fishId , double weight, String date, double unitPriceBought, String addOrRemove , String fishName ) {
+        this.fishId = fishId;
+        this.stockId = stockId;
+        this.weight = weight;
+        this.date = date;
+        this.unitPriceBought = unitPriceBought;
+        this.addOrRemove = addOrRemove;
+        this.fishName = fishName;
+
+    }
+
+    public CustomDTO(String crewNic, String crewName, String crewAddress, String crewContact , String crewBod ) {
+        this.crewNic = crewNic;
+        this.crewName = crewName;
+        this.crewBod = crewBod;
+        this.crewAddress = crewAddress;
+        this.crewContact = crewContact;
+    }
+
+
+    public CustomDTO(String fishId, String name, double unitPrice , Double fishWeight) {
+        this.fishId = fishId;
+        this.fishName = name;
+        this.fishunitPrice = unitPrice;
+        this.weight = fishWeight;
+
+    }
 
 }

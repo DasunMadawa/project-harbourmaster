@@ -1,9 +1,6 @@
 package lk.ijse.projectharbourmaster.bo;
 
-import lk.ijse.projectharbourmaster.bo.custom.impl.BoatBOImpl;
-import lk.ijse.projectharbourmaster.bo.custom.impl.CastBOImpl;
-import lk.ijse.projectharbourmaster.bo.custom.impl.CrewBOImpl;
-import lk.ijse.projectharbourmaster.bo.custom.impl.EmailBOImpl;
+import lk.ijse.projectharbourmaster.bo.custom.impl.*;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -18,7 +15,7 @@ public class BOFactory {
     }
 
     public enum BOTypes{
-        BOAT , CREW , CAST , EMAIL
+        BOAT , CREW , CAST , DOCK , FISH , OFFICE , STOCK , TURN , USER , WEATHER , MAIN_MENU
     }
 
     public SuperBO getBO(BOTypes daoTypes){
@@ -26,7 +23,14 @@ public class BOFactory {
             case BOAT : return new BoatBOImpl();
             case CREW : return new CrewBOImpl();
             case CAST : return new CastBOImpl();
-            case EMAIL : return new EmailBOImpl();
+            case DOCK : return new DockBOImpl();
+            case FISH : return new FishBOImpl();
+            case OFFICE : return new OfficeBOImpl();
+            case STOCK : return new StockBOImpl();
+            case TURN : return new TurnBOImpl();
+            case USER : return new UserBOImpl();
+            case WEATHER : return new WeatherBOImpl();
+            case MAIN_MENU : return new MainMenuBOImpl();
             default : return null;
 
         }

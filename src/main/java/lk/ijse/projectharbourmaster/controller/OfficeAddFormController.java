@@ -15,8 +15,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.projectharbourmaster.bo.BOFactory;
+import lk.ijse.projectharbourmaster.bo.custom.OfficeBO;
 import lk.ijse.projectharbourmaster.dto.EmployeeDTO;
-import lk.ijse.projectharbourmaster.model.OfficeModel;
+//import lk.ijse.projectharbourmaster.model.OfficeModel;
 import lk.ijse.projectharbourmaster.util.Validations;
 
 import javax.imageio.ImageIO;
@@ -69,6 +71,9 @@ public class OfficeAddFormController {
     private JFXTextField positionTxt;
 
     private Image defaultImg;
+
+
+    OfficeBO officeBO = (OfficeBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.OFFICE);
 
     @FXML
     void initialize(){
@@ -235,13 +240,13 @@ public class OfficeAddFormController {
         String dob = dateFormateChanger();
         String address = addresstxt.getText();
         String gender = genderComboBox.getValue();
-        String salary = salaryTxt.getText();
+        double salary = Double.parseDouble(salaryTxt.getText());
         String position = positionTxt.getText();
         String email = emailtxt.getText();
         String contact = contactTxt.getText();
 
         try {
-            boolean isInserted = OfficeModel.inseartData(new EmployeeDTO( nic , photo , name , dob , address , gender , salary , position , email , contact ));
+            boolean isInserted = officeBO.inseartData(new EmployeeDTO( nic , photo , name , dob , address , gender , salary , position , email , contact ));
             if (isInserted){
                 new Alert(Alert.AlertType.INFORMATION,
                         "Data Inserted",

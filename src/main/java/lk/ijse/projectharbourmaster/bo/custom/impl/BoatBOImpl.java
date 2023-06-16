@@ -104,12 +104,6 @@ public class BoatBOImpl implements BoatBO {
     }
 
     @Override
-    public List<String> getAllBoatIds() throws SQLException {
-        return boatDAO.getAllIds();
-
-    }
-
-    @Override
     public List<String> getAllEmails() throws SQLException {
         return boatDAO.getAllEmails();
 
