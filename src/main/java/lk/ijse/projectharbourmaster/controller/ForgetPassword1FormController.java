@@ -40,7 +40,7 @@ public class ForgetPassword1FormController {
 
     public void sendOtp(String message){
         try {
-            EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , "projectharbourmaster001@gmail.com" , message);
+            EmailUtil.sendMail("projecthm083@gmail.com" , "fpvbezdnxctmjzpr" , "projecthm083@gmail.com" , message);
         } catch (MessagingException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR ,

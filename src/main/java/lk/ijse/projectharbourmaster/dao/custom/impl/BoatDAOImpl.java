@@ -35,7 +35,7 @@ public class BoatDAOImpl implements BoatDAO {
     public boolean update(Boat boat, String boatId) throws SQLException {
         String sql = "UPDATE boat set boatId = ? , boatOwner = ? , boatName = ? , boatType = ? , noCrew = ? , fuelTankCap = ? , freshWaterCap = ? , maxWeight = ? , boatOwnerEmail = ? WHERE boatId = ?";
 
-        if (boat.getBoatOwnerEmail().length() == 0){
+        if (boat.getBoatOwnerEmail() == null || boat.getBoatOwnerEmail().length() == 0){
             boat.setBoatOwnerEmail(null);
         }
 

@@ -181,7 +181,7 @@ public class WeatherInputDataFormController {
     private void sendSpecialCausesMails(List<String> allEmailsCrew, String specialCause) {
         for (String email:allEmailsCrew) {
             try {
-                EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , email , specialCause);
+                EmailUtil.sendMail("projecthm083@gmail.com" , "fpvbezdnxctmjzpr" , email , specialCause);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }

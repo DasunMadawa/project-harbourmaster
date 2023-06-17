@@ -177,7 +177,7 @@ public class TurnStartTurnFormController {
     private void setCapNicToComboBox() {
         try {
             List<String> allCrewInSea = turnBO.getAllCrewInSea();
-            List<CrewTM> allCrew = null;
+            List<CrewTM> allCrew = new ArrayList<>();
 
 
             for (CrewDTO crewDTO : turnBO.getAllCrewForTable()) {
@@ -219,7 +219,7 @@ public class TurnStartTurnFormController {
     private void setCrewToComboBox() {
         try {
             List<String> allCrewInSea = turnBO.getAllCrewInSea();
-            List<CrewTM> allCrew = null;
+            List<CrewTM> allCrew = new ArrayList<>();
 
 
             for (CrewDTO crewDTO : turnBO.getAllCrewForTable()) {

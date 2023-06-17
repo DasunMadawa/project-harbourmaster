@@ -20,6 +20,10 @@ public class UserBOImpl implements UserBO {
         try {
             con.setAutoCommit(false);
 
+            System.out.println(userDTO1.getUserId());
+            System.out.println(userDTO2.getUserId());
+            System.out.println(userDTO3.getUserId());
+
             if (userDAO.update(
                     new User(
                             userDTO1.getUserId(),
@@ -42,12 +46,12 @@ public class UserBOImpl implements UserBO {
                 ) {
                     if (userDAO.update(
                             new User(
-                                    userDTO2.getUserId(),
-                                    userDTO2.getNic(),
-                                    userDTO2.getUserName(),
-                                    userDTO2.getPassword()
+                                    userDTO3.getUserId(),
+                                    userDTO3.getNic(),
+                                    userDTO3.getUserName(),
+                                    userDTO3.getPassword()
                             ),
-                            userDTO2.getUserId()
+                            userDTO3.getUserId()
                     )
                     ) {
                         con.commit();
@@ -91,6 +95,10 @@ public class UserBOImpl implements UserBO {
     @Override
     public UserDTO searchUserByUserName(String userName) throws SQLException {
         User user = userDAO.searchUserByUserName(userName);
+
+        if (user == null){
+            return null;
+        }
 
         return new UserDTO(
                 user.getUserId(),

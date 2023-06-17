@@ -54,6 +54,9 @@ public class CrewBOImpl implements CrewBO {
     @Override
     public CrewDTO searchCrew(String id) throws SQLException, IOException {
         Crew crew = crewDAO.search(id);
+        if (crew == null) {
+            return null;
+        }
 
         return new CrewDTO(crew.getNic(),
                 crew.getName(),

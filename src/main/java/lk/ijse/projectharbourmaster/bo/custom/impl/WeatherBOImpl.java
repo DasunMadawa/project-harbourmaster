@@ -6,19 +6,23 @@ import lk.ijse.projectharbourmaster.dao.custom.BoatDAO;
 import lk.ijse.projectharbourmaster.dao.custom.CrewDAO;
 import lk.ijse.projectharbourmaster.dao.custom.WeatherDAO;
 import lk.ijse.projectharbourmaster.dao.custom.WeatherEmailDAO;
+import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.entity.Weather;
 import lk.ijse.projectharbourmaster.entity.Weather_email;
+import lk.ijse.projectharbourmaster.util.EmailUtil;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherBOImpl implements WeatherBO {
 
     WeatherDAO weatherDAO = (WeatherDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.WEATHER);
-    WeatherEmailDAO weatherEmailDAO = (WeatherEmailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.WEATHER);
+    WeatherEmailDAO weatherEmailDAO = (WeatherEmailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.WEATHER_EMAIL);
     CrewDAO crewDAO = (CrewDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CREW);
     BoatDAO boatDAO = (BoatDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOAT);
 
@@ -126,6 +130,9 @@ public class WeatherBOImpl implements WeatherBO {
     @Override
     public WeatherDTO searchWeather(String userId, String date) throws SQLException {
         Weather weather = weatherDAO.searchWeather(userId, date);
+        if (weather == null){
+            throw new SQLException();
+        }
         return new WeatherDTO(
                 weather.getUserId(),
                 weather.getWindSpeed(),
@@ -147,6 +154,48 @@ public class WeatherBOImpl implements WeatherBO {
                         weatherDTO.getTime()
                 )
         );
+
+    }
+
+    @Override
+    public boolean sendWeatherReportsByEmail(List<String> crewEmailAr , WeatherAPIDTO weatherAPIDTO) {
+        String nextDate = LocalDate.now().getYear()+ "-" + LocalDate.now().getMonthValue() + "-" + (LocalDate.now().getDayOfMonth()+1);
+
+        double wsTomorrow_kmh = weatherAPIDTO.getWsTomorrow_Kmh();
+
+        for (int i = 0; i < crewEmailAr.size(); i++){
+            try {
+                String status =null;
+                if (wsTomorrow_kmh < 37) {
+                    status = "Stable Wind Speed ";
+
+                } else if (wsTomorrow_kmh < 62) {
+                    status = "Strong Wind Speed ";
+
+                } else if (wsTomorrow_kmh < 88) {
+                    status = "Gale Warning ";
+
+                } else if (wsTomorrow_kmh < 118) {
+                    status = "Storm Warning ";
+
+                } else {
+                    status = "Hurricane Force Wind Warning ";
+
+                }
+
+                EmailUtil.sendMail("projecthm083@gmail.com" , "fpvbezdnxctmjzpr" , crewEmailAr.get(i) , (status + nextDate) );
+
+            } catch (MessagingException e) {
+                System.out.println(crewEmailAr.get(i));
+                e.printStackTrace();
+            }
+
+            if (i == crewEmailAr.size()-1){
+                System.out.println("All Informed");
+                return true;
+            }
+        }
+        return false;
 
     }
 

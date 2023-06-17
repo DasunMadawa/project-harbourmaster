@@ -1,6 +1,7 @@
 package lk.ijse.projectharbourmaster.bo.custom;
 
 import lk.ijse.projectharbourmaster.bo.SuperBO;
+import lk.ijse.projectharbourmaster.dto.WeatherAPIDTO;
 import lk.ijse.projectharbourmaster.dto.WeatherDTO;
 import lk.ijse.projectharbourmaster.entity.Weather;
 
@@ -19,5 +20,6 @@ public interface WeatherBO extends SuperBO {
     public boolean updateWeather(WeatherDTO weather, String date, String time) throws SQLException;
     public WeatherDTO searchWeather(String userId , String date) throws SQLException;
     public boolean removeWeather(WeatherDTO weather) throws SQLException;
+    public boolean sendWeatherReportsByEmail(List<String> crewEmailAr , WeatherAPIDTO weatherAPIDTO);
 
 }

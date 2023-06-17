@@ -78,7 +78,9 @@ public class StockBOImpl implements StockBO {
     @Override
     public FishDTO searchFish(String fishId) throws SQLException, IOException {
         Fish fish = fishDAO.search(fishId);
-
+        if (fish == null){
+            return null;
+        }
         return new FishDTO(fish.getFishId(), fish.getName(), fish.getUnitPrice(), fish.getStock());
 
     }
@@ -129,15 +131,14 @@ public class StockBOImpl implements StockBO {
                     balance = availableSpace - stockUpdateDTO.getWeight();
                 }else {
                     balance = availableSpace + stockUpdateDTO.getWeight();
-                }
-                stockUpdateDTO.setWeight(balance);
+                };
                 //
 
                 boolean isUpdatedStock = stockDAO.stockSpaceUpdate(
                         new Stock(
                                 stockUpdateDTO.getStockId(),
                                 0,
-                                stockUpdateDTO.getWeight()
+                                balance
                         )
                 );
 

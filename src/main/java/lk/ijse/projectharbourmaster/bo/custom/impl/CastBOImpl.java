@@ -34,7 +34,7 @@ public class CastBOImpl implements CastBO {
 
         for (int i = 0; i < emailList.size(); i++){
             try {
-                EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , emailList.get(i) , message);
+                EmailUtil.sendMail("projecthm083@gmail.com" , "fpvbezdnxctmjzpr" , emailList.get(i) , message);
 
             } catch (MessagingException e) {
                 System.out.println(emailList.get(i));

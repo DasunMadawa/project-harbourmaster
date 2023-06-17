@@ -244,7 +244,7 @@ public class WeatherSearchDataFormController {
                     "No weather report found on that day on that user",
                     ButtonType.OK
             ).show();
-            e.printStackTrace();
+
         }
 
     }

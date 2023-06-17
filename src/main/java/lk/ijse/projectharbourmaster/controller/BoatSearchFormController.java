@@ -314,6 +314,10 @@ public class BoatSearchFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
+            if (boatIdSearchTxt.getFocusColor().equals(Paint.valueOf("red"))){
+                return;
+            }
+
             boatDTO = boatBO.searchBoat(boatIdSearchTxt.getText());
 
             if (boatDTO != null) {

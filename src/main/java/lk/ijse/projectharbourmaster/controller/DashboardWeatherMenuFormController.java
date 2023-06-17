@@ -186,33 +186,12 @@ public class DashboardWeatherMenuFormController {
     }
 
     public void sendWeatherReportsByEmail(List<String> crewEmailAr){
-        String nextDate = LocalDate.now().getYear()+ "-" + LocalDate.now().getMonthValue() + "-" + (LocalDate.now().getDayOfMonth()+1);
+        boolean isMgSend = weatherBO.sendWeatherReportsByEmail(crewEmailAr, weatherAPIDTO);
 
-        double wsTomorrow_kmh = weatherAPIDTO.getWsTomorrow_Kmh();
-
-        for (int i = 0; i < crewEmailAr.size(); i++){
-            try {
-                if (wsTomorrow_kmh < 37) {
-                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Stable Wind Speed " + nextDate);
-                } else if (wsTomorrow_kmh < 62) {
-                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Strong Wind Warning "+ nextDate);
-                } else if (wsTomorrow_kmh < 88) {
-                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Gale Warning " + nextDate);
-                } else if (wsTomorrow_kmh < 118) {
-                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Storm Warning " + nextDate);
-                } else {
-                        EmailUtil.sendMail("projectharbourmaster001@gmail.com" , "voyglgayubzuirtf" , crewEmailAr.get(i) , "Hurricane Force Wind Warning " + nextDate);
-
-                }
-            } catch (MessagingException e) {
-                System.out.println(crewEmailAr.get(i));
-                e.printStackTrace();
-            }
-
-            if (i == crewEmailAr.size()-1){
+        if ( isMgSend ){
                 System.out.println("All Informed");
-            }
         }
+
     }
 
     /*public WeatherAPI informationGatherAPI(){

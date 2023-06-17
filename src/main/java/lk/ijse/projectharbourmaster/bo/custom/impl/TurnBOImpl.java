@@ -66,6 +66,7 @@ public class TurnBOImpl implements TurnBO {
                             null
                     )
             );
+
         }
         return turnDTOList;
 
@@ -114,7 +115,7 @@ public class TurnBOImpl implements TurnBO {
     public String generateNextTurnId() throws SQLException {
         String lastTurnID = turnDAO.getLastTurnID();
 
-        return String.format("T%03d", Integer.parseInt(lastTurnID.substring(1) + 1));
+        return String.format("T%03d", Integer.parseInt(lastTurnID.substring(1)) +1 );
 
     }
 
@@ -225,13 +226,16 @@ public class TurnBOImpl implements TurnBO {
         for (CustomEntity customEntity : queryDAO.getAllCrewInATurn(turnId) ) {
             crewTMList.add(
                     new CrewTM(
-                            customEntity.getNic(),
+                            customEntity.getCrewNic(),
                             customEntity.getCrewName(),
                             customEntity.getCrewAddress(),
                             customEntity.getCrewContact(),
                             customEntity.getCrewBod()
                     )
             );
+        }
+        if (turn == null){
+            return null;
         }
 
         return new TurnDTO(

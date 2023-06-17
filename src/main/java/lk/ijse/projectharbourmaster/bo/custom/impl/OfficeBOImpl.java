@@ -63,6 +63,10 @@ public class OfficeBOImpl implements OfficeBO {
     public EmployeeDTO searchEmployee(String nicSearchTxtText) throws SQLException, IOException {
         Employee employee = officeDAO.search(nicSearchTxtText);
 
+        if(employee == null){
+            return null;
+        }
+
         return new EmployeeDTO(
                 employee.getNic(),
                 employee.getPhoto(),

@@ -220,7 +220,7 @@
                </columns>
             </TableView>
             <Line endX="1726.0" layoutX="134.0" layoutY="747.0" startX="-100.0" />
-            <TableView fx:id="fishDTOTable" layoutX="916.0" layoutY="764.0" prefHeight="169.0" prefWidth="706.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
+            <TableView fx:id="fishTable" layoutX="916.0" layoutY="764.0" prefHeight="169.0" prefWidth="706.0" style="-fx-background-radius: 10; -fx-background-color: #1C82AD;">
                <columns>
                   <TableColumn fx:id="fishIdCol" prefWidth="116.0" text="Fish Id" />
                   <TableColumn fx:id="fishNameCol" minWidth="0.0" prefWidth="214.0" text="Fish Name" />

@@ -18,6 +18,9 @@ public class FishBOImpl implements FishBO {
     @Override
     public FishDTO searchFish(String fishId) throws SQLException, IOException {
         Fish fish = fishDAO.search(fishId);
+        if (fish == null){
+            return null;
+        }
         return new FishDTO(fish.getFishId() , fish.getName() , fish.getUnitPrice(), fish.getStock() );
 
     }

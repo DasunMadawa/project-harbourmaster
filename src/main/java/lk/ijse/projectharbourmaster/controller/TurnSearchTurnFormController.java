@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lk.ijse.projectharbourmaster.bo.BOFactory;
 import lk.ijse.projectharbourmaster.bo.custom.TurnBO;
@@ -393,6 +394,8 @@ public class TurnSearchTurnFormController {
 
         if (cap.getPhoto() != null) {
             capImageView.setImage(cap.getPhoto());
+        }else {
+            capImageView.setImage(new Image("E:\\Final Project Sem 1\\New folder\\project-harbourmaster\\src\\main\\resources\\view\\img\\396915-200.png"));
         }
 
         List<CrewTM> crewTM = turnDTO.getCrewTM();

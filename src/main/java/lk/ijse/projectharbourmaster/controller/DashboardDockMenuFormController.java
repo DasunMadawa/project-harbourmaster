@@ -304,6 +304,10 @@ public class DashboardDockMenuFormController {
     @FXML
     void searchBtnOnAction(ActionEvent event) {
         try {
+            if (boatIdSearchTxt.getFocusColor().equals(Paint.valueOf("red")) ){
+                return;
+            }
+
             BoatDockDTO boatDockDTO = dockBO.searchBoat(boatIdSearchTxt.getText());
 
             DockTM dockTM = new DockTM(boatDockDTO.getDockId(), boatDockDTO.getBoatId(), boatDockDTO.getInDate() );
@@ -320,9 +324,12 @@ public class DashboardDockMenuFormController {
             dateLbl.setText(dockTM.getInDate());
 
         } catch (SQLException e) {
-            System.out.println(e);
+            new Alert(Alert.AlertType.CONFIRMATION,
+                    "This Boat Not Docked",
+                    ButtonType.OK
+            ).show();
         } catch (IOException e) {
-            System.out.println(e);
+
         }
     }
 

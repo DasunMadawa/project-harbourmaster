@@ -82,6 +82,10 @@ public class BoatBOImpl implements BoatBO {
     public BoatDTO searchBoat(String boatId) throws SQLException, IOException {
         Boat boat = boatDAO.search(boatId);
 
+        if (boat == null){
+            return null;
+        }
+
         return new BoatDTO(
                 boat.getBoatId(),
                 boat.getBoatOwner(),

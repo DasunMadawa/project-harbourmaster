@@ -50,6 +50,10 @@ public class DockBOImpl implements DockBO {
     public BoatDockDTO searchBoat(String id) throws SQLException, IOException {
         Boat_dock boat_dock = dockDAO.search(id);
 
+        if (boat_dock == null){
+            throw new SQLException();
+        }
+
         return new BoatDockDTO(
                 boat_dock.getDockId(),
                 boat_dock.getBoatId(),

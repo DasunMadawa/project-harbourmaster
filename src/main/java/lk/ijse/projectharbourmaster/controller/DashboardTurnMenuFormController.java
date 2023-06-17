@@ -18,6 +18,7 @@ import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardTurnMenuFormController {
@@ -125,6 +126,8 @@ public class DashboardTurnMenuFormController {
 
     private void setTables() {
         try {
+            completedTurns = new ArrayList<>();
+            inCompletedTurns = new ArrayList<>();
             for (TurnDTO turnDTO : turnBO.getAllCompletedTurns() ) {
                 completedTurns.add(
                         new TurnTM(
@@ -138,6 +141,7 @@ public class DashboardTurnMenuFormController {
                                 turnDTO.getInTime()
                         )
                 );
+
             }
 
             for (TurnDTO turnDTO : turnBO.getAllInCompletedTurns() ) {
@@ -156,7 +160,7 @@ public class DashboardTurnMenuFormController {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         ObservableList<TurnTM> completedTurnsObList = FXCollections.observableArrayList();

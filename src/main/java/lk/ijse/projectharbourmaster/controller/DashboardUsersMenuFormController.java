@@ -156,9 +156,9 @@ public class DashboardUsersMenuFormController {
             user2UserNameTxt.setEditable(true);
             user2Passwordxt.setEditable(true);
 
-            user2EmpIdTxt.setEditable(true);
-            user2UserNameTxt.setEditable(true);
-            user2Passwordxt.setEditable(true);
+            user3EmpIdTxt.setEditable(true);
+            user3UserNameTxt.setEditable(true);
+            user3Passwordxt.setEditable(true);
 
 
 
@@ -176,10 +176,10 @@ public class DashboardUsersMenuFormController {
             user2UserNameTxt.setEditable(false);
             user2Passwordxt.setEditable(false);
 
-            user2UserIdTxt.setEditable(false);
-            user2EmpIdTxt.setEditable(false);
-            user2UserNameTxt.setEditable(false);
-            user2Passwordxt.setEditable(false);
+            user3UserIdTxt.setEditable(false);
+            user3EmpIdTxt.setEditable(false);
+            user3UserNameTxt.setEditable(false);
+            user3Passwordxt.setEditable(false);
 
         }
 
@@ -204,6 +204,7 @@ public class DashboardUsersMenuFormController {
                     user1EmpIdTxt.getText(),
                     user1UserNameTxt.getText(),
                     user1Passwordxt.getText() );
+
             UserDTO userDTO2 = new UserDTO(
                     user2UserIdTxt.getText(),
                     user2EmpIdTxt.getText(),
