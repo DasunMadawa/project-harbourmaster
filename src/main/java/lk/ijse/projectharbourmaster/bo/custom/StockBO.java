@@ -6,8 +6,6 @@ import lk.ijse.projectharbourmaster.dto.CustomDTO;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.dto.StockUpdateDTO;
 import lk.ijse.projectharbourmaster.dto.tm.StockRecordsTM;
-import lk.ijse.projectharbourmaster.model.FIshModel;
-import lk.ijse.projectharbourmaster.model.StockModel;
 
 import java.io.IOException;
 import java.sql.Connection;

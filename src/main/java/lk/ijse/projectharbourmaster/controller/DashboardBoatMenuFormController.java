@@ -18,8 +18,6 @@ import lk.ijse.projectharbourmaster.dto.BoatDTO;
 import lk.ijse.projectharbourmaster.dto.CustomDTO;
 import lk.ijse.projectharbourmaster.dto.tm.BoatTM;
 import lk.ijse.projectharbourmaster.entity.CustomEntity;
-//import lk.ijse.projectharbourmaster.model.BoatModel;
-import lk.ijse.projectharbourmaster.model.CrewModel;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;

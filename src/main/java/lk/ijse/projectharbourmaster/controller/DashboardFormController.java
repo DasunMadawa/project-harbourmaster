@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.projectharbourmaster.model.EmailModel;
 
 import javax.mail.MessagingException;
 import java.io.IOException;

@@ -4,8 +4,6 @@ import lk.ijse.projectharbourmaster.dao.custom.StockFishDAO;
 import lk.ijse.projectharbourmaster.db.DBConnection;
 import lk.ijse.projectharbourmaster.dto.FishDTO;
 import lk.ijse.projectharbourmaster.entity.Stock_fish;
-import lk.ijse.projectharbourmaster.model.FIshModel;
-import lk.ijse.projectharbourmaster.model.StockModel;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.io.IOException;

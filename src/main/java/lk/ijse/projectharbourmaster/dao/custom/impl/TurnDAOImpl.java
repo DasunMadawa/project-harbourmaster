@@ -5,7 +5,6 @@ import lk.ijse.projectharbourmaster.dto.TurnDTO;
 import lk.ijse.projectharbourmaster.dto.tm.CrewTM;
 import lk.ijse.projectharbourmaster.dto.tm.TurnTM;
 import lk.ijse.projectharbourmaster.entity.Turn;
-import lk.ijse.projectharbourmaster.model.TurnCrewModel;
 import lk.ijse.projectharbourmaster.util.CrudUtil;
 
 import java.io.IOException;
