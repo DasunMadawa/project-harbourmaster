@@ -18,8 +18,8 @@ public class BOFactory {
         BOAT , CREW , CAST , DOCK , FISH , OFFICE , STOCK , TURN , USER , WEATHER , MAIN_MENU
     }
 
-    public SuperBO getBO(BOTypes daoTypes){
-        switch (daoTypes){
+    public SuperBO getBO(BOTypes boTypes){
+        switch (boTypes){
             case BOAT : return new BoatBOImpl();
             case CREW : return new CrewBOImpl();
             case CAST : return new CastBOImpl();
